@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 200 400"
+   width="200"
+   height="400"
+   version="1.1"
+   id="svg345"
+   sodipodi:docname="woman3.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs349" />
+  <sodipodi:namedview
+     id="namedview347"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.668772"
+     inkscape:cx="44.943228"
+     inkscape:cy="189.66042"
+     inkscape:window-width="1920"
+     inkscape:window-height="1134"
+     inkscape:window-x="0"
+     inkscape:window-y="29"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg345" />
+  <!-- Head -->
+  <circle
+     cx="100"
+     cy="50"
+     r="30"
+     fill="#FAD4B8"
+     id="circle317" />
+  <!-- Blond Hair -->
+  <!-- Eyes -->
+  <circle
+     cx="90"
+     cy="45"
+     r="3"
+     fill="black"
+     id="circle323" />
+  <circle
+     cx="110"
+     cy="45"
+     r="3"
+     fill="black"
+     id="circle325" />
+  <!-- Nose -->
+  <path
+     d="M100 50 L95 60 L100 60"
+     stroke="black"
+     fill="none"
+     id="path327" />
+  <!-- Smile -->
+  <path
+     d="M90 65 Q100 75, 110 65"
+     stroke="black"
+     fill="none"
+     stroke-width="1.5"
+     id="path329" />
+  <!-- Body -->
+  <path
+     d="M80 80 Q100 70, 120 80 L120 220 Q100 240, 80 220 L80 80 Z"
+     fill="red"
+     id="path331" />
+  <!-- Arms -->
+  <line
+     x1="80"
+     y1="90"
+     x2="60"
+     y2="140"
+     stroke="#FAD4B8"
+     stroke-width="8"
+     id="line333" />
+  <line
+     x1="120"
+     y1="90"
+     x2="140"
+     y2="140"
+     stroke="#FAD4B8"
+     stroke-width="8"
+     id="line335" />
+  <!-- Legs (Walking Position 2) -->
+  <line
+     x1="90"
+     y1="220"
+     x2="110"
+     y2="320"
+     stroke="#FAD4B8"
+     stroke-width="8"
+     id="line337" />
+  <line
+     x1="110"
+     y1="220"
+     x2="90"
+     y2="320"
+     stroke="#FAD4B8"
+     stroke-width="8"
+     id="line339" />
+  <!-- Red Shoes -->
+  <rect
+     x="110"
+     y="320"
+     width="16"
+     height="10"
+     fill="red"
+     id="rect341" />
+  <rect
+     x="90"
+     y="320"
+     width="16"
+     height="10"
+     fill="red"
+     id="rect343" />
+  <g
+     id="g251"
+     transform="translate(-0.15951107,-2.3958948)">
+    <path
+       d="m 74.47717,39.83227 q 25.260461,-25.407988 50.52093,0 -25.260469,-50.815977 -50.52093,0"
+       fill="#f0c419"
+       id="path4"
+       style="stroke-width:1.46268" />
+    <path
+       d="m 120.93284,15.670786 q -20.93143,0.0096 -6.49958,34.561812 1.83298,40.841397 18.6982,21.983369 0.20013,-31.417201 -12.19862,-56.545181"
+       fill="#f0c419"
+       id="path6"
+       style="stroke-width:0.810929" />
+    <path
+       d="M 65.897256,75.516205 Q 83.452502,94.019354 85.097107,52.858347 99.80819,17.670356 78.164017,18.254457 65.497402,43.898823 65.897256,75.516205"
+       fill="#f0c419"
+       id="path6-3"
+       style="stroke-width:0.827384" />
+  </g>
+</svg>
