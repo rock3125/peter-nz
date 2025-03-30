@@ -6,12 +6,24 @@
   <title>A View from the Rock</title>
   <style>
     body {
-      background-color: #ffffff;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      color: #333;
-      line-height: 1.6;
+    }
+    .menu-bar {
+        background-color: #333;
+        color: white;
+        padding: 10px 0;
+        text-align: center;
+    }
+    .menu-bar a {
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    .menu-bar a:hover {
+        background-color: grey;
     }
     .container {
       max-width: 800px;
@@ -19,11 +31,17 @@
       padding: 20px;
     }
     header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    blog-header {
       text-align: center;
       padding: 40px 0 20px;
       border-bottom: 1px solid #eaeaea;
     }
-    header h1 {
+    blog-header h1 {
       margin: 0;
       font-size: 2.5em;
       color: #222;
@@ -62,10 +80,20 @@
   </style>
 </head>
 <body>
-  <div class="container">
     <header>
-      <h1>BLOG: a View from the Rock</h1>
+        <h1>Rock de Vocht</h1>
+        <p>Senior Programmer / Developer</p>
+
+        <div class="menu-bar">
+            <a href="/">Home</a>
+            <a href="blog.html">Rock's blog</a>
+            <a href="/lunar-lander/">Lunar Lander</a>
+            <!--<a href="/maze-runner/">Maze Runner</a>-->
+        </div>
+
     </header>
+
+  <div class="container">
     <article>
       <h2>a New Open Source License: Protecting Code from AI Exploitation</h2>
       <div class="post-meta">Posted on March 30, 2025 by Rock de Vocht</div>
@@ -92,7 +120,7 @@ I've made a start at such a license.  Feel free to use it in whichever way you l
       </p>
     </article>
     <footer>
-      &copy; 2025 Rock's Blog. All rights reserved.
+      &copy; 2025 a View from the Rock. All rights reserved.
     </footer>
   </div>
 </body>
