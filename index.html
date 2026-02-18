@@ -6,123 +6,323 @@
     <title>a View from the Rock</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
+
         header {
             background-color: #333;
             color: #fff;
             padding: 20px;
             text-align: center;
         }
+
+        .container {
+            line-height: 1.6;
+            color: #333;
+            max-width: 850px;
+            margin: auto;
+            padding: 40px;
+        }
+
         section {
             padding: 20px;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
-        }
+
         .container p {
         }
+
         .profile-img {
             display: block;
             margin: auto;
             max-width: 200px;
             border-radius: 50%;
         }
-        .skills-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .skills-list li {
-            margin-bottom: 10px;
-        }
+
         .social-icons {
             text-align: center;
             margin-top: 20px;
             margin-bottom: 40px;
         }
+
         .social-icons a {
             display: inline-block;
             margin: 0 10px;
             color: #333;
         }
+
         .social-icons img {
             display: inline-block;
             margin: 0 10px;
             width: 32px;
         }
+
         .menu-bar {
             background-color: #333;
             color: white;
             padding: 10px 0;
             text-align: center;
         }
+
         .menu-bar a {
             color: white;
             padding: 10px 20px;
             text-decoration: none;
             font-size: 16px;
         }
+
         .menu-bar a:hover {
             background-color: grey;
+        }
+
+        h1 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            text-transform: uppercase;
+            font-size: 1.3em;
+        }
+
+        h3 {
+            margin-bottom: 5px;
+            color: #34495e;
+            font-size: 1.1em;
+        }
+
+        .job {
+            margin-bottom: 25px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .job-title {
+            font-weight: bold;
+            color: #2980b9;
+            font-size: 1.1em;
+        }
+
+        .job-meta {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.95em;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .skill-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        ul {
+            margin-top: 8px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #dcdde1;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Rock de Vocht</h1>
-        <p>Senior Programmer / Developer</p>
+<header>
+    <h1 style="color: #ccccaa">Rock de Vocht</h1>
+    <p>Team Lead / Software Engineer</p>
 
-        <div class="menu-bar">
-            <a href="/">Home</a>
-            <a href="blog.html">Rock's blog</a>
-            <a href="/lunar-lander/">Lunar Lander</a>
-            <!--<a href="/maze-runner/">Maze Runner</a>-->
-        </div>
+    <div class="menu-bar">
+        <a href="/" title="Rock's CV">Home</a>
+<!--        <a href="blog.html">Rock's blog</a>-->
+        <a href="/lunar-lander/" title="a fun little game I wrote a while back">Lunar Lander</a>
+        <!--<a href="/maze-runner/">Maze Runner</a>-->
+    </div>
 
-    </header>
+</header>
 
-    <section class="container">
-        <h2>About</h2>
+<div class="container">
+
+    <section>
+        <h2>Professional Profile</h2>
         <img src="rock.jpg" alt="Rock de Vocht" class="profile-img" title="Rock de Vocht">
-        <p>Hi!  I'm Rock de Vocht.  I'm a highly skilled senior programmer developer with over 30 years of experience in the industry. I have mastered various programming languages including C, Java, Kotlin, C++, Python, and React. I have expertise in AI, Information Retrieval (Search), and Cognitive Computing.</p>
+        <p>
+            Hi! I'm Rock. An innovative technical leader and <strong>Master of Science in Computer Science</strong> with
+            deep expertise in <strong>Context Engineering</strong>, Natural Language Processing, and large-scale AI
+            infrastructure. Expert at architecting sophisticated data retrieval systems (RAG) and managing complex cloud
+            environments across <strong>Azure, GCP, and Linux</strong>. Proven ability to lead development teams and
+            create high-performance big-data solutions.
+        </p>
     </section>
 
-    <section class="container">
-        <h2>Skills</h2>
-        <ul class="skills-list">
-            <li>AI</li>
-            <li>C</li>
-            <li>Kotlin</li>
-            <li>Java</li>
-            <li>Rust</li>
-            <li>C++</li>
-            <li>Python</li>
-            <li>React JS</li>
-            <li>Javascript</li>
-            <li>Creating Cognitive Solutions</li>
-            <li>Leading teams to Success</li>
+    <section>
+        <h2>Core Technical Expertise</h2>
+        <div class="skills-container">
+            <div class="skill-column">
+                <strong>AI & Data Engineering</strong>
+                <ul>
+                    <li><span class="highlight">Context Engineering:</span> RAG using OpenAI, Gemini, Ollama</li>
+                    <li><span class="highlight">NLP:</span> Semantic Search, NLU, NER, Sentiment Analysis</li>
+                    <li><span class="highlight">Big Data:</span> Spark, Cassandra, ScyllaDB, Hadoop</li>
+                </ul>
+            </div>
+            <div class="skill-column">
+                <strong>Infrastructure & Development</strong>
+                <ul>
+                    <li><span class="highlight">Cloud:</span> Azure, Google Cloud (GCP), Linode</li>
+                    <li><span class="highlight">DevOps:</span> Kubernetes, Docker, CI/CD pipelines</li>
+                    <li><span class="highlight">Languages:</span> Kotlin, Python, Java, C#, C, Go, React js + Typescript</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Professional Experience</h2>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="job-title">CSO / CTO | SimSage (UK) Ltd</span>
+                <span class="job-meta">Cambridge, UK | Jan 2020 – Present</span>
+            </div>
+            <ul>
+                <li>Architected a <strong>Graph-based Enterprise Semantic Search Engine</strong> utilizing advanced NLP
+                    for context-engineering in LLMs.
+                </li>
+                <li>Integrated production AI workflows with <strong>Gemini, OpenAI, CoPilot, and AWS Bedrock</strong>.
+                </li>
+                <li>Built and maintained a massive codebase (250k+ lines) with 30+ enterprise connectors (SharePoint,
+                    OneDrive, Google Drive).
+                </li>
+                <li>Optimized infrastructure using <strong>Ubuntu Server, Kubernetes, and Docker</strong>.</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="job-title">Developer (Contract) | MBIE, NZ Immigration</span>
+                <span class="job-meta">Wellington, NZ | May 2018 – Dec 2019</span>
+            </div>
+            <ul>
+                <li>Developed the <strong>Visa Assessment Tool (VAT)</strong> and Risk Analysis Project using C# on
+                    Azure/Linux.
+                </li>
+                <li>Applied Machine Learning for data quality and signal analysis on <strong>170 million unstructured
+                    records</strong>.
+                </li>
+                <li>Utilized Python and neural networks to extract statistically significant values from complex
+                    datasets.
+                </li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="job-title">NLP Specialist | Booktrack.com</span>
+                <span class="job-meta">Auckland/Wellington, NZ | Mar 2016 – May 2018</span>
+            </div>
+            <ul>
+                <li>Led AI and NLP research and development, focusing on <strong>emotional text analysis</strong> and
+                    contextual understanding.
+                </li>
+                <li>Designed an <strong>Automatic Speech Recognition (ASR)</strong> system for automated accent-to-text
+                    transcription.
+                </li>
+                <li>Managed deployments using <strong>Kubernetes and Docker</strong> across Google Cloud and Azure.</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="job-title">Senior Developer (Contract) | Verifone</span>
+                <span class="job-meta">Wellington, NZ | Jan 2015 – Mar 2016</span>
+            </div>
+            <ul>
+                <li>Key member of the Payment Gateway BAU team, responsible for troubleshooting and fixing complex,
+                    level-three support issues.
+                </li>
+                <li>Performed extensive DevOps environment support and bug analysis for mission-critical financial
+                    systems.
+                </li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <span class="job-title">Chief Scientist & Co-Founder | SYL Semantics</span>
+                <span class="job-meta">Wellington, NZ | 2008 – Jan 2015</span>
+            </div>
+            <ul>
+                <li>Created an innovative semantic search engine currently utilized by several <strong>NZ Government
+                    departments</strong> (MOT, NZTA, MPI).
+                </li>
+                <li>Defined the technical roadmap and led a development team through the full SDLC and IP creation.</li>
+                <li>Managed complex integrations with external APIs including SharePoint, CRM, and social media
+                    platforms.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Education & Mentorship</h2>
+        <ul>
+            <li><strong>Master of Science in Computer Science</strong> – University of Auckland
+                <br><small>Thesis in AI, Natural Language Understanding (NLU), and Human Computer Interfaces (HCI).</small></li>
+            <li><strong>Bachelor of Science in Computer Science (Honours)</strong> – University of Auckland
+                <br><small>Awarded Senior Prize in Computer Science.</small></li>
+            <li><strong>Machine Learning Certification</strong> – Stanford University (Coursera).</li>
         </ul>
     </section>
 
-    <section class="container">
-        <h2>Experience</h2>
-        <p>Over thirty years of experience as a fast, inventive and thorough developer.
-            I have honed his skills and expertise to become a seasoned professional in
-            the field. He has worked on numerous projects spanning various industries,
-            showcasing his versatility and adaptability.
-            Extensive experience in tackling complex problems with ease.
-            Delivering robust solutions that meet the highest standards of quality and efficiency.
-            Chief Scientist and co-founder at SYL Search, and the SimSage Group.
-        </p>
-        <a href="LICENSE">this site and its source code is licensed under the Rock Machine-learning License</a>
+    <section>
+        <h2>Languages & Interests</h2>
+        <div>
+            <span class="tag">English</span> <span class="tag">Dutch</span> <span class="tag">German (Proficient)</span>
+            <span class="tag">French (Proficient)</span>
+        </div>
+        <p><small>Outside of engineering, I am a black belt in Wing Tsun Kung Fu and a composer of orchestral
+            music.</small></p>
     </section>
 
     <div class="social-icons">
         <a href="https://www.linkedin.com/in/pmgdv/" target="_blank"><img src="linkedin.png" alt="LinkedIn"></a>
         <a href="https://github.com/rock3125" target="_blank"><img src="github.png" alt="GitHub"></a>
     </div>
+
+</div>
+
 </body>
 </html>
