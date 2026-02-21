@@ -18,6 +18,8 @@ class Ship {
         this.home_y = 0;
         this.bullets = [];
         this.particles = [];
+        this.lives = 3
+        this.score = 0
     }
 
     land() {
@@ -48,6 +50,10 @@ class Ship {
         this.angle = -Math.PI / 2;
         this.landed = true;
         this.home_x = 0; this.home_y = 0;
+        this.fuel = 0.0;
+        this.ammo = 0;
+        this.bullets = [];
+        this.particles = [];
         // create the home 'base' block
         for(let y=5; y<GRID_RES; y++) {
             for(let x=1; x<GRID_RES; x++) {
@@ -63,7 +69,7 @@ class Ship {
         }
     }
 
-    drawBullets(camX, camY) {
+    drawBullets() {
         ctx.fillStyle = "yellow";
         this.bullets.forEach(b => {
             // Draw as a small 2x2 square
@@ -143,6 +149,10 @@ class Ship {
         });
     }
 
+    collectOrb() {
+        this.score += 500
+    }
+
     updateParticles() {
         this.particles = this.particles.filter(p => {
             p.x += p.vx;
@@ -197,6 +207,7 @@ class Ship {
     }
 
     update(map) {
+
         this.checkKeys();
 
         const inWater = this.y > WATER_Y;
@@ -221,6 +232,15 @@ class Ship {
                     this.ammo = MAX_AMMO;
                 }
             }
+        }
+
+        // not landed, out of fuel - count-down to self-destruct
+        if (!this.landed && this.fuel <= 0.0) {
+            setTimeout(() => {
+                if (!this.landed && this.fuel <= 0.0) {
+                    triggerGameOver()
+                }
+            }, 1500);
         }
 
         if (!gameOver) {
@@ -248,6 +268,8 @@ class Ship {
 
     // draw the ship
     draw() {
+        if (this.lives <= 0) return
+
         ctx.save();
         ctx.translate(ship.x, ship.y);
         ctx.rotate(ship.angle);
@@ -259,6 +281,28 @@ class Ship {
         if (keys['ArrowDown'] && ship.fuel > 0.0) {
             ctx.beginPath(); ctx.moveTo(-10, 0); ctx.lineTo(-25, 0);
             ctx.strokeStyle = 'orange'; ctx.stroke();
+        }
+        ctx.restore();
+    }
+
+
+    // draw the ship's lives
+    drawLives(x, y) {
+        if (this.lives <= 0) return
+
+        ctx.save();
+        ctx.translate(x, y)
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 2;
+        for (let i = 0; i < this.lives; i++) {
+            ctx.translate(16, 0);
+            ctx.save();
+            ctx.rotate(Math.PI * 1.5)
+            ctx.beginPath();
+            ctx.moveTo(6, 0); ctx.lineTo(-5, -4); ctx.lineTo(-5, 4);
+            ctx.closePath();
+            ctx.restore();
+            ctx.stroke();
         }
         ctx.restore();
     }

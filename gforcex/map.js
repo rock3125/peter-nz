@@ -2,13 +2,17 @@
 
 class Map {
 
-    constructor(num_turrets) {
+    constructor(num_turrets, num_orbs) {
         this.grid = [];
         this.turret = [];
         this.num_turrets = num_turrets;
+        this.orbs = [];
+        this.num_orbs = num_orbs;
     }
 
     generateWorld() {
+        this.turret = [];
+        this.orbs = [];
         // Noise
         this.grid = Array.from({ length: GRID_RES }, () => Array(GRID_RES).fill(1));
         for (let x = 1; x < GRID_RES - 1; x++) {
@@ -50,6 +54,18 @@ class Map {
                     }
                 }
 
+            }
+        }
+
+        // orb placement
+        for (let x = 1; x < GRID_RES - 1; x++) {
+            for (let y = 1; y < GRID_RES - 1; y++) {
+                if (this.orbs.length >= this.num_orbs)
+                    break;
+                // empty spot, on top of something
+                if (this.grid[x][y] === 0 && this.grid[x][y+1] !== 0) {
+                    this.orbs.push(new Orb(x, y));
+                }
             }
         }
 
@@ -107,6 +123,10 @@ class Map {
         this.turret.forEach(t => {
             t.update(this, ship);
         });
+        // Orbs
+        this.orbs.forEach(orb => {
+            orb.update(ship);
+        });
     }
 
     draw(ship) {
@@ -150,7 +170,12 @@ class Map {
 
         // Turrets
         this.turret.forEach(t => {
-            t.draw(ship);
+            t.draw();
+        });
+
+        // Orbs
+        this.orbs.forEach(orb => {
+            orb.draw();
         });
 
         // Update Minimap Player Dot
