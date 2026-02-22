@@ -74,7 +74,7 @@ class Map {
                     // not on top of another turret
                     let existing = false;
                     for (let ti = 0; ti < this.turret.length && !existing; ti++) {
-                        if (this.turret[ti].x === x && this.turret[ti].y === y) {
+                        if (this.turret[ti].tileX === x && this.turret[ti].tileY === y) {
                             existing = true;
                         }
                     }
@@ -121,8 +121,8 @@ class Map {
                     // can't be next to a turret either
                     let smallest = 1000.0
                     for (let ti = 0; ti < this.turret.length; ti++) {
-                        const dx = this.turret[ti].x - x;
-                        const dy = this.turret[ti].y - y;
+                        const dx = this.turret[ti].tileX - x;
+                        const dy = this.turret[ti].tileY - y;
                         const distance = Math.sqrt(dx * dx + dy * dy)
                         if (distance < smallest) {
                             smallest = distance;
@@ -133,7 +133,7 @@ class Map {
                     // not on top of another orb
                     let existing = false;
                     for (let ti = 0; ti < this.orbs.length && !existing; ti++) {
-                        if (this.orbs[ti].x === x && this.orbs[ti].y === y) {
+                        if (this.orbs[ti].tileX === x && this.orbs[ti].tileY === y) {
                             existing = true;
                         }
                     }
@@ -202,6 +202,8 @@ class Map {
                 if(this.grid[x][y] === 1) {
                     if (x === ship.home_x && y === ship.home_y) {
                         mCtx.fillStyle = BASE_COLOR_SMALL_MAP;
+                    } else if (x === ship.end_x && y === ship.end_y) {
+                        mCtx.fillStyle = NEXT_LEVEL_COLOR_SMALL_MAP;
                     } else {
                         mCtx.fillStyle = '#444';
                     }
@@ -260,6 +262,8 @@ class Map {
                     // our base has a different colour from all the other blocks
                     if (x === ship.home_x && y === ship.home_y) {
                         ctx.fillStyle = BASE_COLOR;
+                    } else if (x === ship.end_x && y === ship.end_y) {
+                        ctx.fillStyle = NEXT_LEVEL_COLOR;
                     } else {
                         // blocks under water have a different colour from above the water-line
                         ctx.fillStyle = (y * TILE_SIZE >= WATER_Y) ? '#1a2a3a' : '#332211';
