@@ -239,31 +239,19 @@ class Map {
     /**
      * update logic for all turrets and orbs relative to the ship
      * @param ship the player
+     * @param player the sound system
      */
-    update(ship) {
+    update(ship, player) {
         // Turrets
         this.turret.forEach(t => {
-            t.update(this, ship);
+            t.update(this, ship, player);
         });
         // Orbs
         this.orbs.forEach(orb => {
-            orb.update(ship);
+            orb.update(ship, player);
         });
         // shimmer the water
         this.water_time += 0.05
-    }
-
-    /**
-     * did the user collect all orbs?
-     * @return {boolean} true if there are no uncollected orbs
-     */
-    collected_all_orbs() {
-        let not_collected = 0;
-        // Orbs
-        this.orbs.forEach(orb => {
-            if (!orb.collected) not_collected += 1
-        });
-        return not_collected === 0
     }
 
     /**

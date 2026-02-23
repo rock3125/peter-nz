@@ -53,8 +53,9 @@ class Ship {
 
     /**
      * the player shoots
+     * @param player the sound system
      */
-    fire() {
+    fire(player) {
         if (this.bullets.length >= MAX_BULLETS_AT_ONCE) return; // at maximum
         if (this.ammo <= 0) return; // out of ammo
 
@@ -68,6 +69,7 @@ class Ship {
             vy: Math.sin(this.angle) * AMMO_SPEED + this.vy,
             ttl: AMMO_TTL
         });
+        player.play_shoot();
     }
 
     /**
@@ -227,9 +229,11 @@ class Ship {
 
     /**
      * player scores for collecting an orb
+     * @param player the sound player
      */
-    collectOrb() {
+    collectOrb(player) {
         this.score += ORB_SCORE // orbs collect
+        player.collect_orb();
     }
 
     /**
@@ -269,6 +273,7 @@ class Ship {
      * @param player optional a music player to check
      */
     checkKeys(keys, player) {
+        let play_thrust = false;
         if (keys['ArrowLeft'] && this.fuel > 0.0) {
             this.angle -= this.rotationSpeed;
             this.fuel -= FUEL_CONSUMPTION;
@@ -285,14 +290,22 @@ class Ship {
 
                 // start the soundtrack the first time we take-off
                 if (player) player.play_title_track();
+                play_thrust = true;
 
             } else {
                 this.vy += Math.sin(this.angle) * this.thrust;
+                play_thrust = true;
             }
             this.fuel -= FUEL_CONSUMPTION;
         }
+        // play the sound
+        if (play_thrust) {
+            player.thrust_down(ship.vx, ship.vy);
+        } else {
+            player.thrust_stop();
+        }
         if (keys['Space'] && !gameOver) {
-            this.fire();
+            this.fire(player);
         }
     }
 
@@ -335,7 +348,7 @@ class Ship {
             setTimeout(() => {
                 // still not landed after the timeout?
                 if (!this.landed && this.fuel <= 0.0) {
-                    triggerGameOver()
+                    triggerGameOver(player);
                 }
             }, 1500);
         }
@@ -359,11 +372,12 @@ class Ship {
             // land or game over?
             if (gx === this.home_x && gy === this.home_y && angle_deg > 250 && angle_deg < 290) {
                 this.land();
+                player.land();
             } else if (gx === this.end_x && gy === this.end_y && angle_deg > 250 && angle_deg < 290) {
                 this.landNextLevel();
                 triggerNextLevel(); // next level
             } else {
-                triggerGameOver(); // crash!
+                triggerGameOver(player); // crash!
             }
         }
     }
