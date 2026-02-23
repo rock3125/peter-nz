@@ -4,6 +4,7 @@ const GRID_RES = 30;                        // size of each tile in the world
 const WORLD_SIZE = 3000;                    // the entire size of the world
 const TILE_SIZE = WORLD_SIZE / GRID_RES;    // 100px per tile
 const WATER_Y = WORLD_SIZE * 0.6;           // water top level
+const BUBBLE_COUNT = 60;                    // number of bubbles in the water
 
 // --- Physics ---
 const GRAVITY = 0.075;                  // downwards pressure on flying
@@ -20,7 +21,8 @@ const BASE_COLOR_SMALL_MAP = '#4040f0'   // colour of the base block in the smal
 const NEXT_LEVEL_COLOR_SMALL_MAP = '#40f040'   // colour of the finish block in the small map
 
 const ORB_SCORE = 1000;                 // 1K per orb
-const NEXT_LEVEL_SCORE = 10000;         // 10K for next level
+const NEXT_LEVEL_SCORE_FULL = 10000;    // 10K for next level with all orbs collected
+const NEXT_LEVEL_SCORE = 1000;          // 1K for next level without all orbs collected
 
 // fuel gauge location on screen
 const FUEL_X = 85;
