@@ -3,29 +3,64 @@ let robots = [];
 
 const robot_height = cell_size;
 const robot_width = cell_size / 2;
+const robot_speed = 1.5;
+
+// Check neighbors and push to stack
+// The order determines the "priority" of the DFS path
+const directions = [
+    { dx: 0, dy: 1 },  // Down
+    { dx: 1, dy: 0 },  // Right
+    { dx: 0, dy: -1 }, // Up
+    { dx: -1, dy: 0 }  // Left
+];
 
 function reset_robots() {
     robots = [];
-    const col_start = Math.max(Math.floor(cols / 4), 2)
-    const row_start = Math.max(Math.floor(rows / 4), 2)
-    let width = cols - col_start * 2
-    let height = rows - row_start * 2
-    if (width <= 0 || height <= 0) {
-        width = 1;
-        height = 1;
-    }
+    const col_start = Math.max(Math.floor(cols / 4), 2);
+    const row_start = Math.max(Math.floor(rows / 4), 2);
+
     for (let i = 0; i < num_robots; i++) {
         robots.push({
-            x: ((col_start + get_random_int(width)) * cell_size) + cell_size * 0.5,
-            y: ((row_start + get_random_int(height)) * cell_size) + cell_size * 0.5,
-            tx: 0, // target x and y
+            x: ((col_start + get_random_int(cols - col_start * 2)) * cell_size) + cell_size * 0.5,
+            y: ((row_start + get_random_int(rows - row_start * 2)) * cell_size) + cell_size * 0.5,
+            tx: 0,
             ty: 0,
-            // robot path finding
-            visited: Array.from({length: rows}, () => Array(cols).fill(false)),
-            path: [],
-            stack: [],
-        })
+            path: [] // We will store the calculated path here
+        });
+        // Set initial target to current position to prevent immediate jumping
+        robots[i].tx = robots[i].x;
+        robots[i].ty = robots[i].y;
     }
+}
+
+function get_bfs_path(start_x, start_y, target_x, target_y) {
+    let queue = [[start_x, start_y, []]];
+    let visited = Array.from({ length: rows }, () => Array(cols).fill(false));
+    visited[start_y][start_x] = true;
+
+    while (queue.length > 0) {
+        let [x, y, path] = queue.shift();
+
+        if (x === target_x && y === target_y) return path;
+
+        // Check 4 directions
+        const neighbors = [
+            { nx: x, ny: y - 1 }, // Up
+            { nx: x, ny: y + 1 }, // Down
+            { nx: x - 1, ny: y }, // Left
+            { nx: x + 1, ny: y }  // Right
+        ];
+
+        for (let { nx, ny } of neighbors) {
+            if (nx >= 0 && nx < cols && ny >= 0 && ny < rows && !visited[ny][nx]) {
+                if (is_valid_move(x, y, nx, ny)) {
+                    visited[ny][nx] = true;
+                    queue.push([nx, ny, [...path, { x: nx, y: ny }]]);
+                }
+            }
+        }
+    }
+    return []; // No path found
 }
 
 // draw the bad guys
@@ -35,87 +70,47 @@ function draw_robots() {
     }
 }
 
-// have we been here before?
-function has_visited(robot, cell_x, cell_y) {
-    return robot.visited[cell_x][cell_y]
-}
-
-function is_valid(cell_x, cell_y) {
-    return cell_x >= 0 && cell_x < cols && cell_y >= 0 && cell_y <= rows;
-}
-
-// Initiates or continues DFS from the last stopped point
-function dfs(robot) {
-
-    if (robot.stack.length === 0) {
-        // If stack is empty, start from the beginning or defined start point
-        let cell_x = Math.floor(robot.x / cell_size);
-        let cell_y = Math.floor(robot.y / cell_size);
-        robot.stack.push([cell_x, cell_y]); // Assuming starting point is (0, 0)
-        robot.tx = robot.x;
-        robot.ty = robot.y;
-    }
-
-    // move to the next position
-    if (robot.x < robot.tx) {
-        robot.x += 1
-        return false;
-    }
-    if (robot.x > robot.tx) {
-        robot.x -= 1
-        return false;
-    }
-    if (robot.y < robot.ty) {
-        robot.y += 1
-        return false;
-    }
-    if (robot.y > robot.ty) {
-        robot.y -= 1
-        return false;
-    }
-
-    while (robot.stack.length > 0) {
-        const [x, y] = robot.stack.pop();
-
-        robot.tx = x * cell_size + cell_size * 0.5;
-        robot.ty = y * cell_size + cell_size * 0.5;
-
-        // Skip if out of bounds or already visited
-        if (robot.visited[x][y]) {
-            continue;
-        }
-
-        // Mark robot's cell as visited
-        robot.visited[x][y] = true;
-        robot.path.push([x, y]);
-
-        // Destination reached (could be defined differently based on the maze)
-        if (x === 0 && y === 0) {
-            return true; // Return true when the destination is reached
-        }
-
-        // Push adjacent cells to stack: down, right, up, left if they are valid
-        if (is_valid_move(x, y, x + 1, y))
-            robot.stack.push([x + 1, y])
-
-        if (is_valid_move(x, y, x, y + 1))
-            robot.stack.push([x, y + 1])
-
-        if (is_valid_move(x, y, x - 1, y))
-            robot.stack.push([x - 1, y])
-
-        if (is_valid_move(x, y, x, y - 1))
-            robot.stack.push([x, y - 1])
-
-        return false;
-    }
-
-    return false; // Return false when no path leads to the destination
-}
-
 // move the bad guys
 function move_robots() {
     for (let robot of robots) {
-        dfs(robot)
+        // 1. Smooth movement towards the current target (tx, ty)
+        if (robot.x < robot.tx) {
+            robot.x += robot_speed;
+            if (robot.x > robot.tx) robot.x = robot.tx;
+        }
+        else if (robot.x > robot.tx) {
+            robot.x -= robot_speed;
+            if (robot.x < robot.tx) robot.x = robot.tx;
+        }
+        if (robot.y < robot.ty) {
+            robot.y += robot_speed;
+            if (robot.y > robot.ty) robot.y = robot.ty;
+        }
+        else if (robot.y > robot.ty) {
+            robot.y -= robot_speed;
+            if (robot.y < robot.ty) robot.y = robot.ty;
+        }
+
+        // 2. If reached target, get the next step from the path
+        if (robot.x === robot.tx && robot.y === robot.ty) {
+            const bot_cell_x = Math.floor(robot.x / cell_size);
+            const bot_cell_y = Math.floor(robot.y / cell_size);
+            const player_cell_x = Math.floor(player.x / cell_size);
+            const player_cell_y = Math.floor(player.y / cell_size);
+
+            // Recalculate path to player
+            robot.path = get_bfs_path(bot_cell_x, bot_cell_y, player_cell_x, player_cell_y);
+
+            if (robot.path.length > 0) {
+                const nextStep = robot.path[0];
+                robot.tx = nextStep.x * cell_size + cell_size * 0.5;
+                robot.ty = nextStep.y * cell_size + cell_size * 0.5;
+            }
+        }
+
+        // 3. Check for collision with player (Game Over logic)
+        if (dist(robot.x, robot.y, player.x, player.y) < cell_size * 0.4) {
+            game_state = "lost";
+        }
     }
 }

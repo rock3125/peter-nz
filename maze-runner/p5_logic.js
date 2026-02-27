@@ -1,11 +1,11 @@
 
 // 1080p resolution
-const w = 1000;
-const h = 1000;
+const w = 700;
+const h = 700;
 
 // maze constants
-const rows = 20;
-const cols = 20;
+const rows = 10;
+const cols = 10;
 const cell_size = h / cols;
 const maze_color = 140;
 

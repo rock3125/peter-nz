@@ -26,19 +26,20 @@ class Cell {
         }
         rect(x + size / 2, y + size / 2, size, size);
 
+        // top and left are the only walls that are set properly for the maze
         stroke(0,0,0)
         fill(0,0,0)
         if (this.walls.top) {
-            line(x, y, x + size, y);
+            line(x, y, x + size, y); // this one
         }
         if (this.walls.right) {
             line(x + size, y, x + size, y + size);
         }
         if (this.walls.bottom) {
-            line(x + size, y + size, x, y + size);
+            line(x, y + size, x + size, y + size);
         }
         if (this.walls.left) {
-            line(x, y + size, x, y);
+            line(x, y, x, y + size); // this one
         }
     }
 
@@ -95,6 +96,7 @@ function generate_maze() {
 
     grid[0][0].isStart = true; // Marking the start cell
     grid[rows - 1][cols - 1].isEnd = true; // Marking the end cell
+
     maze = grid;
 }
 

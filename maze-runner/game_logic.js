@@ -95,29 +95,20 @@ function is_valid_move(cell_x, cell_y, new_cell_x, new_cell_y) {
         return false;
 
     const current_cell = maze[cell_y][cell_x];
+    const next_cell = maze[new_cell_y][new_cell_x];
 
     if (new_cell_x < cell_x) {
-        const left_cell = maze[cell_y][new_cell_x];
-        if (left_cell.walls.right || current_cell.walls.left) {
-            return false;
-        }
+        return !current_cell.walls.left && !next_cell.walls.right;
+
     } else if (new_cell_x > cell_x) {
-        const right_cell = maze[cell_y][new_cell_x];
-        if (right_cell.walls.left || current_cell.walls.right) {
-            return false;
-        }
+        return !current_cell.walls.right && !next_cell.walls.left;
     }
 
     if (new_cell_y < cell_y) {
-        const top_cell = maze[new_cell_y][cell_x];
-        if (top_cell.walls.bottom || current_cell.walls.top) {
-            return false;
-        }
+        return !current_cell.walls.top && !next_cell.walls.bottom;
+
     } else if (new_cell_y > cell_y) {
-        const bottom_cell = maze[new_cell_y][cell_x];
-        if (bottom_cell.walls.top || current_cell.walls.bottom) {
-            return false;
-        }
+        return !current_cell.walls.bottom && !next_cell.walls.top;
     }
 
     return true;
