@@ -1,20 +1,8 @@
 
-// 1080p resolution
-const w = 700;
-const h = 700;
-
-// maze constants
-const rows = 10;
-const cols = 10;
-const cell_size = h / cols;
-const maze_color = 140;
-
-const num_robots = Math.max(Math.floor(cols / 5), 1)
-
 let game_state = "game over"; // one of {game over, running, won}
+let player = null;
 
 // graphics
-let girl_svg = []
 let explosion_svg = null;
 let robot_svg = null;
 let game_counter = 0;
@@ -23,13 +11,19 @@ function get_random_int(max) {
     return Math.floor(Math.random() * max);
 }
 
+function loadGraphics() {
+    if (player) {
+        player.girl_svg.push(loadImage("./graphics/girl1.svg"));
+        player.girl_svg.push(loadImage("./graphics/girl2.svg"));
+        player.girl_svg.push(loadImage("./graphics/girl3.svg"));
+    }
+    robot_svg = loadImage("./graphics/robot.svg");
+    explosion_svg = loadImage("./graphics/explosion.svg")
+}
+
 // p5.js callback: load all graphics and set up
 function preload(){
-    robot_svg = loadImage("./graphics/robot.svg");
-    girl_svg.push(loadImage("./graphics/girl1.svg"));
-    girl_svg.push(loadImage("./graphics/girl2.svg"));
-    girl_svg.push(loadImage("./graphics/girl3.svg"));
-    explosion_svg = loadImage("./graphics/explosion.svg")
+    loadGraphics()
 }
 
 // p5.js callback: set up the game size and modes
@@ -39,7 +33,9 @@ function setup() {
     rectMode(CENTER);
     angleMode(DEGREES);
     frameRate(30);
-    reset_player();
+    player = new Player();
+    player.reset();
+    loadGraphics()
     maze = null;
     generate_maze();
     reset_robots();
@@ -52,13 +48,13 @@ function draw() {
     background(0);
     stroke(255)
     draw_maze()
-    draw_player()
+    player.draw()
     draw_robots()
 
     if (game_state !== "running" && keyIsDown(ENTER)) {
         maze = null;
         generate_maze();
-        reset_player();
+        player.reset();
         reset_robots();
         game_state = "running";
     }
@@ -68,7 +64,7 @@ function draw() {
     }
 
     if (game_state === "running") {
-        player_keys()
+        player.update()
         move_robots()
 
     } else {

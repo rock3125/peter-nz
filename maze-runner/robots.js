@@ -1,19 +1,6 @@
 
 let robots = [];
 
-const robot_height = cell_size;
-const robot_width = cell_size / 2;
-const robot_speed = 1.5;
-
-// Check neighbors and push to stack
-// The order determines the "priority" of the DFS path
-const directions = [
-    { dx: 0, dy: 1 },  // Down
-    { dx: 1, dy: 0 },  // Right
-    { dx: 0, dy: -1 }, // Up
-    { dx: -1, dy: 0 }  // Left
-];
-
 function reset_robots() {
     robots = [];
     const col_start = Math.max(Math.floor(cols / 4), 2);
