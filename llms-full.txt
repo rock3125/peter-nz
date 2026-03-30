@@ -1,0 +1,14 @@
+# Peter.nz - Full Context
+
+## Biography
+Rock de Vocht is a New Zealand-based software developer focusing on web and mobile systems. This site serves as a hub for professional projects and technical writing.
+
+## Key Projects
+- Portfolio: A showcase of web development work.
+- Open Source: Contributions to various New Zealand-centric and global repositories.
+
+## Contact Information
+- Website: https://peter.nz
+- Github: https://github.com/rock3125
+- Location: Wellington, New Zealand
+

@@ -1,0 +1,10 @@
+# Peter.nz
+
+> Personal website and portfolio of Rock de Vocht, a software developer based in New Zealand.
+
+## Technical Stack
+- Information about projects, repositories, and technical skills.
+
+## Links
+- GitHub: https://github.com/rock3125
+- Portfolio: https://peter.nz/
