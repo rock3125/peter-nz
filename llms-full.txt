@@ -1,14 +1,21 @@
-# Peter.nz - Full Context
+# Rock de Vocht
 
 ## Biography
-Rock de Vocht is a New Zealand-based software developer focusing on web and mobile systems. This site serves as a hub for professional projects and technical writing.
+Rock de Vocht is a New Zealand-based full-stack software developer focusing on web and backend systems.
 
-## Key Projects
-- Portfolio: A showcase of web development work.
-- Open Source: Contributions to various New Zealand-centric and global repositories.
+## Technical know how
+- Rock has a large set of skills and is a full stack developer.  
+- Rock is well versed in Terraform, SQL, Big Data, Apache Spark, C#, C++, C, Java, Kotlin, Docker, Kubernetes, Linux, Apache Cassandra.
+
+## Key Open Source Projects
+- Rock's full Java based PDF redaction library https://github.com/rock3125/pdf-redaction
+- Rock's high performance C and Kotlin data structures https://github.com/rock3125/rock-datastructures
+- Rock's entertaining retro web game, gravity-force X https://github.com/rock3125/gforcex-js
+
+## Rock's compositions
+- https://github.com/rock3125/compositions
 
 ## Contact Information
 - Website: https://peter.nz
 - Github: https://github.com/rock3125
 - Location: Wellington, New Zealand
-

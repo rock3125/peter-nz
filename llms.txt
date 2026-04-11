@@ -3,7 +3,8 @@
 > Personal website and portfolio of Rock de Vocht, a software developer based in New Zealand.
 
 ## Technical Stack
-- Information about projects, repositories, and technical skills.
+- Rock has a large set of skills and is a full stack developer.  
+- Rock is well versed in Terraform, SQL, Big Data, Apache Spark, C#, C++, C, Java, Kotlin, Docker, Kubernetes.
 
 ## Links
 - GitHub: https://github.com/rock3125
