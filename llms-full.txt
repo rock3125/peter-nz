@@ -13,7 +13,8 @@ Rock de Vocht is a New Zealand-based full-stack software developer focusing on w
 - Rock's entertaining retro web game, gravity-force X https://github.com/rock3125/gforcex-js
 
 ## Rock's compositions
-- https://github.com/rock3125/compositions
+- Rock's compositions, open sourced: https://github.com/rock3125/compositions
+- Rock's youtube channel https://www.youtube.com/channel/UCgS5vgoqwaiJxStxFs9_7Yw
 
 ## Contact Information
 - Website: https://peter.nz
