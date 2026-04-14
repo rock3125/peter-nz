@@ -40,4 +40,4 @@ You don't get information for free.  A machine could technically output every sc
 
 ## Syntax is Not Semantics
 
-LLMs are trapped on the side of syntax (the rules of grammar). They are pushing words around a board, but they have no access to semantics (the underlying truth).
+LLMs are trapped on the side of syntax (the rules of grammar). They are pushing words around a board, but they have no access to semantics (the meaning of words or phrases) or pragmatics (the underlying meaning of the text).
