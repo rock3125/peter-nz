@@ -30,6 +30,6 @@ Current LLMs are almost entirely System 1. They blur out an answer instantly. To
 
 ## The Next Frontier
 
-If LLMs are indeed a dead end for AGI, the next breakthrough likely won't come from a bigger Transformer model. It will come from new architectures like JEPA (Joint-Embedding Predictive Architecture) that attempt to understand the world's structure before they ever try to learn language.
+If LLMs are indeed a dead end for AGI, the next breakthrough likely won't come from a bigger Transformer model. It will come from new architectures that attempt to understand the world's structure before they ever try to learn language.
 
 As engineers, we need to distinguish between a very polished UI for information retrieval (which LLMs are) and a genuine thinking machine (which they are not).
