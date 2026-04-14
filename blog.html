@@ -3,64 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Sovereign Blog Archive</title>
+    <title>Digital Sovereignty | Insights</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
-        
-        /* Accordion Styling */
+        /* Apple-style CSS Reset & Variables */
+        :root {
+            --system-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --bg-color: #f5f5f7;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --text-main: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent: #0071e3;
+            --border: #d2d2d7;
+        }
+
+        body {
+            font-family: var(--system-font);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        header h1 {
+            font-size: 48px;
+            font-weight: 600;
+            letter-spacing: -0.003em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 21px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* The Accordion (Details) */
+        #blog-accordion-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
         details {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            padding: 10px;
-            transition: all 0.3s ease;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         details[open] {
-            background: #fff;
-            border-color: #aaa;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-color: transparent;
         }
+
         summary {
-            font-weight: bold;
-            font-size: 1.2rem;
+            padding: 24px;
+            font-size: 19px;
+            font-weight: 600;
             cursor: pointer;
-            padding: 5px;
-            list-style: none; /* Removes default arrow in some browsers */
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            outline: none;
         }
-        summary::before {
-            content: "▶ ";
-            color: #666;
+
+        /* Custom Arrow */
+        summary::after {
+            content: '+';
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--accent);
+            transition: transform 0.3s ease;
         }
-        details[open] summary::before {
-            content: "▼ ";
+
+        details[open] summary::after {
+            transform: rotate(45deg);
         }
-        
-        /* Markdown Content Styling inside accordion */
-        .post-content { padding: 15px 20px; border-top: 1px solid #eee; margin-top: 10px; }
-        h1, h2, h3 { margin-top: 0; color: #222; }
-        .error-msg { color: #d9534f; }
+
+        /* Markdown Content Styling */
+        .post-content {
+            padding: 0 24px 32px 24px;
+            font-size: 17px;
+            color: #424245;
+        }
+
+        .post-content h1, .post-content h2, .post-content h3 {
+            color: var(--text-main);
+            margin-top: 1.5em;
+        }
+
+        .post-content h2 { font-size: 24px; font-weight: 600; }
+        .post-content h3 { font-size: 20px; font-weight: 600; }
+
+        .post-content li {
+            margin-bottom: 12px;
+            padding-left: 5px;
+        }
+
+        .post-content ul {
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+
+        /* Subtle scroll behavior */
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Blog Archive</h1>
-        <hr>
-    </header>
+    <div class="container">
+        <header>
+            <h1>Newsroom</h1>
+            <p>Intelligence on Digital Sovereignty.</p>
+        </header>
 
-    <div id="blog-accordion-container"></div>
+        <div id="blog-accordion-container">
+            </div>
+    </div>
 
     <script>
-        /**
-         * Renders multiple Markdown files into an accordion format
-         * @param {Array} posts - Array of objects { title: string, file: string }
-         * @param {string} containerId - The ID of the element to fill
-         */
         async function loadArchive(posts, containerId) {
             const container = document.getElementById(containerId);
 
             for (const post of posts) {
-                // Create the accordion elements
                 const details = document.createElement('details');
                 const summary = document.createElement('summary');
                 const contentDiv = document.createElement('div');
@@ -73,14 +159,13 @@
                 details.appendChild(contentDiv);
                 container.appendChild(details);
 
-                // Fetch and parse the markdown
                 try {
                     const response = await fetch(post.file);
                     if (!response.ok) throw new Error(`Could not load ${post.file}`);
                     
                     let text = await response.text();
 
-                    // --- Parser Logic ---
+                    // Parser Logic
                     text = text.replace(/^### (.*$)/gim, '<h3>$1</h3>');
                     text = text.replace(/^## (.*$)/gim, '<h2>$1</h2>');
                     text = text.replace(/^# (.*$)/gim, '<h1>$1</h1>');
@@ -91,18 +176,15 @@
 
                     contentDiv.innerHTML = text;
                 } catch (err) {
-                    contentDiv.innerHTML = `<p class="error-msg">Error: ${err.message}</p>`;
+                    contentDiv.innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
                 }
             }
         }
 
-        // --- Configuration ---
-        // Add your posts here!
         const myPosts = [
-            { title: "Digital Sovereignty in Europe", file: "md/digital-sovereignty.md" }
+            { title: "Digital Sovereignty in Europe", file: "md/digital-sovereignty.md" },
         ];
 
-        // Run the loader
         loadArchive(myPosts, 'blog-accordion-container');
     </script>
 
