@@ -127,7 +127,7 @@
             color: #333;
         }
 
-        .post-content h1, .post-content h2, .post-content h3 { color: #000; margin-top: 1.2em; }
+        .post-content h1, .post-content h2, .post-content h3 { color: #777; margin-top: 1.2em; }
         .post-content ul { padding-left: 20px; }
         .post-content li { margin-bottom: 10px; }
         
@@ -186,7 +186,7 @@
                     text = text.replace(/^- (.*$)/gim, '<li>$1</li>');
                     text = text.replace(/(<li>(?:.|\n)*?<\/li>)/gim, '<ul>$1</ul>');
                     text = text.replace(/<\/ul>\s*<ul>/gim, '');
-                    text = text.replace(/\n\n/g, '<br><br>');
+                    //text = text.replace(/\n\n/g, '<br><br>');
 
                     contentDiv.innerHTML = text;
                 } catch (err) {
