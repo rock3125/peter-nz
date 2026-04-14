@@ -3,77 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Sovereign Blog</title>
+    <title>My Sovereign Blog Archive</title>
     <style>
         body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; }
-        /* Simple styling for your generated elements */
-        #blog-container { border-top: 2px solid #eee; padding-top: 20px; }
-        h1 { color: #000; }
-        h2 { color: #444; border-bottom: 1px solid #eee; }
-        li { margin-bottom: 8px; }
-        .error-msg { color: #d9534f; font-weight: bold; }
+        
+        /* Accordion Styling */
+        details {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+        details[open] {
+            background: #fff;
+            border-color: #aaa;
+        }
+        summary {
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            list-style: none; /* Removes default arrow in some browsers */
+        }
+        summary::before {
+            content: "▶ ";
+            color: #666;
+        }
+        details[open] summary::before {
+            content: "▼ ";
+        }
+        
+        /* Markdown Content Styling inside accordion */
+        .post-content { padding: 15px 20px; border-top: 1px solid #eee; margin-top: 10px; }
+        h1, h2, h3 { margin-top: 0; color: #222; }
+        .error-msg { color: #d9534f; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>A View from the Rock</h1>
-        <p>Exploring issues of the digital age.</p>
+        <h1>Blog Archive</h1>
+        <hr>
     </header>
 
-    <main id="blog-1">
-        <p><em>Loading the latest post...</em></p>
-    </main>
+    <div id="blog-accordion-container"></div>
 
     <script>
         /**
-         * Fetches Markdown, parses basic syntax, and injects into a specific element
-         * @param {string} filePath - Path to the .md file
-         * @param {string} containerId - The ID of the HTML element to fill
+         * Renders multiple Markdown files into an accordion format
+         * @param {Array} posts - Array of objects { title: string, file: string }
+         * @param {string} containerId - The ID of the element to fill
          */
-        async function renderMarkdown(filePath, containerId) {
+        async function loadArchive(posts, containerId) {
             const container = document.getElementById(containerId);
-            
-            if (!container) {
-                console.error(`Target container #${containerId} not found.`);
-                return;
-            }
 
-            try {
-                const response = await fetch(filePath);
-                if (!response.ok) throw new Error(`Could not find ${filePath}`);
+            for (const post of posts) {
+                // Create the accordion elements
+                const details = document.createElement('details');
+                const summary = document.createElement('summary');
+                const contentDiv = document.createElement('div');
                 
-                let text = await response.text();
-
-                // --- Simple Parser Logic ---
+                summary.textContent = post.title;
+                contentDiv.className = 'post-content';
+                contentDiv.innerHTML = '<em>Loading...</em>';
                 
-                // Headers (Order matters: check 3 hashes before 1 hash)
-                text = text.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-                text = text.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-                text = text.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+                details.appendChild(summary);
+                details.appendChild(contentDiv);
+                container.appendChild(details);
 
-                // Hyphen list items
-                text = text.replace(/^- (.*$)/gim, '<li>$1</li>');
+                // Fetch and parse the markdown
+                try {
+                    const response = await fetch(post.file);
+                    if (!response.ok) throw new Error(`Could not load ${post.file}`);
+                    
+                    let text = await response.text();
 
-                // Wrap lists: Find groups of <li> and wrap in <ul>
-                text = text.replace(/(<li>(?:.|\n)*?<\/li>)/gim, '<ul>$1</ul>');
-                // Clean up accidental nested <ul> if multiple items exist
-                text = text.replace(/<\/ul>\s*<ul>/gim, '');
+                    // --- Parser Logic ---
+                    text = text.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+                    text = text.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+                    text = text.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+                    text = text.replace(/^- (.*$)/gim, '<li>$1</li>');
+                    text = text.replace(/(<li>(?:.|\n)*?<\/li>)/gim, '<ul>$1</ul>');
+                    text = text.replace(/<\/ul>\s*<ul>/gim, '');
+                    text = text.replace(/\n\n/g, '<br><br>');
 
-                // Double line breaks to paragraphs
-                text = text.replace(/\n\n/g, '<br><br>');
-
-                // Injecting the result
-                container.innerHTML = text;
-
-            } catch (err) {
-                container.innerHTML = `<p class="error-msg">Error loading blog: ${err.message}</p>`;
+                    contentDiv.innerHTML = text;
+                } catch (err) {
+                    contentDiv.innerHTML = `<p class="error-msg">Error: ${err.message}</p>`;
+                }
             }
         }
 
-        // Initialize the loader
-        // You can now target ANY id on your page:
-        renderMarkdown('md/digital-sovereignity.md', 'blog-1');
+        // --- Configuration ---
+        // Add your posts here!
+        const myPosts = [
+            { title: "Digital Sovereignty in Europe", file: "digital-sovereignty.md" }
+        ];
+
+        // Run the loader
+        loadArchive(myPosts, 'blog-accordion-container');
     </script>
 
 </body>
