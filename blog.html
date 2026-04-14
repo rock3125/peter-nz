@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A view from the Rock - blog</title>
+    <title>A view from the Rock | Blog</title>
     <style>
-        /* Apple-style CSS Reset & Variables */
+        /* Shared variables for that clean Apple/Business look */
         :root {
             --system-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --bg-color: #f5f5f7;
@@ -14,50 +14,72 @@
             --text-secondary: #86868b;
             --accent: #0071e3;
             --border: #d2d2d7;
+            --nav-bg: #2d3436; /* Darker tone matching your site's feel */
         }
 
         body {
             font-family: var(--system-font);
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.47059;
-            font-weight: 400;
-            letter-spacing: -0.022em;
             margin: 0;
             padding: 0;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Layout Container */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        header {
+        /* --- Header & Navigation (Integrated from peter.nz) --- */
+        nav {
+            background-color: var(--nav-bg);
+            padding: 15px 0;
             text-align: center;
-            margin-bottom: 60px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        header h1 {
-            font-size: 48px;
-            font-weight: 600;
-            letter-spacing: -0.003em;
-            margin-bottom: 10px;
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.2s;
         }
 
-        header p {
-            font-size: 21px;
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .site-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .site-header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.015em;
+        }
+
+        .site-header .subtitle {
+            font-size: 20px;
             color: var(--text-secondary);
+            margin-top: 10px;
             font-weight: 400;
         }
 
-        /* The Accordion (Details) */
+        /* --- Content Container --- */
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- Accordion Styles --- */
         #blog-accordion-container {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
 
         details {
@@ -65,20 +87,18 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border);
-            border-radius: 18px;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
         }
 
         details[open] {
-            background: #ffffff;
+            background: #fff;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-color: transparent;
         }
 
         summary {
             padding: 24px;
-            font-size: 19px;
+            font-size: 20px;
             font-weight: 600;
             cursor: pointer;
             list-style: none;
@@ -88,11 +108,9 @@
             outline: none;
         }
 
-        /* Custom Arrow */
         summary::after {
             content: '+';
             font-size: 24px;
-            font-weight: 300;
             color: var(--accent);
             transition: transform 0.3s ease;
         }
@@ -101,49 +119,45 @@
             transform: rotate(45deg);
         }
 
-        /* Markdown Content Styling */
+        /* --- Markdown Content Area --- */
         .post-content {
             padding: 0 24px 32px 24px;
-            font-size: 17px;
-            color: #424245;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
         }
 
-        .post-content h1, .post-content h2, .post-content h3 {
-            color: var(--text-main);
-            margin-top: 1.5em;
-        }
-
-        .post-content h2 { font-size: 24px; font-weight: 600; }
-        .post-content h3 { font-size: 20px; font-weight: 600; }
-
-        .post-content li {
-            margin-bottom: 12px;
-            padding-left: 5px;
-        }
-
-        .post-content ul {
-            padding-left: 20px;
-            list-style-type: disc;
-        }
-
-        /* Subtle scroll behavior */
-        html { scroll-behavior: smooth; }
+        .post-content h1, .post-content h2, .post-content h3 { color: #000; margin-top: 1.2em; }
+        .post-content ul { padding-left: 20px; }
+        .post-content li { margin-bottom: 10px; }
+        
+        .error-msg { color: #d63031; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>A View from the Rock</h1>
-            <p>Rock's blog of Issues in the Digital Age.</p>
-        </header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/gforcex/index.html">GForce-X</a>
+        <a href="/lunar-lander/index.html">Lunar Lander</a>
+        <a href="/maze-runner/index.html">Maze Runner</a>
+    </nav>
 
+    <header class="site-header">
+        <h1>A view from the Rock</h1>
+        <div class="subtitle">Rock's blog on Issues of the Digital Age</div>
+    </header>
+
+    <div class="container">
         <div id="blog-accordion-container">
             </div>
     </div>
 
     <script>
-        async function loadArchive(posts, containerId) {
+        /**
+         * Renders Markdown posts into the accordion
+         */
+        async function loadBlogArchive(posts, containerId) {
             const container = document.getElementById(containerId);
 
             for (const post of posts) {
@@ -153,7 +167,7 @@
                 
                 summary.textContent = post.title;
                 contentDiv.className = 'post-content';
-                contentDiv.innerHTML = '<em>Loading...</em>';
+                contentDiv.innerHTML = '<em>Loading insight...</em>';
                 
                 details.appendChild(summary);
                 details.appendChild(contentDiv);
@@ -161,11 +175,11 @@
 
                 try {
                     const response = await fetch(post.file);
-                    if (!response.ok) throw new Error(`Could not load ${post.file}`);
+                    if (!response.ok) throw new Error(`File not found: ${post.file}`);
                     
                     let text = await response.text();
 
-                    // Parser Logic
+                    // Basic Markdown Parser Logic
                     text = text.replace(/^### (.*$)/gim, '<h3>$1</h3>');
                     text = text.replace(/^## (.*$)/gim, '<h2>$1</h2>');
                     text = text.replace(/^# (.*$)/gim, '<h1>$1</h1>');
@@ -176,16 +190,17 @@
 
                     contentDiv.innerHTML = text;
                 } catch (err) {
-                    contentDiv.innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
+                    contentDiv.innerHTML = `<p class="error-msg">Error: ${err.message}</p>`;
                 }
             }
         }
 
+        // --- Configuration: Add your .md files here ---
         const myPosts = [
             { title: "Digital Sovereignty in Europe", file: "md/digital-sovereignty.md" },
         ];
 
-        loadArchive(myPosts, 'blog-accordion-container');
+        loadBlogArchive(myPosts, 'blog-accordion-container');
     </script>
 
 </body>
