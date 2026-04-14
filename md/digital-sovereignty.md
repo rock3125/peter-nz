@@ -1,6 +1,6 @@
 # Europe is Finally Taking Digital Sovereignty Seriously
 
-In the physical world, we understand what sovereignty means: the power of a country to govern itself without outside interference. But in 2026, the most contested borders aren't on a map-they are in our fiber-optic cables, our data centers, and our email inboxes.
+In the physical world, we understand what sovereignty means: the power of a country to govern itself without outside interference. But in 2026, the most contested borders aren't on a map, they are in our fiber-optic cables, our data centers, and our email inboxes.
 
 For years, we have relied on "Big Tech" from the US and China to power its digital life. But a series of recent events has turned a theoretical concern into an urgent crisis.  Digital sovereignty is no longer a buzzword; it’s a survival strategy.
 
@@ -10,13 +10,15 @@ By definition, digital sovereignty is the independent control over digital infra
 
 ## The Microsoft "Wake-Up Call"
 
-Why is this trending now? One specific event in 2025 sent shockwaves through the EU: the Chief Prosecutor of the International Criminal Court (ICC) in The Hague-a pillar of European human rights-suddenly found his email account shut down, and access to Azure and Sharepoint cut-off. The provider was Microsoft.
+One specific event in 2025 sent shockwaves through the EU: the Chief Prosecutor of the International Criminal Court (ICC) in The Hague-a pillar of European human rights-suddenly found his email account shut down, and access to Azure and Sharepoint cut-off. The provider was Microsoft.
+On November 21, 2024, the International Criminal Court (ICC) issued arrest warrants for Israeli Prime Minister Benjamin Netanyahu and former Defence Minister Yoav Gallant.
+The US administration didn't like this, and promptly had Microsoft block the ICC from using its operating system, software, and cloud infrastructure.
 
 This incident proved that jurisdiction trumps geography. It doesn’t matter if a server is physically located in Frankfurt or Paris; if the company running it is subject to the US Cloud Act, your data is subject to foreign law. As the Open-Source Business Alliance (OSBA) noted, we cannot rely on companies that are not under our own jurisdiction.
 
 ## The Illusion of "Sovereign Clouds"
 
-Many US giants are now offering "sovereign clouds" to European clients. Tuta calls this "sovereign washing." These offerings often create a legal entity in Europe, but the underlying technology, source code, and updates remain in American hands. Under US law (like FISA 702), these companies can still be compelled to hand over data to US authorities without a warrant. To put it simply: a sovereign cloud from Microsoft is still Microsoft.
+Many US giants are offering "sovereign clouds" to European clients. Tuta calls this "sovereign washing." These offerings often create a legal entity in Europe, but the underlying technology, source code, and updates remain in American hands. Under US law (like FISA 702), these companies can still be compelled to hand over data to US authorities without a warrant. To put it simply: a sovereign cloud from Microsoft is still Microsoft.
 
 ## Why It Matters for Your Business (and Your Privacy)
 
