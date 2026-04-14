@@ -44,7 +44,6 @@ We are seeing major shifts across Europe.
 Digital sovereignty isn't just for governments; it starts with individual and corporate choices.
 
 - Audit your stack: Where is your data stored, and who really owns the keys?
-- Choose Open Source: Prioritize tools that prevent "vendor lock-in."
-- Switch to independent providers: Services like Tuta (for email and calendar) and Wire (for collaboration) are built on European soil, under European law, with privacy as the default setting.
+- Switch to independent providers with privacy as the default setting.
 
 We need to build a private, secure internet. The only thing missing is the collective will to switch.
