@@ -14,6 +14,7 @@ Are we prepared to pay a 5 to 12 times price increase for using AI?  How will a 
 
 ## Democratization of AI
 
-I do believe that AI needs to be in the hands of the public, i.e. Open-Source AI.  That is not to say that there isn't any room for improvement.  The argument is the same as the old software argument.  Before "home" and "personal" computers software was out of the hands of ordinary people, inaccessible (there were technological challenges too).  But I argue that this is a similar issue.
+I do believe that AI needs to be in the hands of the public, i.e. Open-Source AI.  That is not to say that there isn't any room for improvement.  The argument is the same as the old software argument.  Before "home" and "personal" computers software was out of the hands of ordinary people, inaccessible (there were technological challenges too).  
+But I argue that what is happening now is similar.
 
 You might argue the same happened with open-source software.  It made it possible for millions of us to read code, see how it's done, and build on the shoulders of giants.
