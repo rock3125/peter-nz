@@ -160,7 +160,7 @@ class Game {
             if (robot.active) {
                 robot.update(currentTime, this.bullets);
                 // Robot shooting logic
-                if (robot.hasLineOfSight() && robot.tryShoot(currentTime, this.bullets)) {
+                if (Math.random() < robot.shootChance && robot.hasLineOfSight() && robot.tryShoot(currentTime, this.bullets)) {
                      this.bullets.push(new Bullet(
                         robot.x, robot.y, 
                         robot.currentDir.dx, robot.currentDir.dy, 

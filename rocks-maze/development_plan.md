@@ -29,6 +29,7 @@ This document outlines the detailed development plan for building **Rock's Maze*
 * **Task 3.1: The `Player` Class (`js/player.js`)**
   * Create the class with properties for position, movement speed, and facing direction.
   * Implement keyboard event listeners (arrow keys) to update the player's intended position.
+  * Implement a virtual joystick and fire button for Android browser devices.
 * **Task 3.2: Player Collision & Camera Tracking**
   * Integrate the player's movement with the `Maze` class to prevent walking through walls.
   * Bind the camera/viewport focus point to the player's coordinates so the screen scrolls as they move.

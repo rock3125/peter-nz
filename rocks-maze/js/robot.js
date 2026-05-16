@@ -7,6 +7,7 @@ export class Robot {
         this.radius = 12;
         this.speed = 2;
         this.active = true;
+        this.shootChance = 0.01;
 
         this.spawn(maze);
         
