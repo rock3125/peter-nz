@@ -1,26 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock's Maze Runner</title>
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-            background-color: #1b1b1b;
-        }
-    </style>
-    <script src="./p5/p5.min.js"></script>
-    <script src="./const.js"></script>
-    <script src="./player.js"></script>
-    <script src="./p5_logic.js"></script>
-    <script src="./maze.js"></script>
-    <script src="./robots.js"></script>
-    <script src="./game_logic.js"></script>
+    <title>Rock's Maze</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <main>
-    </main>
+    <div id="app">
+        <!-- Intro Screen -->
+        <div id="intro-screen" class="screen active">
+            <div class="background-maze"></div>
+            <h1>Rock's Maze</h1>
+            <div class="controls">
+                <label for="maze-size">Select Maze Size:</label>
+                <select id="maze-size">
+                    <option value="small">Small</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="large">Large</option>
+                </select>
+                <button id="start-btn">Start Game</button>
+            </div>
+            <div class="instructions">
+                <p>Use Arrow Keys to move.</p>
+                <p>Press Spacebar to shoot.</p>
+                <p>Find the exit!</p>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div id="game-ui">
+                <span id="level-display">Level: 1</span>
+            </div>
+            <canvas id="game-canvas"></canvas>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="screen">
+            <h1 id="result-title">Game Over</h1>
+            <p id="result-message">You died.</p>
+            <button id="continue-btn">Next Level</button>
+            <button id="restart-btn">Back to Main Menu</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
