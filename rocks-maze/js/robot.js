@@ -33,8 +33,15 @@ export class Robot {
         while (!spawned) {
             const rx = Math.floor(Math.random() * maze.cols);
             const ry = Math.floor(Math.random() * maze.rows);
-            // Don't spawn on walls, and keep away from start
-            if (maze.grid[ry][rx] === 0 && (rx > 3 || ry > 3)) {
+            
+            const playerGridX = Math.floor(this.player.x / maze.cellSize);
+            const playerGridY = Math.floor(this.player.y / maze.cellSize);
+
+            // Don't spawn on walls, keep away from start, and never on the same line (row/col) as player
+            if (maze.grid[ry][rx] === 0 && 
+                (rx > 3 || ry > 3) && 
+                rx !== playerGridX && 
+                ry !== playerGridY) {
                 this.x = rx * maze.cellSize + maze.cellSize / 2;
                 this.y = ry * maze.cellSize + maze.cellSize / 2;
                 spawned = true;
