@@ -80,7 +80,7 @@ class Game {
         this.resize(); // Ensure canvas is sized correctly before drawing
         this.levelDisplay.innerText = `Level: ${this.level}`;
         
-        this.maze = new Maze(this.mazeSize);
+        this.maze = new Maze(this.mazeSize, this.level);
         this.player = new Player(this.maze);
         
         this.bullets = [];
@@ -92,7 +92,7 @@ class Game {
         let robotCount = baseRobots + (this.level * 2);
 
         for (let i = 0; i < robotCount; i++) {
-            this.robots.push(new Robot(this.maze, this.player));
+            this.robots.push(new Robot(this.maze, this.player, this.level));
         }
 
         this.isRunning = true;
@@ -164,7 +164,7 @@ class Game {
                      this.bullets.push(new Bullet(
                         robot.x, robot.y, 
                         robot.currentDir.dx, robot.currentDir.dy, 
-                        true, this.maze
+                        true, this.maze, robot.color
                     ));
                 }
             }
@@ -200,7 +200,7 @@ class Game {
                         if (dist < robot.radius + bullet.radius) {
                             bullet.active = false;
                             robot.active = false;
-                            this.createExplosion(robot.x, robot.y, '#f00');
+                            this.createExplosion(robot.x, robot.y, robot.color);
                             break; // Bullet destroyed, stop checking robots
                         }
                     }
@@ -250,8 +250,10 @@ class Game {
 
             this.ctx.beginPath();
             this.ctx.arc(screenX, screenY, radius, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(${exp.color === '#f00' ? '255,0,0' : '0,255,0'}, ${alpha})`;
+            this.ctx.globalAlpha = alpha;
+            this.ctx.fillStyle = exp.color;
             this.ctx.fill();
+            this.ctx.globalAlpha = 1;
             
             // Particles
             for(let i=0; i<5; i++) {
@@ -259,8 +261,10 @@ class Game {
                 const ang = Math.random() * Math.PI * 2;
                 const dist = Math.random() * radius;
                 this.ctx.arc(screenX + Math.cos(ang)*dist, screenY + Math.sin(ang)*dist, 2, 0, Math.PI*2);
-                this.ctx.fillStyle = `rgba(255, 200, 0, ${alpha})`;
+                this.ctx.globalAlpha = alpha;
+                this.ctx.fillStyle = '#ffc800';
                 this.ctx.fill();
+                this.ctx.globalAlpha = 1;
             }
         });
     }

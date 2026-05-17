@@ -1,13 +1,13 @@
 import { createRobotSVG } from './graphics.js';
 
 export class Robot {
-    constructor(maze, player) {
+    constructor(maze, player, level) {
         this.maze = maze;
         this.player = player;
         this.radius = 12;
         this.speed = 2;
         this.active = true;
-        this.shootChance = 0.01;
+        this.shootChance = 0.01 * level * 5;
 
         this.spawn(maze);
         

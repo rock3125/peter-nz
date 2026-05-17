@@ -1,5 +1,5 @@
 export class Bullet {
-    constructor(x, y, dirX, dirY, isEnemy, maze) {
+    constructor(x, y, dirX, dirY, isEnemy, maze, color = null) {
         this.x = x;
         this.y = y;
         this.dirX = dirX;
@@ -9,6 +9,7 @@ export class Bullet {
         this.maze = maze;
         this.active = true;
         this.radius = 3;
+        this.color = color || (this.isEnemy ? '#f00' : '#ff0');
     }
 
     update() {
@@ -29,14 +30,14 @@ export class Bullet {
         const screenX = this.x - camera.x;
         const screenY = this.y - camera.y;
 
-        ctx.fillStyle = this.isEnemy ? '#f00' : '#ff0';
+        ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(screenX, screenY, this.radius, 0, Math.PI * 2);
         ctx.fill();
         
         // Glow effect
         ctx.shadowBlur = 10;
-        ctx.shadowColor = this.isEnemy ? '#f00' : '#ff0';
+        ctx.shadowColor = this.color;
         ctx.fill();
         ctx.shadowBlur = 0; // Reset
     }

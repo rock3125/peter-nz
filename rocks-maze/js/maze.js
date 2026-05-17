@@ -1,5 +1,6 @@
 export class Maze {
-    constructor(sizeCategory) {
+    constructor(sizeCategory, level = 1) {
+        this.level = level;
         this.cellSize = 40; // pixel size of one grid block
         
         // Define maze grid dimensions based on category
@@ -29,6 +30,15 @@ export class Maze {
         this.grid = []; // 1 = wall, 0 = path
         this.startPos = { x: 1, y: 1 };
         this.exitPos = { x: this.cols - 2, y: this.rows - 2 };
+
+        // Generate colors based on level
+        this.hue = (this.level * 45) % 360;
+        this.colors = {
+            wallFill: `hsl(${this.hue}, 70%, 35%)`,
+            wallStroke: `hsl(${this.hue}, 100%, 65%)`,
+            pathFill: `hsl(${this.hue}, 30%, 15%)`,
+            exitFill: `hsl(${(this.hue + 180) % 360}, 90%, 50%)`
+        };
 
         this.generate();
     }
@@ -127,18 +137,21 @@ export class Maze {
                 const screenY = y * this.cellSize - camera.y;
 
                 if (cell === 1) {
-                    ctx.fillStyle = '#333'; // Wall color
+                    const lightnessOffset = ((x + y) % 4) * 4; // slight texture pattern
+                    ctx.fillStyle = `hsl(${this.hue}, 70%, ${30 + lightnessOffset}%)`; // Wall color
                     ctx.fillRect(screenX, screenY, this.cellSize, this.cellSize);
-                    ctx.strokeStyle = '#00f';
+                    ctx.strokeStyle = `hsl(${this.hue}, 100%, ${60 + lightnessOffset}%)`;
                     ctx.lineWidth = 2;
                     ctx.strokeRect(screenX, screenY, this.cellSize, this.cellSize);
                 } else if (cell === 2) {
                     // Exit
-                    ctx.fillStyle = '#0f0'; // Exit color
+                    const glow = Math.sin(Date.now() / 200) * 10 + 60;
+                    ctx.fillStyle = `hsl(${(this.hue + 180) % 360}, 100%, ${glow}%)`; // Exit color animated
                     ctx.fillRect(screenX + 5, screenY + 5, this.cellSize - 10, this.cellSize - 10);
                 } else {
                     // Path
-                    ctx.fillStyle = '#111';
+                    const pathLightness = 10 + ((x * 7 + y * 3) % 4) * 2;
+                    ctx.fillStyle = `hsl(${this.hue}, 30%, ${pathLightness}%)`;
                     ctx.fillRect(screenX, screenY, this.cellSize, this.cellSize);
                 }
             }
