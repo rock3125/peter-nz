@@ -32,6 +32,7 @@ let invaders = [];
 let lasers = [];
 let enemyLasers = [];
 let bunkers = [];
+let particles = [];
 let invaderDirection = 1;
 
 // Level and Speed tracking
@@ -42,6 +43,9 @@ let invaderSpeed = baseInvaderSpeed;
 let score = 0;
 let lives = 3;
 let gameState = "PLAYING"; // PLAYING, LOST 
+
+let joystickManager;
+let joystickDir = 0; // -1 for left, 1 for right, 0 for none
 
 function preload() {
   imgInvader1 = loadImage('data:image/svg+xml;charset=utf-8,' + encodeURIComponent(invaderSvg1));
@@ -54,6 +58,57 @@ function setup() {
   ship = new Ship();
   createInvaders();
   createBunkers();
+  
+  setupMobileControls();
+}
+
+function setupMobileControls() {
+  if (typeof nipplejs !== 'undefined') {
+    let zone = document.getElementById('joystick-zone');
+    if (zone) {
+      joystickManager = nipplejs.create({
+        zone: zone,
+        mode: 'static',
+        position: { left: '50%', top: '50%' },
+        color: 'white',
+        size: 100
+      });
+
+      joystickManager.on('move', function (evt, data) {
+        if (data.vector && data.vector.x) {
+          if (data.vector.x < -0.3) {
+            joystickDir = -1;
+          } else if (data.vector.x > 0.3) {
+            joystickDir = 1;
+          } else {
+            joystickDir = 0;
+          }
+        }
+      });
+
+      joystickManager.on('end', function (evt, data) {
+        joystickDir = 0;
+      });
+    }
+
+    let fireBtn = document.getElementById('fire-button');
+    if (fireBtn) {
+      fireBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        fireLaser();
+      });
+      fireBtn.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        fireLaser();
+      });
+    }
+  }
+}
+
+function fireLaser() {
+  if (gameState === "PLAYING" && lasers.length === 0) {
+    lasers.push(new Laser(ship.x + ship.width / 2, ship.y, "PLAYER"));
+  }
 }
 
 function createInvaders() {
@@ -174,6 +229,7 @@ function playGame() {
     for (let j = invaders.length - 1; j >= 0; j--) {
       let invader = invaders[j];
       if (laser.hits(invader)) {
+        createExplosion(invader.x, invader.y, invader.color);
         invaders.splice(j, 1);
         laser.toDelete = true;
         score += 10;
@@ -212,6 +268,7 @@ function playGame() {
     laser.update();
     
     if (laser.hits(ship)) {
+      createExplosion(ship.x + ship.width / 2, ship.y + ship.height / 2, color(0, 255, 0));
       lives--;
       
       // Clear all active lasers on screen so the player has a breather
@@ -246,6 +303,16 @@ function playGame() {
     }
   }
   
+  // Update and show particles
+  for (let i = particles.length - 1; i >= 0; i--) {
+    let p = particles[i];
+    p.update();
+    p.show();
+    if (p.isDead()) {
+      particles.splice(i, 1);
+    }
+  }
+  
   // Check Level Complete condition
   if (invaders.length === 0) {
     level++;
@@ -254,7 +321,14 @@ function playGame() {
     invaderDirection = 1; // Reset movement direction
     lasers = []; // Clear remaining lasers
     enemyLasers = [];
+    particles = []; // Clear particles
     createInvaders(); // Spawn new wave
+  }
+}
+
+function createExplosion(x, y, col) {
+  for (let i = 0; i < 20; i++) {
+    particles.push(new Particle(x, y, col));
   }
 }
 
@@ -269,10 +343,7 @@ function displayMessage(msg1, msg2) {
 
 function keyPressed() {
   if (key === ' ' && gameState === "PLAYING") {
-    // Limit to 1 active player projectile
-    if (lasers.length === 0) {
-      lasers.push(new Laser(ship.x + ship.width / 2, ship.y, "PLAYER"));
-    }
+    fireLaser();
   }
 }
 
@@ -290,10 +361,10 @@ class Ship {
   }
   
   move() {
-    if (keyIsDown(LEFT_ARROW)) {
+    if (keyIsDown(LEFT_ARROW) || joystickDir === -1) {
       this.x -= this.speed;
     }
-    if (keyIsDown(RIGHT_ARROW)) {
+    if (keyIsDown(RIGHT_ARROW) || joystickDir === 1) {
       this.x += this.speed;
     }
     this.x = constrain(this.x, 0, width - this.width);
@@ -414,5 +485,37 @@ class Bunker {
     for (let b of this.blocks) {
       rect(b.x, b.y, b.w, b.h);
     }
+  }
+}
+
+class Particle {
+  constructor(x, y, col) {
+    this.x = x;
+    this.y = y;
+    this.vx = random(-3, 3);
+    this.vy = random(-3, 3);
+    this.color = col;
+    this.alpha = 255;
+    this.size = random(3, 8);
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.alpha -= 10;
+  }
+
+  show() {
+    noStroke();
+    // Using p5 color functions to apply alpha to existing color object
+    let r = red(this.color);
+    let g = green(this.color);
+    let b = blue(this.color);
+    fill(r, g, b, this.alpha);
+    ellipse(this.x, this.y, this.size);
+  }
+
+  isDead() {
+    return this.alpha <= 0;
   }
 }
