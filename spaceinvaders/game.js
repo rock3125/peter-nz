@@ -99,10 +99,10 @@ window.addEventListener('keyup', (e) => {
 
   if (joystick && btnFire) {
     const updateJoystick = (e) => {
-      e.preventDefault();
-      const touch = e.touches[0];
+      // Allow for both mouse and touch events if needed, but primarily for touch
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const rect = joystick.getBoundingClientRect();
-      const x = touch.clientX - rect.left;
+      const x = clientX - rect.left;
       const mid = rect.width / 2;
       
       if (x < mid) {
@@ -114,13 +114,20 @@ window.addEventListener('keyup', (e) => {
       }
     };
 
-    joystick.addEventListener('touchstart', updateJoystick, { passive: false });
-    joystick.addEventListener('touchmove', updateJoystick, { passive: false });
+    // Touch events
+    joystick.addEventListener('touchstart', (e) => { e.preventDefault(); updateJoystick(e); }, { passive: false });
+    joystick.addEventListener('touchmove', (e) => { e.preventDefault(); updateJoystick(e); }, { passive: false });
     joystick.addEventListener('touchend', (e) => {
       e.preventDefault();
       keys.Left = false;
       keys.Right = false;
     }, { passive: false });
+
+    // Mouse events as fallback for touch-screen laptops or for testing
+    joystick.addEventListener('mousedown', (e) => { updateJoystick(e); });
+    joystick.addEventListener('mousemove', (e) => { if(e.buttons === 1) updateJoystick(e); });
+    joystick.addEventListener('mouseup', () => { keys.Left = false; keys.Right = false; });
+    joystick.addEventListener('mouseleave', () => { keys.Left = false; keys.Right = false; });
 
     btnFire.addEventListener('touchstart', (e) => {
       e.preventDefault();
@@ -137,6 +144,10 @@ window.addEventListener('keyup', (e) => {
       e.preventDefault();
       keys.Space = false;
     }, { passive: false });
+
+    // Mouse events for fire button
+    btnFire.addEventListener('mousedown', () => { keys.Space = true; });
+    btnFire.addEventListener('mouseup', () => { keys.Space = false; });
   }
 
 
