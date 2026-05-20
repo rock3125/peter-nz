@@ -85,6 +85,41 @@
       0%, 49% { opacity: 0; }
       50%, 100% { opacity: 1; }
     }
+
+    #mobile-controls {
+      display: none;
+      position: absolute;
+      bottom: -60px;
+      left: 0;
+      width: 100%;
+      justify-content: space-between;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    #mobile-controls button, #joystick {
+      background: #333;
+      color: #eee;
+      border: 1px solid #555;
+      padding: 15px 25px;
+      font-size: 16px;
+      border-radius: 5px;
+      touch-action: none;
+      user-select: none;
+    }
+
+    #joystick {
+      flex-grow: 1;
+      margin-right: 10px;
+      text-align: center;
+      line-height: 1;
+    }
+
+    @media (pointer: coarse) {
+      #mobile-controls {
+        display: flex;
+      }
+    }
   </style>
 </head>
 <body>
@@ -109,6 +144,10 @@
       <g id="entity-layer"></g>
       <g id="overlay-layer"></g>
     </svg>
+    <div id="mobile-controls">
+      <div id="joystick">◀ &nbsp;&nbsp;&nbsp; ▶</div>
+      <button id="btn-fire">FIRE</button>
+    </div>
   </div>
 
   <div id="instructions">

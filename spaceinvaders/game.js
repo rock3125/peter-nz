@@ -93,6 +93,45 @@ window.addEventListener('keyup', (e) => {
   if (e.key === ' ') keys.Space = false;
 });
 
+// Mobile Controls
+const joystick = document.getElementById('joystick');
+const btnFire = document.getElementById('btn-fire');
+
+if (joystick && btnFire) {
+  const updateJoystick = (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const rect = joystick.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const mid = rect.width / 2;
+    
+    if (x < mid) {
+      keys.Left = true;
+      keys.Right = false;
+    } else {
+      keys.Left = false;
+      keys.Right = true;
+    }
+  };
+
+  joystick.addEventListener('touchstart', updateJoystick);
+  joystick.addEventListener('touchmove', updateJoystick);
+  joystick.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keys.Left = false;
+    keys.Right = false;
+  });
+
+  btnFire.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    keys.Space = true;
+  });
+  btnFire.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keys.Space = false;
+  });
+}
+
 // Click to focus and start/restart the game
 window.addEventListener('click', () => {
   if (currentState === STATES.MENU) {
