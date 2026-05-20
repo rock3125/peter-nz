@@ -2,4 +2,9 @@
 
 this is a little game I wrote using `opencode`.
 
-![screenshot](screenshots/screenshot-1.png)
+
+![screenshot 1](screenshots/screenshot-1.png)
+
+
+![screenshot 2](screenshots/screenshot-2.png)
+
