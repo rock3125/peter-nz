@@ -99,8 +99,16 @@ window.addEventListener('keyup', (e) => {
 
   if (joystick && btnFire) {
     const updateJoystick = (e) => {
-      // Allow for both mouse and touch events if needed, but primarily for touch
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      // Use targetTouches to ensure we track the touch specifically on the joystick,
+      // fallback to changedTouches, or finally clientX for mouse events.
+      let clientX;
+      if (e.targetTouches && e.targetTouches.length > 0) {
+        clientX = e.targetTouches[0].clientX;
+      } else if (e.changedTouches && e.changedTouches.length > 0) {
+        clientX = e.changedTouches[0].clientX;
+      } else {
+        clientX = e.clientX;
+      }
       const rect = joystick.getBoundingClientRect();
       const x = clientX - rect.left;
       const mid = rect.width / 2;
@@ -118,6 +126,11 @@ window.addEventListener('keyup', (e) => {
     joystick.addEventListener('touchstart', (e) => { e.preventDefault(); updateJoystick(e); }, { passive: false });
     joystick.addEventListener('touchmove', (e) => { e.preventDefault(); updateJoystick(e); }, { passive: false });
     joystick.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      keys.Left = false;
+      keys.Right = false;
+    }, { passive: false });
+    joystick.addEventListener('touchcancel', (e) => {
       e.preventDefault();
       keys.Left = false;
       keys.Right = false;
