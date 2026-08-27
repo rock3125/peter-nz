@@ -1,333 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>a View from the Rock</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="canonical" href="https://peter.nz/" />
 
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
+    <title>Rock de Vocht &rarr; Software Architect &amp; Technical Leader</title>
+    <meta name="description" content="Rock de Vocht - software architect, technical leader and hands-on developer. Leading ISO 42001 implementation and LLM reliability measurement at Nylon, after 30+ years designing big-data retrieval, semantic search and NLP systems." />
+    <meta property="og:title" content="Rock de Vocht &rarr; Software Architect &amp; Technical Leader" />
+    <meta property="og:description" content="Rock de Vocht - software architect, technical leader and hands-on developer. Leading ISO 42001 implementation and LLM reliability measurement at Nylon, after 30+ years designing big-data retrieval, semantic search and NLP systems." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://peter.nz/" />
+    <meta property="og:image" content="https://peter.nz/rock.jpg" />
 
-        .container {
-            line-height: 1.6;
-            color: #333;
-            max-width: 850px;
-            margin: auto;
-            padding: 40px;
-        }
-
-        section {
-            padding: 20px;
-        }
-
-        .container p {
-        }
-
-        .profile-img {
-            display: block;
-            margin: auto;
-            max-width: 200px;
-            border-radius: 50%;
-        }
-
-        .social-icons {
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 40px;
-        }
-
-        .social-icons a {
-            display: inline-block;
-            margin: 0 10px;
-            color: #333;
-        }
-
-        .social-icons img {
-            display: inline-block;
-            margin: 0 10px;
-            width: 32px;
-        }
-
-        .menu-bar {
-            background-color: #333;
-            color: white;
-            padding: 10px 10px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .menu-bar a {
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-size: 16px;
-            display: block;
-            border-radius: 4px;
-        }
-
-        .menu-bar a:hover {
-            background-color: grey;
-        }
-
-        h1 {
-            margin: 0;
-            color: #2c3e50;
-            font-size: 2.5em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        h2 {
-            color: #2c3e50;
-            border-bottom: 1px solid #bdc3c7;
-            padding-bottom: 8px;
-            margin-top: 30px;
-            text-transform: uppercase;
-            font-size: 1.3em;
-        }
-
-        h3 {
-            margin-bottom: 5px;
-            color: #34495e;
-            font-size: 1.1em;
-        }
-
-        .job {
-            margin-bottom: 25px;
-        }
-
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-
-        .job-title {
-            font-weight: bold;
-            color: #2980b9;
-            font-size: 1.1em;
-        }
-
-        .job-meta {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.95em;
-        }
-
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .skill-column {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        ul {
-            margin-top: 8px;
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 5px;
-        }
-
-        .highlight {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .tag {
-            display: inline-block;
-            background: #ecf0f1;
-            color: #2c3e50;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.85em;
-            margin-right: 5px;
-            margin-bottom: 5px;
-            border: 1px solid #dcdde1;
-        }
-    </style>
+    <link rel="icon" href="rock.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap" />
+    <link rel="stylesheet" href="assets/site.css" />
 </head>
-<body>
+
+<body class="loading">
+
 <header>
-    <h1 style="color: #ccccaa">Rock de Vocht</h1>
-    <p>Team Lead / Software Engineer</p>
-
-    <div class="menu-bar">
-        <a href="blog.html">Rock's blog</a>
-        <a href="pdfredaction/index.html" title="Rock's free PDF Redaction/Redactor library for Java">PDF Redaction/Redactor</a>
-        <a href="gforcex/index.html" title="Rock's GForce-X game (work in progress)">GForce-X</a>
-        <a href="lunar-lander/index.html" title="Rock's fun little lunar lander game">Lunar Lander</a>
-        <a href="rocks-maze/index.html" title="Rock's Maze">Rock's Maze</a>
-        <a href="spaceinvaders/index.html" title="Rock's Space Invaders">Rock's Space Invaders</a>
+    <div class="wrap">
+        <span class="me jelly noline push drift left" role="button">Rock <span class="crest">de Vocht</span></span>
     </div>
-
 </header>
 
-<div class="container">
-
-    <section>
-        <h2>Professional Profile</h2>
-        <img src="rock.jpg" alt="Rock de Vocht" class="profile-img" title="Rock de Vocht">
-        <p>
-            Hi, I'm Rock!  I am an exceptional software developer and innovative technical leader with a <b>Master of Science in Computer Science</b> and deep expertise in full-stack Software Engineering, Natural Language Processing, Cloud infrastructure, and Artificial Intelligence.
-            <br/><br/>
-            I have designed sophisticated big-data retrieval systems, managed complex Linux environments, and handled extensive external API and system integrations. I have a proven ability to lead development teams and create high-performance technical solutions. Others describe me as soft-spoken, social, and collaborative, with a focus on results rather than ego.
-            <br/><br/>
-            Above is a showcase of my work.  My <a href="pdfredaction/" target="_blank" title="PDF redaction library">PDF redaction library</a> was a green-field creation using
-            AI, but heavily manually edited, changed, tested and optimized by myself after, because of its complexity.  <a href="gforcex/" target="_blank" title="GForce-X">GForce-X</a> is a game I've
-            written many times in different technologies over the years.  Here I used AI to add features to an existing brown-field application.
-            <a href="lunar-lander/" target="_blank" title="Rock's Lunar Lander">Rock's Lunar Lander</a> was also entirely written by hand before AI was used to change the code
-            to add Android compatibility.  <a href="rocks-maze/" target="_blank" title="Rock's Maze">Rock's Maze</a> was entirely generated using <a href="https://opencode.ai/" target="_blank" title="Open Code">opencode</a> using a few iterations and suggestions.
-            Visit my <a href="https://github.com/rock3125/" target="_blank" title="Rock's github page">https://github.com/rock3125</a> page to view my open-source works.
-            <a href="spaceinvaders/" target="_blank" title="Rock's Space Invaders">Rock's Space Invaders<a/> was written in 10 minutes using `opencode`.
-        </p>
-    </section>
-
-    <section>
-        <h2>Core Technical Expertise</h2>
-        <div class="skills-container">
-            <div class="skill-column">
-                <strong>AI & Data Engineering</strong>
-                <ul>
-                    <li><span class="highlight">Context Engineering:</span> RAG using OpenAI, Gemini, Ollama</li>
-                    <li><span class="highlight">NLP:</span> Semantic Search, Symbolic Logic, Named Entity Recognition (NER), Pattern Analysis</li>
-                    <li><span class="highlight">Big Data:</span> Spark, Cassandra (noSQL), Hadoop</li>
-                </ul>
-            </div>
-            <div class="skill-column">
-                <strong>Infrastructure & Development</strong>
-                <ul>
-                    <li><span class="highlight">Cloud:</span> Azure, Google Cloud (GCP), AWS, Contabo, Linode</li>
-                    <li><span class="highlight">DevOps:</span> Kubernetes, Docker, Terraform, Ansible, CI/CD pipelines</li>
-                    <li><span class="highlight">Languages:</span> Kotlin, Python, Java, C#, C, Rust, Go, React js + TypeScript, C++, SQL, CQL</li>
-                </ul>
-            </div>
+<section class="mast-contain">
+    <div class="mast">
+        <div class="wrap">
+            <h1 class="drift right">I design systems that <code>understand</code>, prove<br/>them with running code,<br/>and lead the engineers<br/>who build&nbsp;them.</h1>
         </div>
-    </section>
-
-    <section>
-        <h2>Professional Experience</h2>
-
-        <div class="job">
-            <div class="job-header">
-                <span class="job-title">CSO / CTO | SimSage (UK) Ltd</span>
-                <span class="job-meta">Cambridge, UK | Jan 2020 – Present</span>
-            </div>
-            <ul>
-                <li>Architected a <strong>Graph-based Enterprise Semantic Search Engine</strong> utilizing advanced NLP
-                    for context-engineering in LLMs.
-                </li>
-                <li>Integrated production AI workflows with <strong>Gemini, OpenAI, CoPilot, and AWS Bedrock</strong>.
-                </li>
-                <li>Created, built and maintained a massive codebase (250k+ lines) with 30+ enterprise connectors (SharePoint,
-                    OneDrive, Google Drive).  Big-data solution for handling millions of Enterprise documents securely.
-                </li>
-                <li>Optimized infrastructure using <strong>Terraform, Ansible, Ubuntu Server, Kubernetes, and Docker</strong>.</li>
-            </ul>
-        </div>
-
-        <div class="job">
-            <div class="job-header">
-                <span class="job-title">Developer (Contract) | MBIE, NZ Immigration</span>
-                <span class="job-meta">Wellington, NZ | May 2018 – Dec 2019</span>
-            </div>
-            <ul>
-                <li>Developed the <strong>Visa Assessment Tool (VAT)</strong> and Risk Analysis Project using C# and SQL on Azure/Linux.
-                </li>
-                <li>Applied Machine Learning for data quality and signal analysis on <strong>170 million unstructured records</strong>.
-                </li>
-                <li>Utilized Python and neural networks to extract statistically significant values from complex datasets.
-                </li>
-            </ul>
-        </div>
-
-        <div class="job">
-            <div class="job-header">
-                <span class="job-title">NLP Specialist | Booktrack.com</span>
-                <span class="job-meta">Auckland/Wellington, NZ | Mar 2016 – May 2018</span>
-            </div>
-            <ul>
-                <li>Led AI and NLP research and development, focusing on <strong>emotional text analysis</strong> and
-                    contextual understanding.
-                </li>
-                <li>Designed an <strong>Automatic Speech Recognition (ASR)</strong> system for automated transcription and sentiment analysis.
-                </li>
-                <li>Managed deployments using <strong>Kubernetes and Docker</strong> across Google Cloud and Azure.</li>
-            </ul>
-        </div>
-
-        <div class="job">
-            <div class="job-header">
-                <span class="job-title">Senior Developer (Contract) | Verifone</span>
-                <span class="job-meta">Wellington, NZ | Jan 2015 – Mar 2016</span>
-            </div>
-            <ul>
-                <li>Key member of the Payment Gateway BAU team, responsible for troubleshooting and fixing complex, level-three support issues.</li>
-                <li>Performed extensive DevOps environment support and bug analysis for mission-critical financial systems.</li>
-            </ul>
-        </div>
-
-        <div class="job">
-            <div class="job-header">
-                <span class="job-title">Chief Scientist & Co-Founder | SYL Semantics</span>
-                <span class="job-meta">Wellington, NZ | 2008 – Jan 2015</span>
-            </div>
-            <ul>
-                <li>Created an innovative semantic search engine currently utilized by several <strong>NZ Government
-                    departments</strong> (NZTA, MPI, MoH).
-                </li>
-                <li>Defined the technical roadmap and led a development team through the full SDLC and IP creation.</li>
-                <li>Managed complex integrations with external APIs including SharePoint, CRM, and social media
-                    platforms.
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <section>
-        <h2>Education & Mentorship</h2>
-        <ul>
-            <li><strong>Master of Science in Computer Science</strong> – University of Auckland
-                <br><small>Thesis in AI, Natural Language Understanding (NLU), and Human Computer Interfaces (HCI).</small></li>
-            <li><strong>Bachelor of Science in Computer Science (Honors)</strong> – University of Auckland
-                <br><small>Awarded Senior Prize in Computer Science.</small></li>
-            <li><strong>Machine Learning Certification</strong> – Stanford University (Coursera).</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Languages & Interests</h2>
-        <div>
-            <span class="tag">English</span> <span class="tag">Dutch</span> <span class="tag">German (Proficient)</span>
-            <span class="tag">French (Proficient)</span>
-        </div>
-        <p><small>Outside of engineering, I am a black belt in Wing Tsun Kung Fu and a composer of orchestral
-            music.</small></p>
-    </section>
-
-    <div class="social-icons">
-        <a href="https://github.com/rock3125" target="_blank"><img src="github.png" alt="GitHub"></a>
-        <a href="https://www.youtube.com/@peterd3125" target="_blank" title="Visit Rock's youtube channel"><img src="youtube.png" alt="Rock's YouTube Channel"></a>
     </div>
+</section>
 
-</div>
+<main>
+    <div class="wrap">
 
+        <section class="push" data-section="intro">
+            <p>Currently, I&rsquo;m a Senior Developer at <span class="brilliant">Nylon</span>, leading the ISO&nbsp;42001 implementation and putting a measurement system in place for LLM reliability, the test data, the benchmarks, and the harness that keeps answering the question as the models change.</p>
+            <p><a class="rgbsplit" href="mailto:&#112;&#101;&#116;&#101;&#114;&#64;&#112;&#101;&#116;&#101;&#114;&#46;&#99;&#111;&#46;&#110;&#122;">Email me</a>, or find me on <a class="rgbsplit" href="https://github.com/rock3125" target="_blank" rel="noopener">GitHub</a> and <span class="nobr"><a class="rgbsplit" href="https://www.linkedin.com/in/pmgdv/" target="_blank" rel="noopener">LinkedIn</a>.</span></p>
+        </section>
+
+        <section class="pull drift left onscroll" data-section="specialty">
+            <h2>Three decades designing the systems other engineers build on, and still writing the code.</h2>
+        </section>
+
+        <section class="cv-timeline" data-section="cv">
+            <p class="push cv-intro">30+ years engineering.<br />Teams of up to ten.<br />Two companies co-founded.</p>
+
+            <label class="option-toggle">
+                <span class="label">Simple</span>
+                <div class="toggle">
+                    <input type="checkbox" aria-label="Show detail for each role" />
+                    <div class="switch"></div>
+                </div>
+                <span class="label">Detailed</span>
+            </label>
+
+            <ol class="cv">
+                <li>
+                    <div class="cv-wrap">
+                        <div class="exp">
+                            <div class="time"><abbr>26</abbr>&ndash;Present</div>
+                            <div class="details">
+                                <div class="role">
+                                    <h3 class="title">Senior Developer</h3>
+                                    <h3 class="company">Nylon</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="info-wrap">
+                                <p class="push">Leading the ISO&nbsp;42001 implementation, the AI management standard, and standing up the measurement system for LLM reliability underneath it, test data creation included. Alongside that, an architecture review of the document processing pipeline with optimisations to ingestion and learning-from-documents, and development in Node.js.</p>
+                                <p class="push"><strong class="highlight">Bottom Line</strong> <span class="arrow">&rarr;</span> Reliability you can put a number on, and the governance record an auditor will accept, on a reusable harness, so the numbers still hold every time a model or a prompt changes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="cv-wrap">
+                        <div class="exp">
+                            <div class="time"><abbr>20</abbr>&ndash;<abbr>26</abbr></div>
+                            <div class="details">
+                                <div class="role">
+                                    <h3 class="title">Chief Scientific Officer &amp; Co-Founder</h3>
+                                    <h3 class="company">SimSage UK</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="info-wrap">
+                                <p class="push">Owned the architecture and delivery of a graph-based enterprise semantic search engine, data model, service decomposition, Kafka event pipeline and deployment topology, alongside the security protocols and RBAC model governing sensitive data across every connector and tenant.</p>
+                                <p class="push"><strong class="highlight">Bottom Line</strong> <span class="arrow">&rarr;</span> 250k+ lines, 30+ enterprise API connectors across SharePoint, OneDrive and Google Drive, production AI workflows on Gemini, OpenAI and Copilot, and a team of three carried through the full SDLC.</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="cv-wrap">
+                        <div class="exp">
+                            <div class="time"><abbr>18</abbr>&ndash;<abbr>19</abbr></div>
+                            <div class="details">
+                                <div class="role">
+                                    <h3 class="title">Senior Developer</h3>
+                                    <h3 class="company">MBIE&nbsp;/&nbsp;NZ Immigration (Contract)</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="info-wrap">
+                                <p class="push">C#&nbsp;.NET and SQL development on Azure inside Linux environments, and the design of the unstructured data integration and NLP processing behind the department&rsquo;s signal analysis.</p>
+                                <p class="push"><strong class="highlight">Bottom Line</strong> <span class="arrow">&rarr;</span> 170 million text records processed, with machine learning applied to the data quality problem underneath them.</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="cv-wrap">
+                        <div class="exp">
+                            <div class="time"><abbr>16</abbr>&ndash;<abbr>18</abbr></div>
+                            <div class="details">
+                                <div class="role">
+                                    <h3 class="title">NLP Specialist</h3>
+                                    <h3 class="company">Booktrack.com</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="info-wrap">
+                                <p class="push">Advised the CTO on development strategy and the company&rsquo;s machine learning and NLP direction, while researching and building the neural networks for emotional text analysis and contextual understanding at the centre of its IP.</p>
+                                <p class="push"><strong class="highlight">Bottom Line</strong> <span class="arrow">&rarr;</span> Core development in C#, SQL, Java and Python, deployed on Kubernetes and Docker across Google Cloud and Azure.</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="cv-wrap">
+                        <div class="exp">
+                            <div class="time"><abbr>15</abbr>&ndash;<abbr>16</abbr></div>
+                            <div class="details">
+                                <div class="role">
+                                    <h3 class="title">Developer / DevOps (Contract)</h3>
+                                    <h3 class="company">Verifone</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="info-wrap">
+                                <p class="push">Ran CI/CD and DevOps operations, and took ownership of the complex technical issues that made it as far as level-three support, on systems where every defect is somebody&rsquo;s actual money.</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="cv-wrap">
+                        <div class="exp">
+                            <div class="time"><abbr>08</abbr>&ndash;<abbr>15</abbr></div>
+                            <div class="details">
+                                <div class="role">
+                                    <h3 class="title">Chief Scientist &amp; Co-Founder</h3>
+                                    <h3 class="company">SYL Search</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="info-wrap">
+                                <p class="push">Defined the technical roadmap and designed a semantic search engine adopted by several NZ Government departments, MOT, NZTA and MPI, including the complex integrations with SharePoint, CRM and social platforms behind it.</p>
+                                <p class="push"><strong class="highlight">Bottom Line</strong> <span class="arrow">&rarr;</span> A team of five led through the full SDLC and the IP creation, mentored throughout.</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="faded">
+                    <div class="cv-wrap">
+                        <div class="exp">
+                            <div class="time"><abbr>04</abbr>&ndash;<abbr>08</abbr></div>
+                            <div class="details">
+                                <div class="role">
+                                    <h3 class="title">Senior Architect, Microsoft Team</h3>
+                                    <h3 class="company">Datacom</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="info-wrap">
+                                <p class="push">Solution architecture for Datacom&rsquo;s enterprise customers as part of the internal Architecture Solution Group, pre-sales technical assistance and technical writing, competing for large projects with teams of up to ten engineers, and acting as team lead and mentor.</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="cv-wrap">
+                        <div class="exp">
+                            <div class="time"><abbr class="_90s">95</abbr>&ndash;<abbr>04</abbr></div>
+                            <div class="details">
+                                <div class="role">
+                                    <h3 class="title">Where it started</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="info-wrap">
+                                <ul class="earlier">
+                                    <li>
+                                        <div class="exp">
+                                            <div class="time"><abbr>02</abbr>&ndash;<abbr>04</abbr></div>
+                                            <div class="details"><span class="what">Video Games Developer</span> <span class="org">Takapuna, C++ on Xbox titles</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="exp">
+                                            <div class="time"><abbr class="_90s">98</abbr>&ndash;<abbr>02</abbr></div>
+                                            <div class="details"><span class="what">Developer</span> <span class="org">Datacom Auckland, Visual Basic</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="exp">
+                                            <div class="time"><abbr class="_90s">97</abbr>&ndash;<abbr class="_90s">98</abbr></div>
+                                            <div class="details"><span class="what">Developer</span> <span class="org">Terabyte Interactive, led the America&rsquo;s Cup Virtual Spectator team</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="exp">
+                                            <div class="time"><abbr class="_90s">96</abbr></div>
+                                            <div class="details"><span class="what">Network System Administrator</span> <span class="org">University of Auckland, Windows NT, support for ~20,000 students</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="exp">
+                                            <div class="time"><abbr class="_90s">95</abbr>&ndash;<abbr class="_90s">96</abbr></div>
+                                            <div class="details"><span class="what">Developer</span> <span class="org">UoA Language Laboratories, C and HyperCard</span></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+
+            <p class="push">
+                <span class="jelly noline more" role="button" tabindex="0"><span class="arrow">&darr;</span> <span class="state"></span></span>
+            </p>
+        </section>
+
+        <section class="builds-wrap drift left onscroll" data-section="builds">
+            <h2 class="push margin-sml">Built, and still running.</h2>
+            <p class="push">A home lab and an index of what has been built in it, a Prolog engine with an MCP server bolted to its side, a chat application that answers out of a folder you own and cites the paragraph, three games, and a library that takes text out of a PDF for good. The full record, with the architecture documents, is at <a class="rgbsplit" href="https://home.peter.nz/" target="_blank" rel="noopener">home.peter.nz</a>.</p>
+
+            <div class="builds">
+                <div class="exp">
+                    <div class="kind">Prolog engine &middot; C++, Kotlin &middot; MCP</div>
+                    <div class="details">
+                        <h3><a class="rgbsplit" href="https://github.com/rock3125/pi" target="_blank" rel="noopener">PI &amp; piview</a></h3>
+                        <p>A Prolog interpreter written to be read as much as used, hand-written recursive-descent parser, a flat node stack, an indexed name/arity database, and no third-party dependencies at all. <em>piview</em> gives it two more faces: a live web view and an MCP server. A clause typed at the prompt, one asserted by an agent, and the listing in the browser are all the same database, changing under each other in real time.</p>
+                        <p class="links"><a href="https://github.com/rock3125/pi" target="_blank" rel="noopener">Source</a></p>
+                    </div>
+                </div>
+                <div class="exp">
+                    <div class="kind">Cited retrieval &middot; Kotlin, React &middot; MCP</div>
+                    <div class="details">
+                        <h3><a class="rgbsplit" href="https://github.com/rock3125/seshat" target="_blank" rel="noopener">Seshat</a></h3>
+                        <p>A chat application over a private folder of text files. Ask it something and the answer comes back with the paragraph it was drawn from attached, open the citation and you are reading the text itself, not a summary of it. Retrieval is hybrid: BM25 keyword matching and dense embeddings, fused server-side by reciprocal rank fusion. One Kotlin jar is both the MCP server and the chat gateway.</p>
+                        <p class="links"><a href="https://github.com/rock3125/seshat" target="_blank" rel="noopener">Source</a></p>
+                    </div>
+                </div>
+                <div class="exp">
+                    <div class="kind">Java library &middot; Maven Central</div>
+                    <div class="details">
+                        <h3><a class="rgbsplit" href="https://github.com/rock3125/pdf-redaction" target="_blank" rel="noopener">pdf-redaction</a></h3>
+                        <p>A redaction engine that actually redacts. The common tools draw a black rectangle over the text and ship a PDF whose content stream still contains every word underneath, copy, paste, and there it is. This one intercepts the text operators themselves, strips the characters while holding the visual layout together, and re-encodes any raster image overlapping a redaction zone with the pixels blacked out.</p>
+                        <p class="links"><a href="https://github.com/rock3125/pdf-redaction" target="_blank" rel="noopener">Source</a> <span class="sep">&middot;</span> <a href="https://central.sonatype.com/artifact/nz.peter.pdfredaction/pdf-redaction" target="_blank" rel="noopener">Maven Central</a></p>
+                    </div>
+                </div>
+                <div class="exp">
+                    <div class="kind">Cave flyer &middot; HTML5 canvas</div>
+                    <div class="details">
+                        <h3><a class="rgbsplit" href="https://home.peter.nz/gforce/" target="_blank" rel="noopener">G-Force X</a></h3>
+                        <p>A momentum-based cave navigator, and the most physical thing here. Thrust adds to velocity the way it does in Asteroids, and the cavern has two media, air pulls you down, water floats you up and thickens the drag, so the same input means two different things depending on where the ship is. The terrain is cellular automata, flood-filled so every pocket connects: if you can see it, you can fly to it.</p>
+                        <p class="links"><a href="https://home.peter.nz/gforce/" target="_blank" rel="noopener">Play</a> <span class="sep">&middot;</span> <a href="https://github.com/rock3125/gforcex-js" target="_blank" rel="noopener">Source</a></p>
+                    </div>
+                </div>
+                <div class="exp">
+                    <div class="kind">Vector arcade &middot; three.js</div>
+                    <div class="details">
+                        <h3><a class="rgbsplit" href="https://home.peter.nz/super-asteroids/" target="_blank" rel="noopener">Super Asteroids</a></h3>
+                        <p>Asteroids with the edges taken off. The ship is pinned to the centre of the view and the universe is translated around it, so there is no screen to wrap at, rocks spawn into a ring outside the viewport and are collected again further out, which keeps the field infinite while the live entity count stays flat. Vector line under a bloom pass, and every laser is pitched off the last so a firefight does not turn into one flat tone.</p>
+                        <p class="links"><a href="https://home.peter.nz/super-asteroids/" target="_blank" rel="noopener">Play</a> <span class="sep">&middot;</span> <a href="https://github.com/rock3125/super-asteroids" target="_blank" rel="noopener">Source</a></p>
+                    </div>
+                </div>
+                <div class="exp">
+                    <div class="kind">Arcade &middot; HTML5 canvas</div>
+                    <div class="details">
+                        <h3><a class="rgbsplit" href="https://home.peter.nz/spaceinvaders/" target="_blank" rel="noopener">Space Invaders</a></h3>
+                        <p>The 1978 cabinet, rebuilt in a canvas element with no framework and no build step, because the classic is a near-perfect specification, and the details are the whole game. Eleven columns by five rows, one shot on screen at a time, bunkers that erode block by block as they take fire, and a step interval scaled to the number still alive: nine tenths of a second with the formation full, a twentieth of a second with one left.</p>
+                        <p class="links"><a href="https://home.peter.nz/spaceinvaders/" target="_blank" rel="noopener">Play</a> <span class="sep">&middot;</span> <a href="https://github.com/rock3125/spaceinvaders" target="_blank" rel="noopener">Source</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="push drift left onscroll" data-section="more">
+            <h2 class="margin-sml">This &amp; That.</h2>
+            <p>Black belt in Wing Tsun Kung Fu, and a composer of orchestral music, the <a class="rgbsplit" href="https://github.com/rock3125/compositions" target="_blank" rel="noopener">scores are open source</a> and the <span class="nobr"><a class="rgbsplit" href="https://www.youtube.com/@peterd3125" target="_blank" rel="noopener">recordings are on YouTube</a>.</span></p>
+            <p>Democratic, social and highly collaborative as a lead, I take responsibility for my team&rsquo;s mistakes, mentor closely, and consistently prioritise the result over anyone&rsquo;s ego, mine included.</p>
+
+            <div class="notecard">
+                <p><strong class="tag">Credentials</strong></p>
+                <ul class="stack list">
+                    <li>
+                        <span class="lede">MSc, Computer Science</span>, University of Auckland
+                        <span class="sub">Focus on natural language processing, grammar, language semantics and knowledge representation.</span>
+                    </li>
+                    <li>
+                        <span class="lede">BSc (Hons), Computer Science</span>, University of Auckland
+                        <span class="sub">Awarded the Senior Prize in Computer Science.</span>
+                    </li>
+                    <li>
+                        <span class="lede">Machine Learning certification</span>, Stanford University, via Coursera
+                        <span class="sub">Artificial intelligence and deep-learning neural networks, 2013.</span>
+                    </li>
+                </ul>
+
+                <p><strong class="tag">Languages</strong></p>
+                <p class="tag-row">
+                    <span class="tag">English</span>
+                    <span class="tag">Dutch</span>
+                    <span class="tag">German</span>
+                    <span class="tag">French</span>
+                </p>
+            </div>
+
+        </section>
+
+    </div>
+</main>
+
+<footer>
+    <div class="wrap">
+        <p>&copy; <span class="year">2026</span> Rock de Vocht <span class="hello">&#128075;</span></p>
+        <ul>
+            <li><a class="rgbsplit noline" href="mailto:&#112;&#101;&#116;&#101;&#114;&#64;&#112;&#101;&#116;&#101;&#114;&#46;&#99;&#111;&#46;&#110;&#122;">Email</a></li>
+            <li><a class="rgbsplit noline" href="https://github.com/rock3125" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a class="rgbsplit noline" href="https://www.linkedin.com/in/pmgdv/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+    </div>
+</footer>
+
+<script src="assets/site.js" type="module"></script>
 </body>
 </html>

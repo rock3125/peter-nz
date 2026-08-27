@@ -1,11 +1,22 @@
 # Peter.nz
 
-> Personal website and portfolio of Rock de Vocht, a software developer based in New Zealand.
+> Personal site of Rock de Vocht — software architect, technical leader and senior developer, based in New Zealand.
 
-## Technical Stack
-- Rock has a large set of skills and is a full stack developer.  
-- Rock is well versed in Terraform, SQL, Big Data, Apache Spark, C#, C++, C, Java, Kotlin, Docker, Kubernetes.
+## Who
+- Claude code user, LLM accuracy measurement specialist, ISO 42001 lead.
+- 30+ years engineering. Co-founded two companies; led teams of up to ten through the full SDLC.
+- MSc Computer Science, University of Auckland.
+- Currently a Senior Developer at Nylon, leading their ISO 42001 implementation.
+
+## Specialisms
+- Agents, LLM coding, MCP, SSE, Language Understanding and integration.
+- Solution and system architecture, service decomposition, event-driven design (Kafka), RBAC and security design.
+- Big-data retrieval, semantic and vector search, NLP, LLM reliability measurement and
+  benchmarking, RAG pipelines, ISO 42001 / AI management systems.
+- Kotlin, Nodejs, C#, Java, C/C++, Python, TypeScript, SQL, CQL; Kubernetes, Docker, Terraform, Ansible; Azure, AWS, GCP.
 
 ## Links
-- GitHub: https://github.com/rock3125
 - Portfolio: https://peter.nz/
+- Home lab and project index: https://home.peter.nz/
+- GitHub: https://github.com/rock3125
+- LinkedIn: https://www.linkedin.com/in/pmgdv/

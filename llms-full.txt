@@ -1,22 +1,191 @@
 # Rock de Vocht
 
+> I design systems that understand, prove them with running code, and lead the engineers who build them.
+
+Software architect · technical leader · hands-on developer · consultant.
+Based in New Zealand. Website: https://peter.nz
+
 ## Biography
-Rock de Vocht is a New Zealand-based full-stack software developer focusing on web and backend systems.
+Rock de Vocht is a software architect and hands-on technical leader with a Master of Science in
+Computer Science from the University of Auckland and a 30-year record of designing systems that other
+engineers build on. He has co-founded two companies, defined the technical roadmaps and reference
+architectures behind two enterprise semantic search platforms, and led teams of up to ten engineers
+through the full SDLC.
 
-## Technical know how
-- Rock has a large set of skills and is a full stack developer.  
-- Rock is well versed in Terraform, SQL, Big Data, Apache Spark, C#, C++, C, Java, Kotlin, Docker, Kubernetes, Linux, Apache Cassandra.
+He designs at the whole-system level — data model, service decomposition, integration surface,
+security boundary, deployment topology — and then writes production code alongside the team. His
+expertise spans full-stack engineering, infrastructure, networking, security and cloud, with deep
+specialisation in big-data retrieval, NLP and complex API integration.
 
-## Key Open Source Projects
-- Rock's full Java based PDF redaction library https://github.com/rock3125/pdf-redaction
-- Rock's high performance C and Kotlin data structures https://github.com/rock3125/rock-datastructures
-- Rock's entertaining retro web game, gravity-force X https://github.com/rock3125/gforcex-js
+As a consultant he translates between executives and engineers: pre-sales and solution architecture
+at Datacom, CTO-level technical advisory at Booktrack, and architecture reviews and whitepapers for
+clients today.
 
-## Rock's compositions
-- Rock's compositions, open sourced: https://github.com/rock3125/compositions
-- Rock's youtube channel https://www.youtube.com/channel/UCgS5vgoqwaiJxStxFs9_7Yw
+## How he works
+- Designs in the open and validates by building. Decisions are written down, walked through with the
+  team, and proven with a running slice before the wider build commits to them.
+- Stays hands-on in the codebase so the architecture stays honest, and optimises for the engineers
+  who have to live in it.
+- Democratic, social and highly collaborative as a lead. Takes responsibility for the team's
+  mistakes, mentors junior staff closely, shares knowledge freely, and consistently prioritises
+  results over ego.
+- Methodologies: RM-ODP, MVC, micro-services, SaaS, Agile and Waterfall.
 
-## Contact Information
+## At a glance
+- 30+ years engineering
+- Teams of up to 10 engineers led
+- 2 companies co-founded
+- 20+ successful projects delivered
+
+## Career history
+- **Senior Developer (Contract), Nylon** — Jun 2026 to present.
+  Leading the ISO 42001 implementation (the AI management standard) and standing up the measurement
+  system for LLM reliability underneath it, including test data creation. Reviewed the document
+  processing architecture and delivered optimisations to ingestion and learning-from-documents.
+  Investigated language model performance across the product's real workloads and authored a
+  whitepaper covering methodology, benchmarks and recommendations. Built a reusable LLM evaluation
+  harness in Node.js so model quality, latency and cost stay measurable as models and prompts change.
+  Stack: Node.js, TypeScript, Python, Qdrant, AWS, PDF extraction, LLM evaluation and benchmarking.
+
+- **Chief Scientific Officer & Co-Founder, SimSage UK Ltd (Cambridge, UK)** — Jan 2020 to Apr 2026.
+  Owned the architecture and delivery of a graph-based enterprise semantic search engine, from data
+  model and service decomposition through to deployment topology. Directed a 250k+ line codebase with
+  30+ enterprise API connectors (SharePoint, OneDrive, Google Drive) and production AI workflows
+  integrating Gemini, OpenAI and Copilot. All jobs and requests routed through Kafka to independently
+  scalable services. Designed the security protocols and RBAC model governing sensitive enterprise
+  data across every connector and tenant. Led and mentored a team of three.
+  Stack: C#, Kotlin (JVM), Java, C, Python, React + TypeScript, SQL, CQL, Kafka, Kubernetes,
+  Terraform, Ansible, Docker, Ubuntu Server, GitLab CI/CD.
+
+- **Developer (Contract), MBIE / NZ Immigration (Wellington)** — May 2018 to Dec 2019.
+  C# .NET and SQL development on Azure within Linux environments. Designed and ran the unstructured
+  data integration and NLP processing of 170 million text records for signal analysis, using Python
+  for data manipulation and machine learning for data quality analysis.
+
+- **NLP Specialist, Booktrack.com (Auckland)** — Mar 2016 to May 2018.
+  Advised the CTO on development strategy and machine learning / NLP direction. Researched and
+  developed neural networks for emotional text analysis and contextual understanding within the
+  company's core IP. Core development in C#, SQL, Java and Python across Google Cloud and Azure, on
+  Kubernetes and Docker.
+
+- **Developer / DevOps (Contract), Verifone (Wellington)** — Jan 2015 to Mar 2016.
+  Managed CI/CD and DevOps operations, analysing and resolving critical system bugs, and taking
+  ownership of complex technical issues escalated to level-three support.
+
+- **Chief Scientist & Co-Founder, SYL Search (Wellington)** — May 2008 to Jan 2015.
+  Defined the technical roadmap and designed a semantic search engine adopted by several NZ Government
+  departments (MOT, NZTA, MPI). Led a development team of five through the full SDLC and IP creation.
+  Designed and managed complex integrations with external APIs, SharePoint, CRM and social platforms.
+  Stack: Java, C#, SQL, Cassandra.
+
+- **Senior Architect, Microsoft Team, Datacom (Wellington)** — Jan 2004 to May 2008.
+  Solution architecture for Datacom's enterprise customers as a member of the internal Datacom
+  Architecture Solution Group. Pre-sales technical assistance and technical writing, competing in
+  several large projects with teams of up to ten engineers. Team lead, mentor, and runner of internal
+  education sessions.
+  Stack: .NET Framework, ASP.NET, C#, SQL Server, SharePoint, Windows Server.
+
+### Earlier career
+- Video Games Developer, Takapuna — 2002 to 2004. C++ programmer for Xbox titles.
+- Developer, Datacom Auckland — 1998 to 2002. Visual Basic development.
+- Developer, Terabyte Interactive — 1997 to 1998. Led the America's Cup Virtual Spectator team.
+- Network System Administrator, University of Auckland — 1996. Windows NT administration and
+  level-one support for around 20,000 students.
+- Developer, University of Auckland Language Laboratories — 1995 to 1996. C and HyperCard.
+
+## Technical skills
+- **Architecture and design:** solution and software architecture, micro-service and service/SaaS
+  design, event-driven architecture (Kafka), RM-ODP, MVC, OOP, domain and data modelling, big-data
+  retrieval design, API and integration architecture, RBAC and security design, technical roadmaps,
+  technical writing.
+- **AI, ML and search:** LLM reliability measurement, evaluation and benchmarking, test data creation,
+  ISO 42001 / AI management systems, generative AI (Gemini, OpenAI, Copilot), RAG and document
+  ingestion pipelines, Qdrant vector search, NLP and neural networks, semantic and graph search,
+  machine learning.
+- **Languages** (years of hands-on experience): SQL 28, JavaScript/TypeScript 27, C# .NET 22,
+  C/C++ 20, Java 18, CQL 16, Kotlin 8, Python 8, Visual Basic 6, VBScript/VBA 4.
+- **Data and streaming:** Apache Cassandra 16, Microsoft SQL 22, Apache Spark 10, Qdrant, Kafka,
+  Redis (Valkey), Apache Superset 3, MS Access 4. Big-data retrieval and code optimisation.
+- **Cloud and infrastructure:** Azure, AWS, Google Cloud, Linode, Contabo, Huawei. Docker 22,
+  Kubernetes 8, Terraform 6, Ansible, KeyCloak 4. Network administration 20. CI/CD via GitLab and
+  GitHub.
+- **Platforms and servers:** Windows Server 22, Ubuntu Server 18, Apache 18, SharePoint 16, RHEL 10,
+  Nginx 6, IIS 4. Linux, Unix, FreeBSD, Crystal Reports 2.
+- **Security and identity:** RBAC, Azure Entra, AD/LDAP, AES encryption, hashing (bcrypt, sha256),
+  SSH, HTTPS and SSH certificate creation and setup, Microsoft Graph, DNS configuration, raw-IP
+  network programming.
+- **Frameworks and technologies:** Node.js, npm, React, Angular, jQuery, .NET Core and Framework,
+  ASP.NET, WPF, MFC, Win32, ISAPI, MS MQ, Hibernate, iBatis, Velocity, XML/XSD/XSLT/XPath, Selenium,
+  Cucumber, Log4j, Bash, PowerShell.
+- **Tooling:** JetBrains IDEA 18, Visual Studio 12, PyCharm/WebStorm 10, Rider 4, Visio 5. Git,
+  GitLab, GitHub, TFS, Subversion, SourceSafe, Docker Hub.
+
+## Projects
+Built and run in a home lab — one server, no cloud account. Index and architecture records:
+https://home.peter.nz/
+
+- **pi and piview** — a Prolog interpreter in C++ written to be read as much as used: a hand-written
+  recursive-descent parser, a flat node stack, an indexed name/arity database, and no third-party
+  dependencies. Runs at a prompt or over TCP, with every client sharing one database. piview adds a
+  live web view and a Kotlin MCP server exposing seven typed tools, so a clause typed at the prompt,
+  one asserted by an agent, and the listing in the browser are the same database changing under each
+  other in real time. ~7,000 lines of C++, 0 dependencies.
+  Source: https://github.com/rock3125/pi
+
+- **Seshat** — a chat application over a private folder of text files, and an MCP server. Answers come
+  back with the paragraph they were drawn from attached, so the citation opens the source text rather
+  than a summary. Hybrid retrieval: BM25 keyword matching and dense embeddings, fused server-side by
+  reciprocal rank fusion. One Kotlin jar is both the MCP server and the chat gateway, so a browser and
+  an agent reach the same tools from one definition. Kotlin, React.
+  Source: https://github.com/rock3125/seshat
+
+- **pdf-redaction** — a Java PDF redaction library that actually redacts. Common tools draw a black
+  rectangle and ship a PDF whose content stream still contains every word underneath; this one
+  intercepts the text operators, strips the characters while holding the visual layout together, and
+  re-encodes any raster image overlapping a redaction zone with the pixels blacked out.
+  Rotation-aware, metadata stripped on save, no online service involved. Java 17+, PDFBox 3.x,
+  Apache 2 licence.
+  Source: https://github.com/rock3125/pdf-redaction
+  Maven Central: https://central.sonatype.com/artifact/nz.peter.pdfredaction/pdf-redaction
+
+- **G-Force X** — a momentum-based cave flyer on HTML5 canvas. Thrust adds to velocity as in
+  Asteroids, and the cavern has two media: air pulls the ship down, water floats it up and thickens
+  the drag. Terrain is generated by cellular automata then flood-filled so every pocket connects.
+  Play: https://home.peter.nz/gforce/
+  Source: https://github.com/rock3125/gforcex-js
+
+- **Super Asteroids** — vector arcade in three.js. The ship is pinned to the centre of the view and
+  the universe is translated around it, so rocks spawn into a ring outside the viewport and are
+  collected further out, keeping the field infinite while the live entity count stays flat.
+  Collisions filtered through a layer matrix; vector line under a bloom pass; audio synthesised in
+  the browser.
+  Play: https://home.peter.nz/super-asteroids/
+  Source: https://github.com/rock3125/super-asteroids
+
+- **Space Invaders** — the 1978 cabinet rebuilt in a canvas element with no framework and no build
+  step. Eleven columns by five rows, one shot on screen at a time, bunkers that erode block by block,
+  and a step interval scaled to the number still alive (0.9s with the formation full, 0.05s with one
+  left).
+  Play: https://home.peter.nz/spaceinvaders/
+  Source: https://github.com/rock3125/spaceinvaders
+
+
+## Education and certifications
+- **Master of Science in Computer Science** — University of Auckland. Focus on natural language
+  processing, grammar, language semantics and knowledge representation.
+- **Bachelor of Science (Honours) in Computer Science** — University of Auckland.
+- **Machine Learning Certification** — Stanford University via Coursera, May 2013. Artificial
+  intelligence and deep-learning neural networks.
+
+## Outside engineering
+- Black belt in Wing Tsun Kung Fu.
+- Composer of orchestral music. Scores are open source at
+  https://github.com/rock3125/compositions and recordings are at https://www.youtube.com/@peterd3125
+- Spoken languages: Dutch, English, French, German.
+
+## Contact
 - Website: https://peter.nz
-- Github: https://github.com/rock3125
-- Location: Wellington, New Zealand
+- Home lab and project index: https://home.peter.nz
+- Email: peter@peter.co.nz
+- GitHub: https://github.com/rock3125
+- LinkedIn: https://www.linkedin.com/in/pmgdv/

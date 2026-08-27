@@ -1,0 +1,855 @@
+/* ------------------------------------------------------------------
+   peter.nz — Rock de Vocht
+   ------------------------------------------------------------------ */
+
+/* --- reset ------------------------------------------------------- */
+a, abbr, article, body, code, div, footer, h1, h2, h3, header, html, iframe,
+img, label, li, main, nav, ol, p, section, span, strong, ul {
+    background: transparent;
+    border: 0;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+*, *:before, *:after { box-sizing: border-box; }
+ol, ul { list-style: none; }
+img { display: block; width: 100%; }
+a, :focus { outline: none; }
+.vizhid {
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(0 0 99.9% 99.9%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+}
+.nobr { white-space: nowrap; }
+
+/* --- tokens ------------------------------------------------------ */
+:root {
+    --cb-fill: 0, 0, 0;
+
+    --color-bg:         rgb(224, 240, 242);
+    --color-fill:       rgba(var(--cb-fill), .84);
+    --color-muted:      #3f6b78;   /* 4.9:1 on --color-bg — safe for text */
+    --color-hairline:   #7ca9b8;   /* rails, dots, rules — never text */
+    --color-bevel:      rgba(var(--cb-fill), .69);
+
+    --font-standard: "Rethink Sans", "Satoshi", "SF Pro Display", system-ui, Helvetica, sans-serif;
+    --font-mono:     "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --size-l: 3rem;
+    --size-m: 1.5rem;
+    --size-s: 1rem;
+
+    --outerBreakpoint: 1920px;
+    --innerBreakpoint: 1650px;
+    --outerPad: min(7.5vw, 124px);
+    --innerPad: 5.25rem;
+    --centerMargin: calc(50% - 4.3rem);
+
+    --vertGapLarge: 11.5rem;
+    --vertGap: 7.5rem;
+    --headerPadTop: 5.25rem;
+
+    --cvGap: calc(var(--size-m) * 1.4);
+    --cvSmallGap: calc(var(--cvGap) / 2);
+    --dotSize: 12px;
+
+    --linkLineSlide: cubic-bezier(.57, 0, .12, 1);
+    --linkLineSpeed: .21s;
+    --linkBtnShowSpeed: .12s;
+    --linkBtnBounceSpeed: .17s;
+    --linkBtnBounce: cubic-bezier(.34, 1.56, .62, 1.2);
+    --slideTime: .39s;
+    --headerBounce: cubic-bezier(.12, .93, .42, 1.2);
+    --enterDrift: 1.2em;
+    --enterTiming: .48s;
+    --enterBounce: cubic-bezier(.42, 0, .21, 1);
+
+    --colorSplitR: rgba(255, 34, 192, .93);
+    --colorSplitB: rgba(24, 234, 255, .93);
+    --colorSplitY: rgb(252, 237, 57);
+    --delayedStart: calc(var(--linkLineSpeed) * .48);
+    --secondStepStart: calc(var(--delayedStart) + (var(--linkBtnShowSpeed) * 1.2));
+    --doubleTime: calc(var(--linkBtnShowSpeed) * 2);
+
+    --plax: 0px;
+}
+
+/* --- base -------------------------------------------------------- */
+html, body { font-size: 16px; height: 100%; }
+
+body {
+    background: var(--color-bg);
+    color: var(--color-fill);
+    font-family: var(--font-standard);
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+    font-size: clamp(var(--size-l), 4.76vw, 78px);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.2;
+    text-wrap: pretty;
+}
+
+h2 {
+    font-size: var(--size-l);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.3;
+    text-wrap: balance;
+}
+h2.margin-sml { margin-block-end: var(--cvGap); }
+
+h3 { font-size: var(--size-m); font-weight: 700; line-height: 1.2; }
+
+p { font-size: var(--size-m); line-height: 1.4; text-wrap: pretty; }
+.list li { font-size: var(--size-s); line-height: 1.45; text-wrap: pretty; }
+
+code {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    letter-spacing: -.04em;
+}
+
+/* --- links ------------------------------------------------------- */
+a, [role="button"] {
+    color: inherit;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+}
+
+a:not(.noline):before,
+[role="button"]:not(.noline):before {
+    background: currentColor;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    transform-origin: center left;
+    transition: transform var(--linkLineSpeed) var(--linkLineSlide);
+    width: 100%;
+    will-change: transform;
+    z-index: 10;
+}
+a:not(.noline):hover:before,
+[role="button"]:not(.noline):hover:before {
+    transform: scaleX(0);
+    transform-origin: center right;
+}
+
+a:focus-visible,
+[role="button"]:focus-visible {
+    border-radius: .2em;
+    outline: 2px solid var(--color-fill);
+    outline-offset: .3em;
+}
+
+/* chromatic split on hover ---------------------------------------- */
+.rgbsplit {
+    --fillPad: .62em;
+    display: inline-block;
+    left: 0;
+    position: relative;
+    transition: transform .17s ease;
+}
+.rgbsplit .link { position: relative; z-index: 20; }
+.rgbsplit:not(.noline):before { z-index: 30; }
+.rgbsplit:active { transform: scale(.984); }
+
+.hover-effect {
+    backface-visibility: hidden;
+    border-radius: .18em;
+    inset: -.24em calc(var(--fillPad) * -1);
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 10;
+}
+.noline .hover-effect { inset: -.37em -.62em; }
+.rgbsplit.noline { --delayedStart: 0s; }
+
+.hover-effect .fill {
+    background: color-mix(in srgb, var(--color-bg), #fff 34%);
+    border-radius: inherit;
+    box-shadow: inset rgba(252, 237, 57, 0) 0 0;
+    inset: 0;
+    position: absolute;
+    transition: background var(--doubleTime) var(--secondStepStart) ease,
+                box-shadow var(--doubleTime) var(--secondStepStart) ease;
+    z-index: 2;
+}
+.hover-effect:before,
+.hover-effect:after {
+    --zDrift: 0px;
+    --zScale: .93;
+    border-radius: inherit;
+    content: "";
+    inset: 0;
+    opacity: .93;
+    position: absolute;
+    transform: translate3d(var(--zDrift), var(--zDrift), 0) scale(var(--zScale));
+    transition: all calc(var(--linkBtnBounceSpeed) * 2) var(--secondStepStart) var(--linkBtnBounce);
+    will-change: transform;
+    z-index: 1;
+}
+.hover-effect:before { background: var(--colorSplitB); }
+.hover-effect:after  { background: var(--colorSplitR); }
+
+.rgbsplit:hover .hover-effect {
+    animation: fadeIn var(--linkBtnShowSpeed) var(--delayedStart) ease forwards;
+}
+.rgbsplit:hover .hover-effect .fill {
+    background: #fff;
+    box-shadow: inset var(--colorSplitY) -2px -2px 0;
+}
+.rgbsplit:hover .hover-effect:before { --zDrift: -.12em; --zScale: 1; }
+.rgbsplit:hover .hover-effect:after  { --zDrift:  .142em; --zScale: 1; }
+
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+
+/* --- glass pill --------------------------------------------------- */
+.jelly {
+    cursor: pointer;
+    display: inline-block;
+    font-size: var(--size-m);
+    position: relative;
+    transform: scale(1);
+    transition: transform .17s ease;
+    user-select: none;
+}
+.jelly:before {
+    backdrop-filter: saturate(142%) blur(20px);
+    background: color-mix(in srgb, var(--color-bg), transparent 39%);
+    border-radius: .43em;
+    box-shadow: rgba(0,0,0,.03) 0 3px,
+                rgba(0,0,0,.03) 0 0 0 1px,
+                rgba(0,0,0,.21) 0 3px 66px,
+                inset rgba(255,255,255,.12) 1px 2px,
+                inset rgba(255,255,255,.34) 0 2px 12px;
+    content: "";
+    inset: -.62em -.75em;
+    position: absolute;
+    transition: box-shadow .21s ease;
+    z-index: -1;
+}
+.jelly:active { transform: scale(.984); }
+
+.tag {
+    backdrop-filter: saturate(142%) blur(20px);
+    background: color-mix(in srgb, #fff, transparent 75%);
+    border-radius: .43em;
+    box-shadow: rgba(0,0,0,.07) 0 0 0 1px,
+                inset rgba(255,255,255,.12) 1px 1px,
+                inset rgba(255,255,255,.34) 0 1px 6px;
+    display: inline-block;
+    font-size: var(--size-s);
+    font-weight: 500;
+    margin-inline-end: .2em;
+    padding: .2em .6em;
+    position: relative;
+    top: -.1em;
+}
+
+/* --- layout ------------------------------------------------------- */
+.wrap {
+    margin: 0 auto;
+    max-width: var(--innerBreakpoint);
+    padding: 0 var(--outerPad);
+}
+.push { margin-inline-start: var(--centerMargin); }
+.pull { width: 75%; }
+
+main { padding: var(--vertGap) 0; }
+main .wrap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--vertGap);
+}
+main .wrap > section:not(.cv-timeline) p:not(:last-child) { margin-block-end: 1em; }
+main .wrap > section p.push,
+main .wrap > section .push > p { max-width: 34em; }
+
+/* --- entrance motion ---------------------------------------------- */
+.drift {
+    opacity: 0;
+    position: relative;
+    transition: left var(--enterTiming) var(--enterBounce),
+                opacity var(--enterTiming) ease;
+}
+.drift.left  { left: var(--enterDrift); }
+.drift.right { left: calc(var(--enterDrift) * -1); }
+.loaded .drift:not(.onscroll),
+.loaded .drift.onscroll.shown { opacity: 1; left: 0; }
+
+.loading main .wrap > section:first-child {
+    --delayedEnterTiming: calc(var(--enterTiming) * 1.2);
+    opacity: 0;
+    position: relative;
+    top: calc(var(--enterDrift) * 2);
+    transition: top var(--delayedEnterTiming) var(--delayedEnterTiming) var(--enterBounce),
+                opacity var(--delayedEnterTiming) var(--delayedEnterTiming) ease;
+}
+.loaded main .wrap > section:first-child { opacity: 1; top: 0; }
+
+/* --- header ------------------------------------------------------- */
+header {
+    left: 0;
+    padding-block-start: var(--headerPadTop);
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: transform var(--slideTime) var(--headerBounce);
+    z-index: 200;
+}
+.me {
+    font-weight: 700;
+    transition: transform .17s ease;
+}
+.me:before {
+    opacity: 0;
+    transition: opacity var(--slideTime) var(--headerBounce), box-shadow .21s ease;
+}
+body:not(.scrolled) .me { cursor: default; pointer-events: none; }
+.scrolled header { transform: translateY(calc(var(--headerPadTop) / -2)); }
+.scrolled .me:before { opacity: 1; }
+
+/* --- masthead ----------------------------------------------------- */
+.mast {
+    margin: 0 auto;
+    max-width: var(--outerBreakpoint);
+    overflow: hidden;
+    padding-block-start: var(--headerPadTop);
+    position: relative;
+}
+.mast:before {
+    background: url(../rock-hero.webp) right bottom no-repeat;
+    background-size: auto clamp(76%, 46vw, 94%);
+    content: "";
+    inset: 0 3% 0 0;
+    position: absolute;
+    transform: translateY(var(--plax));
+    transition: opacity .48s ease, right .48s ease;
+    will-change: transform;
+    z-index: 1;
+}
+.mast:after {
+    --breakpointDelta: calc(var(--outerBreakpoint) - var(--innerBreakpoint));
+    background: var(--color-bevel);
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: calc(var(--outerPad) + clamp(0px, calc((100% - var(--innerBreakpoint)) / 2), var(--breakpointDelta)));
+    mix-blend-mode: overlay;
+    position: absolute;
+    right: 0;
+    transition: opacity .48s ease;
+    z-index: 2;
+}
+body:not(.loaded) .mast:before { right: 0; }
+body:not(.loaded) .mast:before,
+body:not(.loaded) .mast:after { opacity: 0; }
+
+.mast h1 {
+    padding: calc(var(--vertGapLarge) - var(--size-l)) 32% var(--vertGapLarge) 0;
+    position: relative;
+    z-index: 3;
+}
+.mast h1 code:after { content: "()"; letter-spacing: -.1em; }
+
+.pull[data-section="specialty"] { max-width: 930px; }
+
+/* --- cv timeline -------------------------------------------------- */
+.cv-intro { margin-block-end: var(--cvGap); }
+
+.option-toggle { display: none; }
+
+.cv { display: flex; flex-direction: column; }
+.cv .exp {
+    align-items: baseline;
+    display: flex;
+    gap: var(--innerPad);
+    width: 100%;
+}
+.cv .time {
+    align-self: baseline;
+    min-width: calc(var(--centerMargin) - var(--innerPad));
+    text-align: right;
+    white-space: nowrap;
+}
+.cv .time abbr:before { content: "20"; }
+.cv .time abbr._90s:before { content: "19"; }
+.cv .details, .cv .title { position: relative; }
+.cv .role { padding-block-end: .5em; }
+.cv .role h3 { display: inline; }
+.cv .role .title { padding-inline-end: .125em; }
+.cv .role .company { white-space: nowrap; }
+.cv .role .company:before {
+    content: "at";
+    display: inline-block;
+    font-weight: 400;
+    padding-inline-end: .25em;
+}
+.cv .info p {
+    font-size: var(--size-s);
+    margin-block-end: 0;
+    padding-block-end: var(--cvGap);
+    position: relative;
+}
+.cv .info p:has(+ p) { padding-block-end: 1em; }
+.cv .highlight { font-weight: 700; }
+.cv .arrow { font-family: var(--font-standard); }
+
+/* the rail and its dots */
+.cv > li:not(:last-child) .info p:before,
+.cv .details:before {
+    background: var(--color-fill);
+    content: "";
+    height: 100%;
+    left: calc((var(--innerPad) - 1px) / -2);
+    mix-blend-mode: overlay;
+    position: absolute;
+    top: 0;
+    width: 2px;
+    z-index: 10;
+}
+.cv > li:first-child .details:before { height: calc(100% - 1em); top: 1em; }
+.cv > li:last-child .details:before { height: 1.125em; }
+.cv > li:last-child .info p:last-child { padding-block-end: 0; }
+
+.cv .title:before {
+    --dotCenter: calc((var(--size-m) * 1.4 - var(--dotSize)) / 2);
+    background: var(--color-bg);
+    border: 2px solid var(--color-fill);
+    border-radius: 100%;
+    content: "";
+    height: var(--dotSize);
+    left: calc((var(--innerPad) + var(--dotSize) - 3px) / -2);
+    position: absolute;
+    top: var(--dotCenter);
+    width: var(--dotSize);
+    z-index: 20;
+}
+
+/* early career, folded away */
+.cv > li.faded {
+    --alphaColor: color-mix(in srgb, currentColor, transparent 39%);
+    color: var(--alphaColor);
+    position: relative;
+    transition: color .48s ease;
+}
+.cv > li.faded .title:before {
+    border-color: var(--alphaColor);
+    transition: border-color .48s ease;
+}
+.cv > li.faded:after {
+    background: linear-gradient(180deg,
+        rgba(224, 240, 242, 0) 0%,
+        var(--color-bg) 84%,
+        var(--color-bg) 100%);
+    content: "";
+    inset: 0;
+    opacity: 1;
+    position: absolute;
+    transition: opacity .48s ease;
+    z-index: 50;
+}
+.cv > li.faded ~ li {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .24s ease;
+}
+.cv > li.faded ~ li .cv-wrap { overflow: hidden; }
+.cv.show-all > li.faded { --alphaColor: currentColor; }
+.cv.show-all > li.faded:after { opacity: 0; }
+.cv.show-all > li.faded ~ li { grid-template-rows: 1fr; }
+
+.cv-timeline .more {
+    font-size: var(--size-s);
+    font-weight: 700;
+    margin-inline-start: .75em;
+    z-index: 51;
+}
+.cv-timeline .more .state:after { content: "Early Career"; }
+.cv-timeline .more .arrow {
+    display: inline-block;
+    margin-inline-end: .25em;
+    transition: transform .24s ease;
+}
+.cv-timeline p:has(.more) {
+    margin-block-start: -1em;
+    transition: margin-block-start .24s ease;
+}
+.cv-timeline:has(.cv.show-all) .more .state:after { content: "Less, Please"; }
+.cv-timeline:has(.cv.show-all) .more .arrow { transform: rotate(180deg); }
+.cv-timeline:has(.cv.show-all) p:has(.more) { margin-block-start: 1em; }
+
+/* --- playground --------------------------------------------------- */
+.builds { display: flex; flex-direction: column; }
+.builds .exp {
+    align-items: baseline;
+    display: flex;
+    gap: var(--innerPad);
+    padding-block-end: var(--cvGap);
+    width: 100%;
+}
+.builds .kind {
+    color: var(--color-muted);
+    font-size: var(--size-s);
+    min-width: calc(var(--centerMargin) - var(--innerPad));
+    text-align: right;
+    white-space: nowrap;
+}
+.builds h3 { padding-block-end: .35em; }
+.builds p { font-size: var(--size-s); max-width: 34em; }
+.builds .exp:not(:last-child) .details { position: relative; }
+.builds .exp:not(:last-child) .details:after {
+    background: var(--color-hairline);
+    bottom: calc(var(--cvGap) / -2);
+    content: "";
+    height: 1px;
+    left: 0;
+    opacity: .55;
+    position: absolute;
+    right: 0;
+}
+
+/* --- this & that -------------------------------------------------- */
+.notecard { padding-block: 1em 1.25em; }
+.notecard .list { margin-block-end: var(--size-m); }
+.notecard .list li { padding-block-end: .55em; }
+.notecard .list .lede { font-weight: 700; }
+.notecard .list .sub { color: var(--color-muted); display: block; padding-block-start: .15em; }
+.stack { display: flex; flex-direction: column; }
+
+/* --- footer ------------------------------------------------------- */
+footer { padding-block-end: var(--innerPad); }
+footer .wrap {
+    align-items: baseline;
+    display: flex;
+    padding-block-start: 2em;
+    position: relative;
+}
+footer .wrap:before {
+    background: var(--color-fill);
+    content: "";
+    height: 1px;
+    left: var(--outerPad);
+    mix-blend-mode: overlay;
+    position: absolute;
+    right: var(--outerPad);
+    top: 0;
+}
+footer p { flex: 0; font-size: var(--size-s); white-space: nowrap; }
+footer ul {
+    display: flex;
+    flex: 1;
+    font-size: var(--size-s);
+    gap: 1.5em;
+    justify-content: flex-end;
+    white-space: nowrap;
+}
+.hello {
+    --startAngle: 17deg;
+    --helloScale: scale(1.69);
+    --helloTranslate: translateX(.34em) translateY(.125em);
+    animation-fill-mode: forwards;
+    display: inline-block;
+    transform: rotate(var(--startAngle)) scale(1);
+    transform-origin: 69% 73%;
+    transition: transform .24s ease-out;
+}
+footer:hover .hello { animation: waveHello 1.34s ease-in-out forwards; }
+footer:not(:hover) .hello { animation: waveHelloReverse .24s var(--linkBtnBounce) forwards; }
+
+@keyframes waveHello {
+      0% { transform: rotate(var(--startAngle)) scale(1); }
+     15% { transform: var(--helloTranslate) rotate(var(--startAngle)) var(--helloScale); }
+     25% { transform: var(--helloTranslate) rotate(calc(var(--startAngle) +   9deg)) var(--helloScale); }
+     35% { transform: var(--helloTranslate) rotate(calc(var(--startAngle) + -12deg)) var(--helloScale); }
+     45% { transform: var(--helloTranslate) rotate(calc(var(--startAngle) +  21deg)) var(--helloScale); }
+     55% { transform: var(--helloTranslate) rotate(calc(var(--startAngle) +  -9deg)) var(--helloScale); }
+     65% { transform: var(--helloTranslate) rotate(calc(var(--startAngle) +  17deg)) var(--helloScale); }
+    100% { transform: var(--helloTranslate) rotate(var(--startAngle)) var(--helloScale); }
+}
+@keyframes waveHelloReverse {
+    from { transform: var(--helloTranslate) rotate(var(--startAngle)) var(--helloScale); }
+      to { transform: rotate(var(--startAngle)) scale(1); }
+}
+
+/* --- responsive --------------------------------------------------- */
+@media screen and (width > 1650px) {
+    .mast h1 { padding-inline-end: 22%; }
+}
+
+@media screen and (width > 1920px) {
+    .mast { border-radius: 0 0 1em; }
+    .mast:after {
+        background: transparent;
+        border-radius: 0 0 1em;
+        box-shadow: inset var(--color-bevel) -1px 0 0, inset var(--color-bevel) 0 -1px 0;
+        height: auto;
+        top: 0;
+    }
+}
+
+@media screen and (width < 1024px) {
+    * { -webkit-tap-highlight-color: transparent; }
+    main section.push { margin-inline-start: 0; }
+    main section.pull { width: 100%; }
+    .pull[data-section="specialty"] { max-width: none; }
+    main h2 { text-wrap: pretty; }
+    .cv .time, .builds .kind { min-width: 120px; width: 120px; }
+    .cv-timeline .push, .builds-wrap .push { margin-inline-start: calc(120px + var(--innerPad)); }
+}
+
+@media screen and (width < 768px) {
+    :root { --size-l: 2.1rem; --size-m: 1.25rem; --innerPad: 3rem; }
+
+    .cv-timeline { margin-block-start: calc((var(--vertGap) * -1) + (var(--cvGap) * 1.75)); }
+    .cv-timeline .cv-intro { display: none; }
+    .option-toggle {
+        --switchH: 2.6rem;
+        --switchW: 5.7rem;
+        --inset: .1rem;
+        --knobSize: calc(var(--switchH) - (var(--inset) * 2));
+        --radius: calc(var(--switchH) / 2);
+        --speed: .24s;
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        font-weight: 500;
+        gap: 1em;
+        justify-content: center;
+        margin-block: calc(var(--cvGap) * -.25) calc(var(--cvGap) * 1.5);
+        user-select: none;
+    }
+    .option-toggle .label { transition: color var(--speed) ease; }
+    .option-toggle:not(:has(input:checked)) .label:last-of-type { color: var(--color-muted); }
+    .option-toggle:has(input:checked) .label:first-of-type { color: var(--color-muted); }
+    .toggle input { opacity: 0; position: absolute; }
+    .toggle .switch {
+        background: var(--color-bg);
+        border-radius: var(--radius);
+        box-shadow: inset 0 var(--inset) calc(var(--inset) * 4) rgba(0,0,0,.24),
+                    inset 0 0 var(--switchH) var(--switchH) rgba(0,0,0,.05),
+                    0 var(--inset) var(--inset) rgba(255,255,255,.75);
+        display: block;
+        height: var(--switchH);
+        position: relative;
+        transition: background var(--speed) ease;
+        width: var(--switchW);
+    }
+    .toggle .switch:before {
+        background-color: color-mix(in srgb, var(--color-fill), var(--color-bg) 93%);
+        border-radius: var(--radius);
+        box-shadow: inset 0 var(--inset) var(--inset) rgba(255,255,255,.75),
+                    0 calc(var(--inset) * 2) calc(var(--inset) * 2) rgba(0,0,0,.28),
+                    0 calc(var(--inset) * 4) calc(var(--inset) * 4) rgba(0,0,0,.28);
+        content: "";
+        display: block;
+        height: var(--knobSize);
+        left: var(--inset);
+        position: absolute;
+        top: var(--inset);
+        transition: left var(--speed) ease, background var(--speed) ease;
+        width: var(--knobSize);
+        z-index: 50;
+    }
+    .toggle input:checked ~ .switch { background: var(--color-hairline); }
+    .toggle input:checked ~ .switch:before { left: calc(var(--switchW) - var(--knobSize) - var(--inset)); }
+    .toggle input:focus-visible ~ .switch { outline: 2px solid var(--color-fill); outline-offset: 4px; }
+
+    .cv-wrap .info { display: grid; grid-template-rows: 1fr; transition: grid-template-rows .24s ease; }
+    .cv-wrap .info-wrap { overflow: hidden; }
+    .cv-wrap .time { transition: padding-block-end .24s ease; }
+    .cv-timeline:not(:has(.toggle input:checked)) .cv-wrap .info { grid-template-rows: 0fr; }
+    .cv-timeline:not(:has(.toggle input:checked)) .cv-wrap .time { padding-block-end: 2.5em; }
+    .cv-timeline:not(:has(.toggle input:checked)) .cv li:first-child .details:before { height: calc(100% + 3em); }
+    .cv-timeline:not(:has(.toggle input:checked)) .cv li:not(:first-child):not(:last-child) .details:before { height: calc(100% + 4em); }
+
+    .cv .exp, .builds .exp {
+        flex-direction: column;
+        gap: .5em;
+        margin-inline-start: 48px;
+        width: auto;
+    }
+    .cv .exp .details { order: 1; }
+    .cv .exp .details .role { padding-block-end: 0; }
+    .cv .exp .time { color: var(--color-muted); order: 2; padding-block-end: 1em; }
+    .cv .time, .builds .kind { min-width: 0; text-align: left; width: auto; }
+    .builds .exp { margin-inline-start: 0; }
+    .cv-timeline .push { margin-inline-start: 48px; }
+    .builds-wrap .push { margin-inline-start: 0; }
+    .cv li:not(:first-child) .details:before { height: calc(100% + 2.5em); top: 0; }
+    .cv li:first-child .details:before { height: calc(100% + 1.5em); top: 1em; }
+    .cv li:last-child .details:before { height: 1em; }
+
+    footer { padding-block-end: calc(var(--innerPad) / 2); }
+    footer .wrap { flex-direction: column; gap: 1em; }
+    footer ul { justify-content: flex-start; }
+}
+
+
+@media screen and (width < 768px) {
+    :root { --headerPadTop: 3.4rem; --vertGapLarge: 7.5rem; --vertGap: 5.7rem; }
+}
+
+/* Below this the side-by-side hero runs out of room and the headline starts
+   crossing the portrait, so it restacks: portrait up top dissolving downward,
+   headline below it on clean ground. */
+@media screen and (width < 1024px) {
+    .mast { min-height: 100lvh; }
+    .mast .wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: calc(100lvh - var(--headerPadTop));
+        padding-block-end: 4.5rem;
+    }
+    .mast:after { left: 0; }
+    .mast h1 {
+        /* hold the measure: full width here lets the manual break after
+           understand() strand a single word on its own line */
+        max-width: 14em;
+        padding-block: 0;
+        padding-inline-end: 0;
+        position: relative;
+    }
+    .mast h1:after {
+        animation: arrowDrift .84s ease-in-out infinite alternate;
+        content: "\2193";
+        font-size: var(--size-m);
+        left: 0;
+        position: absolute;
+        top: calc(100% + 1em);
+    }
+    @keyframes arrowDrift {
+        from { transform: translateY(0); }
+          to { transform: translateY(.5em); }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *:before, *:after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+    }
+    .drift { opacity: 1 !important; left: 0 !important; }
+    .mast:before { transform: none !important; }
+}
+
+/* --- accent link (the one that matters most) ---------------------- */
+a.brilliant {
+    font-weight: 500;
+    margin-inline: .075em .125em;
+}
+a.brilliant:not(.noline):before {
+    height: 2px;
+    left: .62ch;
+    width: calc(100% - 1.24ch);
+}
+a.brilliant:after {
+    background: #35ff92;
+    content: "";
+    height: 100%;
+    left: -.24ch;
+    position: absolute;
+    right: -.24ch;
+    top: 0;
+    transform: scaleX(0);
+    transform-origin: center right;
+    transition: transform var(--linkLineSpeed) var(--linkLineSlide);
+    z-index: -1;
+}
+a.brilliant:hover:after {
+    transform: scaleX(1);
+    transform-origin: center left;
+    transition: transform var(--doubleTime) var(--secondStepStart) ease;
+}
+@media screen and (width < 768px) {
+    a.brilliant:before { display: none; }
+    a.brilliant:after { transform: scaleX(1); transform-origin: center left; }
+}
+
+.tag-row { line-height: 2.1; }
+
+
+/* --- stacked hero: portrait on top, fading down into the headline ---- */
+@media screen and (width < 1024px) {
+    .mast:before {
+        background:
+            linear-gradient(180deg,
+                rgba(224, 240, 242, 0) 26%,
+                rgba(224, 240, 242, .74) 48%,
+                rgb(224, 240, 242) 64%),
+            url(../rock-hero.webp) 50% 4% no-repeat;
+        background-size: auto, auto clamp(42%, 78vw, 58%);
+        inset: 0 0 0 0;
+    }
+}
+
+/* keep sentence-final punctuation welded to its inline-block link */
+.nobr .rgbsplit { white-space: nowrap; }
+
+/* the current employer, marker-penned rather than linked */
+span.brilliant {
+    font-weight: 500;
+    margin-inline: .075em .125em;
+    position: relative;
+}
+span.brilliant:after {
+    background: #35ff92;
+    content: "";
+    inset: 0 -.24ch;
+    position: absolute;
+    z-index: -1;
+}
+
+/* --- earlier career: the same two-column rhythm, no rail, no dots ---- */
+.cv .earlier { padding-block-start: .25em; }
+.cv .earlier .exp { padding-block-end: .7em; }
+.cv .earlier .time { color: var(--color-muted); font-size: var(--size-s); }
+.cv .earlier .details { font-size: var(--size-s); line-height: 1.45; }
+.cv .earlier .details:before { display: none; }
+.cv .earlier .what { font-weight: 700; }
+.cv .earlier .org { color: var(--color-muted); }
+.cv > li:last-child .earlier ~ * { display: none; }
+
+@media screen and (width < 768px) {
+    .cv .earlier .exp { gap: .15em; margin-inline-start: 0; }
+    .cv .earlier .time { order: 2; padding-block-end: 0; }
+    .cv .earlier .details { order: 1; }
+}
+
+/* --- project entries: the kind label wraps, secondary links sit under -- */
+.builds .kind { white-space: normal; }
+.builds p.links {
+    font-size: var(--size-s);
+    padding-block-start: .55em;
+}
+.builds p.links a { font-weight: 500; }
+.builds p.links .sep { color: var(--color-hairline); padding-inline: .1em; }
+.builds em { font-style: normal; font-family: var(--font-mono); font-size: .92em; }
+
+/* --- narrow screens: long company names must be allowed to wrap ------ */
+/* "at MBIE / NZ Immigration" is 328px of nowrap text, which pushes a
+   horizontal scrollbar onto a 390px screen. Let it break, but glue the
+   "at" to the first word with a non-breaking space so it never strands. */
+@media screen and (width < 768px) {
+    .cv .role .company { white-space: normal; }
+    .cv .role .company:before {
+        content: "at\00a0";
+        display: inline;
+        padding-inline-end: 0;
+    }
+}

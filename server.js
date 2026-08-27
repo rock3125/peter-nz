@@ -8,7 +8,17 @@ const MIME_TYPES = {
     '.html': 'text/html',
     '.css': 'text/css',
     '.js': 'text/javascript',
-    '.svg': 'image/svg+xml'
+    '.svg': 'image/svg+xml',
+    '.webp': 'image/webp',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.json': 'application/json',
+    '.txt': 'text/plain',
+    '.xml': 'application/xml',
+    '.pdf': 'application/pdf',
+    '.mp3': 'audio/mpeg',
+    '.woff2': 'font/woff2'
 };
 
 const server = http.createServer((req, res) => {

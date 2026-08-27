@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rock de Vocht | Curriculum Vitae</title>
+<style>
+  :root{
+    --ink:#15202b;
+    --ink-soft:#26303a;
+    --teal:#0f6466;
+    --teal-dark:#0b4c4e;
+    --slate:#68798a;
+    --muted:#616870;
+    --rule:#dde4e8;
+    --rule-soft:#e6ecef;
+    --panel:#fafcfc;
+    --panel-tint:#f2f7f7;
+    --gold:#b8860b;
+    --gold-bg:#fdf6e3;
+  }
+
+  @page { size: A4; margin: 13mm 13mm 7mm 13mm; }
+
+  *{ box-sizing:border-box; }
+
+  html{ background:#e9edf0; }
+
+  body{
+    margin:0;
+    font-family:"Calibri","Carlito","Lato","Segoe UI",system-ui,-apple-system,sans-serif;
+    font-size:9.9pt;
+    line-height:1.36;
+    color:var(--ink-soft);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .sheet{
+    width:210mm;
+    min-height:297mm;
+    margin:0 auto;
+    padding:14mm 13mm 12mm;
+    background:#fff;
+    box-shadow:0 2px 18px rgba(21,32,43,.14);
+  }
+
+  /* ---------- header ---------- */
+  h1{
+    margin:0;
+    font-size:27pt;
+    line-height:1.05;
+    font-weight:700;
+    letter-spacing:-.4pt;
+    color:var(--ink);
+  }
+  .tagline{
+    margin:5px 0 0;
+    font-size:10.5pt;
+    font-weight:700;
+    color:var(--teal);
+  }
+  .tagline .sep{ color:#8fb3b3; font-weight:400; }
+
+  .contact{
+    margin:9px 0 0;
+    font-size:9pt;
+    color:var(--ink-soft);
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px 26px;
+  }
+  .contact b{ color:var(--teal); font-weight:700; margin-right:5px; }
+
+  .headrule{
+    height:2.4pt;
+    background:var(--teal);
+    margin:11px 0 0;
+  }
+
+  /* ---------- sections ---------- */
+  section{ margin-top:9px; }
+
+  h2{
+    margin:0 0 8px;
+    font-size:8.6pt;
+    font-weight:700;
+    letter-spacing:1.9pt;
+    text-transform:uppercase;
+    color:var(--teal);
+    padding-bottom:5px;
+    border-bottom:.75pt solid var(--rule);
+  }
+
+  .summary{ margin:0; text-align:left; }
+
+  /* ---------- stat band ---------- */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    margin-top:12px;
+    background:var(--panel);
+    border:.75pt solid var(--rule);
+  }
+  .stat{ padding:8px 12px; border-left:.75pt solid var(--rule); }
+  .stat:first-child{ border-left:0; }
+  .stat .n{
+    font-size:15pt;
+    font-weight:700;
+    color:var(--teal);
+    line-height:1.1;
+  }
+  .stat .l{
+    margin-top:3px;
+    font-size:7.2pt;
+    letter-spacing:.7pt;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:700;
+  }
+
+  /* ---------- roles ---------- */
+  .role{
+    border-left:2.6pt solid var(--teal);
+    padding:1px 0 0 11px;
+    margin-bottom:10px;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .role.current{ border-left-color:var(--gold); }
+
+  .role-top{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; }
+  .role-title{
+    font-size:11pt;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .role-title .kind{ color:var(--teal); }
+  .chip{
+    display:inline-block;
+    margin-left:7px;
+    padding:1px 6px;
+    font-size:7pt;
+    font-weight:700;
+    letter-spacing:.9pt;
+    text-transform:uppercase;
+    color:var(--gold);
+    background:var(--gold-bg);
+    border:.75pt solid #e8d9a8;
+    border-radius:2px;
+    vertical-align:2px;
+  }
+  .dates{ font-size:8.6pt; font-weight:700; color:var(--slate); white-space:nowrap; }
+
+  .role-sub{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; margin-top:1px; }
+  .org{ font-size:9pt; font-weight:700; color:var(--teal); }
+  .dur{ font-size:8.4pt; color:var(--slate); white-space:nowrap; }
+
+  ul{ margin:6px 0 0; padding:0; list-style:none; }
+  li{ position:relative; padding-left:12px; margin-bottom:3px; }
+  li::before{
+    content:"";
+    position:absolute;
+    left:2px; top:.52em;
+    width:2.6px; height:2.6px;
+    border-radius:50%;
+    background:var(--ink);
+  }
+  li b{ color:var(--ink); }
+
+  .stack{
+    margin-top:6px;
+    font-size:8.3pt;
+    color:var(--slate);
+  }
+  .stack .k{
+    font-size:7.2pt;
+    font-weight:700;
+    letter-spacing:1pt;
+    color:var(--muted);
+    margin-right:6px;
+  }
+
+  /* ---------- earlier career ---------- */
+  .early{ display:flex; justify-content:space-between; gap:16px; padding:4px 0; border-bottom:.75pt dotted var(--rule); }
+  .early:last-child{ border-bottom:0; }
+  .early .what b{ color:var(--ink); }
+  .early .what span{ color:var(--slate); }
+  .early .yr{ font-size:8.6pt; font-weight:700; color:var(--slate); white-space:nowrap; }
+
+  /* ---------- panels ---------- */
+  .panel{
+    background:var(--panel-tint);
+    border-left:2.6pt solid var(--teal);
+    padding:7px 11px;
+    margin-bottom:6px;
+    break-inside:avoid;
+  }
+  .panel b{ color:var(--ink); }
+  .note{ margin:0; }
+  .note b{ color:var(--ink); }
+
+  /* ---------- two column grids ---------- */
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:9px 30px; }
+  .cols2{ columns:2; column-gap:30px; }
+  .cols2 .cat{ break-inside:avoid; page-break-inside:avoid; margin-bottom:4px; }
+  .cols2 .cat:last-child{ margin-bottom:0; }
+  .cat h3{
+    margin:0 0 3px;
+    font-size:9.4pt;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .cat p{ margin:0; }
+  sup{ font-size:6.6pt; font-weight:700; color:var(--teal); vertical-align:super; margin-left:.5px; }
+
+  .legend{
+    margin:5px 0 0;
+    padding-top:4px;
+    border-top:.75pt solid var(--rule);
+    font-size:8.3pt;
+    color:var(--slate);
+  }
+  .legend b{ color:var(--muted); font-weight:700; }
+  .legend sup{ color:var(--teal); }
+
+  .cols2 .edu{ break-inside:avoid; page-break-inside:avoid; margin-bottom:4px; }
+  .edu h3{ margin:0; font-size:9.6pt; font-weight:700; color:var(--ink); }
+  .edu .where{ font-size:9pt; font-weight:700; color:var(--teal); margin:1px 0 1px; }
+  .edu p{ margin:0; }
+
+  /* ---------- footer ---------- */
+  footer{
+    margin-top:3px;
+    padding-top:4px;
+    border-top:.75pt solid var(--rule);
+    display:flex;
+    justify-content:space-between;
+    font-size:8.4pt;
+    color:var(--slate);
+  }
+
+  .pagebreak{ break-before:page; page-break-before:always; }
+
+  @media print{
+    html{ background:#fff; }
+    .sheet{ width:auto; min-height:0; margin:0; padding:0; box-shadow:none; }
+    .role, .panel, .cat, .edu{ break-inside:avoid; }
+    h2{ break-after:avoid; page-break-after:avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <h1>Rock de Vocht</h1>
+    <p class="tagline">Software Architect <span class="sep">·</span> Technical Leader <span class="sep">·</span> Hands-on Developer <span class="sep">·</span> Consultant</p>
+    <div class="contact">
+      <span><b>Email</b>peter@peter.co.nz</span>
+      <span><b>Mobile</b>021 021 52225</span>
+      <span><b>Education</b>MSc Computer Science, University of Auckland</span>
+      <span><b>Languages</b>Dutch, English, French, German</span>
+    </div>
+    <div class="headrule"></div>
+  </header>
+
+  <section>
+    <h2>Professional Summary</h2>
+    <p class="summary">Software architect and hands-on technical leader with a Master of Science in Computer Science and a 30-year record of designing systems that other engineers build on. I have co-founded two companies, defined the technical roadmaps and reference architectures behind two enterprise semantic search platforms, and led teams of up to ten engineers through the full SDLC. I design at the whole-system level,  data model, service decomposition, integration surface, security boundary, deployment topology,  and then write production code alongside the team. My expertise spans full-stack engineering, infrastructure, networking, security and cloud, with deep specialisation in big-data retrieval, NLP and complex API integration. As a consultant I translate between executives and engineers: pre-sales and solution architecture at Datacom, CTO-level technical advisory at Booktrack, and architecture reviews and whitepapers for clients today. As a leader I am democratic, social and highly collaborative, consistently prioritising results over ego.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="n">30+</div><div class="l">Years Engineering</div></div>
+      <div class="stat"><div class="n">10</div><div class="l">Engineers Led</div></div>
+      <div class="stat"><div class="n">2</div><div class="l">Companies Co-Founded</div></div>
+      <div class="stat"><div class="n">20+</div><div class="l">Successful Projects Delivered</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Career History</h2>
+
+    <div class="role current">
+      <div class="role-top">
+        <div class="role-title">Senior Developer <span class="kind">(Contract)</span><span class="chip">Current</span></div>
+        <div class="dates">Jun 2026 &ndash; Present</div>
+      </div>
+      <div class="role-sub"><div class="org">LawCyborg / Nylon</div><div class="dur">ongoing</div></div>
+      <ul>
+        <li><b>Architecture review:</b> Reviewed Nylon's new document processing architecture and delivered optimisations to ingestion and &ldquo;learning from documents&rdquo;, improving throughput and retrieval quality across the pipeline.</li>
+        <li><b>Consulting deliverable:</b> Investigated large language model performance across the product's workloads and authored a whitepaper capturing the methodology, benchmark results and recommendations for the engineering team.</li>
+        <li><b>Tooling design:</b> Designed and built a reusable LLM evaluation harness in Node.js, giving the team a repeatable way to measure model quality, latency and cost as models and prompts change.</li>
+        <li><b>Hands-on build:</b> Worked with Qdrant for vector storage and retrieval, AWS for pipeline infrastructure, and Python plus PDF extraction technologies for document parsing and ingestion.</li>
+      </ul>
+      <div class="stack"><span class="k">STACK</span>Node.js · TypeScript · Python · Qdrant · AWS · PDF extraction · LLM evaluation &amp; benchmarking</div>
+    </div>
+
+    <div class="role">
+      <div class="role-top">
+        <div class="role-title">Chief Scientific Officer &amp; Co-Founder</div>
+        <div class="dates">Jan 2020 &ndash; Apr 2026</div>
+      </div>
+      <div class="role-sub"><div class="org">SimSage UK Ltd. · Cambridge, UK</div><div class="dur">6 yrs 4 mos</div></div>
+      <ul>
+        <li><b>System architecture:</b> Owned the architecture and delivery of an innovative graph-based enterprise semantic search engine, from data model and service decomposition through to deployment topology.</li>
+        <li><b>Integration design:</b> Directed the build of a 250k+ line codebase featuring 30+ enterprise API connectors (SharePoint, OneDrive, Google Drive), and designed production AI workflows integrating Gemini, OpenAI and Copilot.</li>
+        <li><b>Event-driven design:</b> All SimSage jobs and requests were routed through Kafka for high-throughput delivery to independently scalable services.</li>
+        <li><b>Security architecture:</b> Designed and implemented the security protocols and RBAC model governing sensitive enterprise data across every connector and tenant.</li>
+        <li><b>Technical leadership:</b> Led and mentored a team of three engineers, setting standards, reviewing code and holding delivery ownership across the full SDLC.</li>
+        <li><b>Infrastructure &amp; CI/CD:</b> Optimised enterprise infrastructure and deployment using Terraform, Ansible, Kubernetes, Docker and Ubuntu Server, with CI/CD pipelines on GitLab.</li>
+      </ul>
+      <div class="stack"><span class="k">STACK</span>C# · Kotlin (JVM) · Java · C · Python · React + TypeScript · SQL · CQL · Kafka · Kubernetes</div>
+    </div>
+
+    <div class="role">
+      <div class="role-top">
+        <div class="role-title">Developer <span class="kind">(Contract)</span></div>
+        <div class="dates">May 2018 &ndash; Dec 2019</div>
+      </div>
+      <div class="role-sub"><div class="org">MBIE / NZ Immigration · Wellington</div><div class="dur">1 yr 8 mos</div></div>
+      <ul>
+        <li>Drove C# .NET and SQL development on Azure within Linux environments.</li>
+        <li>Designed and ran the unstructured data integration and NLP processing of 170M text records for signal analysis.</li>
+        <li>Used Python for data manipulation and deployed machine learning for data quality analysis.</li>
+      </ul>
+      <div class="stack"><span class="k">STACK</span>C# .NET · SQL · Python · Azure · Linux · NLP · machine learning</div>
+    </div>
+
+    <div class="role">
+      <div class="role-top">
+        <div class="role-title">NLP Specialist</div>
+        <div class="dates">Mar 2016 &ndash; May 2018</div>
+      </div>
+      <div class="role-sub"><div class="org">Booktrack.com · Auckland</div><div class="dur">2 yrs 3 mos</div></div>
+      <ul>
+        <li><b>Technical advisory:</b> Advised the Booktrack CTO on overall development strategy, machine learning and natural language processing direction.</li>
+        <li><b>Applied research:</b> Researched and developed neural networks to extract emotional text analysis and understand context within the company's core IP.</li>
+        <li><b>Build &amp; platform:</b> Delivered core development in C#, SQL, Java and Python across Google Cloud and Azure, with scalable networking and infrastructure on Kubernetes and Docker.</li>
+      </ul>
+      <div class="stack"><span class="k">STACK</span>C# · Java · Python · SQL · Kubernetes · Docker · Google Cloud · Azure · neural networks</div>
+    </div>
+
+    <div class="role">
+      <div class="role-top">
+        <div class="role-title">Developer / DevOps <span class="kind">(Contract)</span></div>
+        <div class="dates">Jan 2015 &ndash; Mar 2016</div>
+      </div>
+      <div class="role-sub"><div class="org">Verifone · Wellington</div><div class="dur">1 yr 3 mos</div></div>
+      <ul>
+        <li>Managed CI/CD and DevOps operations, analysing and resolving critical system bugs.</li>
+        <li>Took ownership of complex technical issues escalated to level-three support.</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <div class="role-top">
+        <div class="role-title">Chief Scientist &amp; Co-Founder</div>
+        <div class="dates">May 2008 &ndash; Jan 2015</div>
+      </div>
+      <div class="role-sub"><div class="org">SYL Search · Wellington</div><div class="dur">6 yrs 9 mos</div></div>
+      <ul>
+        <li><b>Architecture:</b> Defined the technical roadmap and designed a semantic search engine adopted by several NZ Government departments (MOT, NZTA, MPI).</li>
+        <li><b>Team lead:</b> Led a development team of five through the full SDLC and IP creation, mentoring developers throughout.</li>
+        <li><b>Integration:</b> Designed and managed complex integrations with external APIs, SharePoint, CRM and social platforms.</li>
+      </ul>
+      <div class="stack"><span class="k">STACK</span>Java · C# · SQL · Cassandra · semantic search · API integration</div>
+    </div>
+
+    <div class="role">
+      <div class="role-top">
+        <div class="role-title">Senior Architect, Microsoft Team</div>
+        <div class="dates">Jan 2004 &ndash; May 2008</div>
+      </div>
+      <div class="role-sub"><div class="org">Datacom · Wellington</div><div class="dur">4 yrs 5 mos</div></div>
+      <ul>
+        <li><b>Solution architecture:</b> Drove solution architecture for Datacom's enterprise customers as a member of the internal Datacom Architecture Solution Group.</li>
+        <li><b>Consulting:</b> Provided pre-sales technical assistance and comprehensive technical writing, competing in several large projects with teams of up to 10 engineers.</li>
+        <li><b>Team lead:</b> Acted as team lead, mentored developers and ran internal education sessions.</li>
+      </ul>
+      <div class="stack"><span class="k">STACK</span>.NET Framework · ASP.NET · C# · SQL Server · SharePoint · Windows Server</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Earlier Career</h2>
+    <div class="early"><div class="what"><b>Video Games Developer</b>, Takapuna <span>· C++ programmer for Xbox titles</span></div><div class="yr">2002&ndash;2004</div></div>
+    <div class="early"><div class="what"><b>Developer</b>, Datacom Auckland <span>· Visual Basic development</span></div><div class="yr">1998&ndash;2002</div></div>
+    <div class="early"><div class="what"><b>Developer</b>, Terabyte Interactive <span>· Led the America's Cup Virtual Spectator development team</span></div><div class="yr">1997&ndash;1998</div></div>
+    <div class="early"><div class="what"><b>Network System Administrator</b>, University of Auckland <span>· Windows NT network administration; level-one support for ~20,000 students</span></div><div class="yr">1996</div></div>
+    <div class="early"><div class="what"><b>Developer</b>, University of Auckland Language Laboratories <span>· C and HyperCard developer for student language software</span></div><div class="yr">1995&ndash;1996</div></div>
+  </section>
+
+  <section>
+    <h2>Architecture &amp; Design Practice</h2>
+    <div class="panel">
+      <b>What I design:</b> enterprise solutions and whole-system architecture for data-intensive platforms,  SQL Server data models, schema and query performance; big-data storage and retrieval over Apache Cassandra and Spark; service decomposition and service boundaries; event-driven pipelines; vector and semantic search; the integration surface across enterprise APIs; and the deployment topology that runs it (Kubernetes, Docker, Terraform, Ansible).<br>
+      <b>How I work:</b> I design in the open and validate by building,  decisions are written down, walked through with the team, and proven with a running slice before the wider build commits to them. I stay hands-on in the codebase so the architecture stays honest, and I optimise for the engineers who have to live in it.
+    </div>
+    <p class="note"><b>Consulting &amp; advisory:</b> pre-sales solution architecture and technical writing for enterprise customers; CTO-level advisory on ML and NLP strategy; architecture review, benchmarking and whitepaper delivery. Methodologies: RM-ODP, MVC, micro-services, SaaS, Agile and Waterfall.</p>
+  </section>
+
+  <section>
+    <h2>Leadership &amp; Management</h2>
+    <div class="panel">
+      <b>Formal leadership roles:</b> Chief Scientific Officer at SimSage UK, Chief Scientist at SYL Search, and Senior Architect / Team Lead at Datacom. <b>Team size:</b> up to 10 engineers, junior through senior. <b>Ownership:</b> full-SDLC delivery accountability, technical roadmaps, stakeholder management and developer mentoring.
+    </div>
+    <p class="note"><b>Conflict &amp; performance management:</b> I resolve team conflicts through collaboration, and delivery issues through hands-on investigations. I take responsibility for my team's mistakes.  I mentor junior staff closely, and share knowledge freely.  I love getting to know everyone in the team, their strengths, and assign engineers where they can shine and perform.</p>
+  </section>
+
+  <section>
+    <h2>Technical Skills</h2>
+    <div class="cols2">
+      <div class="cat">
+        <h3>Architecture &amp; Design</h3>
+        <p>Solution and software architecture, micro-service and service/SaaS design, event-driven architecture (Kafka), RM-ODP, MVC, OOP, domain and data modelling, big-data retrieval design, API and integration architecture, RBAC and security design, technical roadmaps, technical writing.</p>
+      </div>
+      <div class="cat">
+        <h3>Languages</h3>
+        <p>SQL<sup>28</sup> JavaScript / TypeScript<sup>27</sup> C# .NET<sup>22</sup> C/C++<sup>20</sup> Java<sup>18</sup> CQL<sup>16</sup> Kotlin<sup>8</sup> Python<sup>8</sup> Visual Basic<sup>6</sup> VBScript / VBA<sup>4</sup></p>
+      </div>
+      <div class="cat">
+        <h3>AI, ML &amp; Search</h3>
+        <p>LLM evaluation &amp; benchmarking, generative AI (Gemini, OpenAI, Copilot), RAG &amp; document ingestion pipelines, Qdrant vector search, NLP &amp; neural networks, semantic / graph search, machine learning.</p>
+      </div>
+      <div class="cat">
+        <h3>Data &amp; Streaming</h3>
+        <p>Apache Cassandra<sup>16</sup> Microsoft SQL<sup>22</sup> Apache Spark<sup>10</sup> Qdrant, Kafka, Redis (Valkey), Apache Superset<sup>3</sup>, MS Access<sup>4</sup> · big-data retrieval and code optimisation.</p>
+      </div>
+      <div class="cat">
+        <h3>Cloud &amp; Infrastructure</h3>
+        <p>Azure, AWS, Google Cloud, Linode, Contabo, Huawei · Docker<sup>22</sup> Kubernetes<sup>8</sup> Terraform<sup>6</sup> Ansible · KeyCloak<sup>4</sup> · network administration<sup>20</sup> · CI/CD via GitLab &amp; GitHub.</p>
+      </div>
+      <div class="cat">
+        <h3>Platforms &amp; Servers</h3>
+        <p>Windows Server<sup>22</sup> Ubuntu Server<sup>18</sup> Apache<sup>18</sup> SharePoint<sup>16</sup> RHEL<sup>10</sup> Nginx<sup>6</sup> IIS<sup>4</sup> · Linux, Unix, FreeBSD · Crystal Reports<sup>2</sup>.</p>
+      </div>
+      <div class="cat">
+        <h3>Security &amp; Identity</h3>
+        <p>RBAC, Azure Entra, AD / LDAP, AES encryption, hashing (bcrypt, sha256), SSH, HTTPS &amp; SSH certificate creation and setup, Microsoft Graph, DNS configuration, raw-IP network programming.</p>
+      </div>
+      <div class="cat">
+        <h3>Frameworks &amp; Technologies</h3>
+        <p>Node.js, npm, React, Angular, jQuery, .NET Core &amp; Framework, ASP.NET, WPF, MFC, Win32, ISAPI, MS MQ, Hibernate, iBatis, Velocity, XML/XSD/XSLT/XPath, Selenium, Cucumber, Log4j, Bash, PowerShell.</p>
+      </div>
+      <div class="cat">
+        <h3>Tooling &amp; Method</h3>
+        <p>JetBrains IDEA<sup>18</sup> Visual Studio<sup>12</sup> PyCharm / WebStorm<sup>10</sup> Rider<sup>4</sup> Visio<sup>5</sup> · Git, GitLab, GitHub, TFS, Subversion, SourceSafe, Docker Hub · Agile &amp; Waterfall.</p>
+      </div>
+      <div class="cat">
+        <h3>Leadership</h3>
+        <p>Team leadership, mentoring, stakeholder management, pre-sales and consulting, interpersonal and communication skills, interdisciplinary collaboration, flexibility.</p>
+      </div>
+    </div>
+    <p class="legend"><b>Years of experience:</b> superscript numbers show years of hands-on experience &mdash; SQL<sup>28</sup> means 28 years of SQL.</p>
+  </section>
+
+  <section>
+    <h2>Education &amp; Certifications</h2>
+    <div class="cols2">
+      <div class="edu">
+        <h3>Master of Science in Computer Science</h3>
+        <div class="where">University of Auckland</div>
+        <p>Focus: natural language processing, grammar, language semantics and knowledge representation.</p>
+      </div>
+      <div class="edu">
+        <h3>Bachelor of Science (Honours) in Computer Science</h3>
+        <div class="where">University of Auckland</div>
+      </div>
+      <div class="edu">
+        <h3>Machine Learning Certification</h3>
+        <div class="where">Stanford University (Coursera) · May 2013</div>
+        <p>Artificial intelligence and deep-learning neural networks.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Rock de Vocht · Curriculum Vitae</span>
+    <span>peter@peter.co.nz · 021 021 52225</span>
+  </footer>
+
+</div>
+</body>
+</html>
