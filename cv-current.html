@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rock de Vocht | Curriculum Vitae</title>
+<style>
+  :root{
+    --ink:#1a2332;
+    --ink-soft:#2a3444;
+    --navy:#1f3a5f;
+    --navy-deep:#16293f;
+    --bronze:#9a6b2f;
+    --bronze-bg:#faf5ec;
+    --bronze-line:#e3d3b4;
+    --slate:#6b7a8c;
+    --muted:#5f6772;
+    --rule:#d9e0e7;
+    --rule-soft:#e5eaef;
+    --panel:#f8fafc;
+    --panel-tint:#f1f5f9;
+  }
+
+  @page { size: A4; margin: 10mm 13mm 5mm 13mm; }
+
+  *{ box-sizing:border-box; }
+
+  html{ background:#e8ebee; }
+
+  body{
+    margin:0;
+    font-family:"Calibri","Carlito","Lato","Segoe UI",system-ui,-apple-system,sans-serif;
+    font-size:9.9pt;
+    line-height:1.33;
+    color:var(--ink-soft);
+    -webkit-font-smoothing:antialiased;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  .serif{ font-family:Georgia,"Times New Roman",serif; }
+
+  .sheet{
+    width:210mm;
+    min-height:297mm;
+    margin:0 auto;
+    padding:14mm 13mm 12mm;
+    background:#fff;
+    box-shadow:0 2px 18px rgba(22,41,63,.16);
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    background:var(--navy-deep);
+    margin:-14mm -13mm 0;
+    padding:11mm 13mm 8mm;
+  }
+  h1{
+    margin:0;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:26pt;
+    line-height:1.05;
+    font-weight:700;
+    letter-spacing:-.2pt;
+    color:#ffffff;
+  }
+  .namerule{
+    width:17mm;
+    height:2.8pt;
+    background:var(--bronze);
+    margin:9px 0 10px;
+  }
+  .tagline{
+    margin:0;
+    font-size:10.2pt;
+    font-weight:700;
+    color:#e2cb93;
+  }
+  .tagline .sep{ color:#61758e; font-weight:400; }
+
+  .contact{
+    margin:9px 0 0;
+    font-size:9pt;
+    color:#c8d4e2;
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px 26px;
+  }
+  .contact b{ color:#b1a077; font-weight:700; margin-right:5px; }
+
+  /* ---------- sections ---------- */
+  section{ margin-top:8px; }
+
+  h2{
+    margin:0 0 7px;
+    font-size:8.6pt;
+    font-weight:700;
+    letter-spacing:1.9pt;
+    text-transform:uppercase;
+    color:var(--navy);
+    padding-bottom:5px;
+    border-bottom:.75pt solid var(--rule);
+  }
+
+  .summary-lead{
+    margin:0 0 5px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:12.4pt;
+    line-height:1.3;
+    color:var(--navy-deep);
+  }
+  .summary{ margin:0; }
+
+  /* ---------- stat band ---------- */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-top:10px;
+  }
+  .stat{
+    padding:8px 12px 9px;
+    background:#fff;
+    border:.75pt solid var(--rule);
+    border-top:2pt solid var(--bronze);
+  }
+  .stat.lead{
+    background:var(--bronze-bg);
+    border-color:var(--bronze-line);
+    border-top-color:var(--bronze);
+  }
+  .stat .n{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:14pt;
+    font-weight:700;
+    color:var(--navy);
+    line-height:1.15;
+  }
+  .stat.lead .n{ color:var(--bronze); }
+  .stat .l{
+    margin-top:3px;
+    font-size:7.2pt;
+    letter-spacing:.7pt;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:700;
+  }
+
+  /* ---------- roles ---------- */
+  .role{
+    border-left:2.6pt solid var(--navy);
+    padding:1px 0 0 11px;
+    margin-bottom:8px;
+  }
+  .role.current{ border-left-color:var(--bronze); }
+
+  .role-top{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; break-inside:avoid; break-after:avoid; page-break-after:avoid; }
+  .role-title{
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:11.3pt;
+    font-weight:700;
+    letter-spacing:-.1pt;
+    color:var(--ink);
+  }
+  .role-title .kind{ color:var(--navy); font-size:9.6pt; }
+  .chip{
+    display:inline-block;
+    margin-left:7px;
+    padding:1px 6px;
+    font-size:7pt;
+    font-weight:700;
+    letter-spacing:.9pt;
+    text-transform:uppercase;
+    color:var(--bronze);
+    background:var(--bronze-bg);
+    border:.75pt solid var(--bronze-line);
+    border-radius:2px;
+    vertical-align:2px;
+  }
+  .dates{ font-size:8.6pt; font-weight:700; color:var(--slate); white-space:nowrap; }
+
+  .role-sub{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; margin-top:1px; break-inside:avoid; break-after:avoid; page-break-after:avoid; }
+  .org{ font-size:9pt; font-weight:700; color:var(--navy); }
+  .dur{ font-size:8.4pt; color:var(--slate); white-space:nowrap; }
+
+  ul{ margin:6px 0 0; padding:0; list-style:none; }
+  li{ position:relative; padding-left:12px; margin-bottom:2.5px; break-inside:avoid; page-break-inside:avoid; }
+  li::before{
+    content:"";
+    position:absolute;
+    left:2px; top:.52em;
+    width:2.6px; height:2.6px;
+    border-radius:50%;
+    background:var(--ink);
+  }
+  li b{ color:var(--ink); }
+
+  .stack{
+    margin-top:6px;
+    font-size:8.3pt;
+    color:var(--slate);
+    break-before:avoid-page;
+    page-break-before:avoid;
+  }
+  .stack .k{
+    font-size:7.2pt;
+    font-weight:700;
+    letter-spacing:1pt;
+    color:var(--muted);
+    margin-right:6px;
+  }
+
+  /* ---------- earlier career ---------- */
+  .early{ display:flex; justify-content:space-between; gap:16px; padding:4px 0; border-bottom:.75pt dotted var(--rule); }
+  .early:last-child{ border-bottom:0; }
+  .early .what b{ color:var(--ink); }
+  .early .what span{ color:var(--slate); }
+  .early .yr{ font-size:8.6pt; font-weight:700; color:var(--slate); white-space:nowrap; }
+
+  /* ---------- panels ---------- */
+  .panel{
+    background:var(--panel-tint);
+    border-left:2.6pt solid var(--navy);
+    padding:6px 11px;
+    margin-bottom:5px;
+    break-inside:avoid;
+  }
+  .panel.gold{ border-left-color:var(--bronze); background:var(--bronze-bg); }
+  .panel b{ color:var(--ink); }
+  .note{ margin:0; }
+  .note b{ color:var(--ink); }
+
+  /* ---------- two column grids ---------- */
+  .cols2{ columns:2; column-gap:30px; }
+  .cols2 .cat{ break-inside:avoid; page-break-inside:avoid; margin-bottom:4px; }
+  .cols2 .cat:last-child{ margin-bottom:0; }
+  .cat h3{
+    margin:0 0 3px;
+    font-size:9.4pt;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .cat p{ margin:0; }
+  sup{ font-size:6.6pt; font-weight:700; color:var(--navy); vertical-align:super; margin-left:.5px; }
+
+  .legend{
+    margin:5px 0 0;
+    padding-top:4px;
+    border-top:.75pt solid var(--rule);
+    font-size:8.3pt;
+    color:var(--slate);
+  }
+  .legend b{ color:var(--muted); font-weight:700; }
+  .legend sup{ color:var(--navy); }
+
+  .cols2 .edu{ break-inside:avoid; page-break-inside:avoid; margin-bottom:3px; }
+  .edu h3{ margin:0; font-size:9.6pt; font-weight:700; color:var(--ink); }
+  .edu .where{ font-size:9pt; font-weight:700; color:var(--navy); margin:1px 0 1px; }
+  .edu p{ margin:0; }
+
+  /* ---------- footer ---------- */
+  footer{
+    margin-top:2px;
+    padding-top:3px;
+    border-top:.75pt solid var(--rule);
+    display:flex;
+    justify-content:space-between;
+    font-size:8.4pt;
+    color:var(--slate);
+  }
+
+  @media print{
+    html{ background:#fff; }
+    .sheet{ width:auto; min-height:0; margin:0; padding:0; box-shadow:none; }
+    .masthead{ margin:0; padding:9mm 10mm 7mm; }
+    .panel, .cat, .edu{ break-inside:avoid; }
+    h2{ break-after:avoid; page-break-after:avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="masthead">
+    <h1>Rock de Vocht</h1>
+    <div class="namerule"></div>
+    <p class="tagline">AI &amp; Data Consultant <span class="sep">·</span> AI Governance, ISO/IEC 42001 <span class="sep">·</span> Solution Architect <span class="sep">·</span> Technical Leader</p>
+    <div class="contact">
+      <span><b>Email</b>peter@peter.co.nz</span>
+      <span><b>Mobile</b>021 021 52225</span>
+      <span><b>Location</b>Wellington, New Zealand</span>
+      <span><b>Education</b>MSc Computer Science, University of Auckland</span>
+      <span><b>Languages</b>Dutch, English, French, German</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Professional Summary</h2>
+    <p class="summary-lead">AI and data consultant with a 30-year record spanning hands-on engineering, solution architecture and executive leadership.</p>
+    <p class="summary">I most recently led an AI software company through ISO/IEC 42001 certification, standing up its AI management system and owning AI governance, risk and audit readiness, after six years as Chief Scientific Officer of SimSage delivering an enterprise semantic search platform with production AI workflows and ISO/IEC 27001 experience. My consulting record spans pre-sales solution architecture at Datacom, CTO-level advisory at Booktrack, search solution consulting for a Fortune 1000 US company and UK enterprise clients at SimSage, and current engagements delivering architecture reviews, LLM benchmarking and whitepapers. I am equally at home presenting to a board and pairing with an engineer, and I lead in a collaborative style that consistently puts results ahead of ego.</p>
+
+    <div class="stats">
+      <div class="stat lead"><div class="n">ISO 42001</div><div class="l">Certification Led</div></div>
+      <div class="stat"><div class="n">30+</div><div class="l">Years in Technology</div></div>
+      <div class="stat"><div class="n">2</div><div class="l">Companies Co-Founded</div></div>
+      <div class="stat"><div class="n">10</div><div class="l">Engineers Led</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Career History</h2>
+
+    <div class="role current">
+      <div class="role-top">
+        <div class="role-title">AI Consultant <span class="kind">(Contract)</span><span class="chip">Current</span></div>
+        <div class="dates">Jun 2026 &ndash; Present</div>
+      </div>
+      <div class="role-sub"><div class="org">Nylon · Legal AI Platform</div><div class="dur">ongoing</div></div>
+      <ul>
+        <li><b>ISO/IEC 42001 certification:</b> Led Nylon's ISO/IEC 42001 certification programme end to end: scoped and stood up the AI management system, drove the AI policy, risk and impact assessment work, embedded governance into the engineering lifecycle and prepared the organisation for audit.</li>
+        <li><b>LLM benchmarking &amp; advisory:</b> Investigated large language model performance across the product's workloads and authored a whitepaper capturing the methodology, benchmark results and recommendations adopted by the engineering team.</li>
+        <li><b>Evaluation tooling:</b> Designed and built a reusable LLM evaluation harness in Node.js, giving the team a repeatable way to measure model quality, latency and cost as models and prompts change.</li>
+        <li><b>Architecture review:</b> Reviewed the new document processing architecture and delivered optimisations to ingestion and retrieval, improving throughput and answer quality across the pipeline.</li>
+        <li><b>Hands-on build:</b> Worked with Qdrant for vector storage and retrieval, AWS for pipeline infrastructure, and Python plus PDF extraction technologies for document parsing and ingestion.</li>
+      </ul>
+      <div class="stack"><span class="k">FOCUS</span>AI governance · ISO/IEC 42001 · LLM evaluation &amp; benchmarking · RAG pipelines · Node.js · TypeScript · Python · Qdrant · AWS</div>
+    </div>
+
+    <div class="role">
+      <div class="role-top">
+        <div class="role-title">Chief Scientific Officer &amp; Co-Founder</div>
+        <div class="dates">Jan 2020 &ndash; Apr 2026</div>
+      </div>
+      <div class="role-sub"><div class="org">SimSage UK Ltd. · Cambridge, UK</div><div class="dur">6 yrs 4 mos</div></div>
+      <ul>
+        <li><b>Executive leadership:</b> Set the technical strategy and roadmap for an enterprise AI search company, translating between the board, customers and the engineering team.</li>
+        <li><b>Client consulting:</b> Consulted on search solutions with a Fortune 1000 US company and enterprise clients across the UK, from requirements and demonstrations through to delivered capability.</li>
+        <li><b>System architecture:</b> Owned the architecture and delivery of a graph-based enterprise semantic search engine, from data model and service decomposition through to deployment topology.</li>
+        <li><b>Production AI:</b> Designed production AI workflows integrating Gemini, OpenAI and Copilot, and directed the build of a 250k+ line codebase with 30+ enterprise API connectors (SharePoint, OneDrive, Google Drive).</li>
+        <li><b>Security &amp; data governance:</b> Designed the security protocols and RBAC model governing sensitive enterprise data across every connector and tenant, and helped drive SimSage's ISO/IEC 27001 information security management work.</li>
+        <li><b>Team leadership:</b> Led and mentored a team of engineers, setting standards, reviewing code and holding delivery ownership across the full SDLC, with event-driven infrastructure on Kafka, Kubernetes and Terraform.</li>
+      </ul>
+      <div class="stack"><span class="k">STACK</span>C# · Kotlin (JVM) · Java · Python · React + TypeScript · SQL · CQL · Kafka · Kubernetes · Terraform</div>
+    </div>
+
+    <div class="role">
+      <div class="role-top">
+        <div class="role-title">Developer <span class="kind">(Contract)</span></div>
+        <div class="dates">May 2018 &ndash; Dec 2019</div>
+      </div>
+      <div class="role-sub"><div class="org">MBIE / NZ Immigration · Wellington</div><div class="dur">1 yr 8 mos</div></div>
+      <ul>
+        <li>Designed and ran the unstructured data integration and NLP processing of 170M text records for signal analysis in a government risk context.</li>
+        <li>Consulted on NLP methods and solutions for internal record processing across the agency.</li>
+        <li>Drove C# .NET and SQL development on Azure, and deployed machine learning for data quality analysis using Python.</li>
+      </ul>
+      <div class="stack"><span class="k">STACK</span>C# .NET · SQL · Python · Azure · Linux · NLP · machine learning</div>
+    </div>
+
+    <div class="role">
+      <div class="role-top">
+        <div class="role-title">NLP Specialist</div>
+        <div class="dates">Mar 2016 &ndash; May 2018</div>
+      </div>
+      <div class="role-sub"><div class="org">Booktrack.com · Auckland</div><div class="dur">2 yrs 3 mos</div></div>
+      <ul>
+        <li><b>Technical advisory:</b> Consulted with Booktrack CTO on overall development strategy and on machine learning and natural language processing direction, delivering consultations and demonstrations of ML and NLP capability.</li>
+        <li><b>Applied research:</b> Researched and developed neural networks for emotional text analysis, context understanding and speech-to-text within the company's core IP.</li>
+        <li><b>Build &amp; platform:</b> Delivered core development in C#, SQL, Java and Python across Google Cloud and Azure, on Kubernetes and Docker.</li>
+      </ul>
+      <div class="stack"><span class="k">STACK</span>C# · Java · Python · SQL · Kubernetes · Docker · Google Cloud · Azure · neural networks</div>
+    </div>
+
+    <div class="role">
+      <div class="role-top">
+        <div class="role-title">Developer / DevOps <span class="kind">(Contract)</span></div>
+        <div class="dates">Jan 2015 &ndash; Mar 2016</div>
+      </div>
+      <div class="role-sub"><div class="org">Verifone · Wellington</div><div class="dur">1 yr 3 mos</div></div>
+      <ul>
+        <li>Managed CI/CD and DevOps operations in a payments environment, owning complex technical issues escalated to level-three support.</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <div class="role-top">
+        <div class="role-title">Chief Scientist &amp; Co-Founder</div>
+        <div class="dates">May 2008 &ndash; Jan 2015</div>
+      </div>
+      <div class="role-sub"><div class="org">SYL Search · Wellington</div><div class="dur">6 yrs 9 mos</div></div>
+      <ul>
+        <li><b>Government consulting:</b> Consulted with many NZ Government departments on technical search implementations; the engine was adopted by MOT, NZTA and MPI.</li>
+        <li><b>Architecture:</b> Defined the technical roadmap and designed and built an innovative semantic search engine for information retrieval at scale.</li>
+        <li><b>Team lead:</b> Led a development team of five through the full SDLC and IP creation, mentoring developers throughout.</li>
+        <li><b>Integration:</b> Designed and managed complex integrations with external APIs, SharePoint, CRM and social platforms.</li>
+      </ul>
+      <div class="stack"><span class="k">STACK</span>Java · C# · SQL · Cassandra · semantic search · API integration</div>
+    </div>
+
+    <div class="role">
+      <div class="role-top">
+        <div class="role-title">Senior Architect, Microsoft Team</div>
+        <div class="dates">Jan 2004 &ndash; May 2008</div>
+      </div>
+      <div class="role-sub"><div class="org">Datacom · Wellington</div><div class="dur">4 yrs 5 mos</div></div>
+      <ul>
+        <li><b>Consulting:</b> Drove solution architecture for Datacom's enterprise customers as a member of the internal Datacom Architecture Solution Group, providing pre-sales technical assistance and comprehensive technical writing.</li>
+        <li><b>Delivery:</b> Competed in and won large projects with teams of up to 10 engineers; acted as team lead, mentored developers and ran internal education sessions.</li>
+      </ul>
+      <div class="stack"><span class="k">STACK</span>.NET Framework · ASP.NET · C# · SQL Server · SharePoint · Windows Server</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Earlier Career</h2>
+    <div class="early"><div class="what"><b>Video Games Developer</b>, Takapuna <span>· C++ programmer for Xbox titles</span></div><div class="yr">2002&ndash;2004</div></div>
+    <div class="early"><div class="what"><b>Developer</b>, Datacom Auckland <span>· Visual Basic development</span></div><div class="yr">1998&ndash;2002</div></div>
+    <div class="early"><div class="what"><b>Developer</b>, Terabyte Interactive <span>· Led the America's Cup Virtual Spectator development team</span></div><div class="yr">1997&ndash;1998</div></div>
+    <div class="early"><div class="what"><b>Network System Administrator</b>, University of Auckland <span>· Windows NT network administration; level-one support for ~20,000 students</span></div><div class="yr">1996</div></div>
+    <div class="early"><div class="what"><b>Developer</b>, University of Auckland Language Laboratories <span>· C and HyperCard developer for student language software</span></div><div class="yr">1995&ndash;1996</div></div>
+  </section>
+
+  <section>
+    <h2>Consulting &amp; Advisory Practice</h2>
+    <div class="panel gold">
+      <b>AI governance &amp; certification:</b> ISO/IEC 42001 AI management systems from scoping through certification, backed by hands-on ISO/IEC 27001 experience at SimSage; AI policy, risk and impact assessment; responsible AI controls embedded into the engineering lifecycle; audit preparation. I connect governance to the underlying engineering reality rather than treating it as paperwork.
+    </div>
+    <div class="panel">
+      <b>What I advise on:</b> AI strategy and adoption roadmaps; LLM selection, evaluation and benchmarking; retrieval and RAG architecture; enterprise data platforms, integration surfaces and security boundaries; architecture reviews with written findings and whitepapers.<br>
+      <b>How I work:</b> I design in the open and validate by building. Decisions are written down, walked through with stakeholders, and proven with a running slice before the wider build commits to them. I stay hands-on so the advice stays honest.
+    </div>
+    <p class="note"><b>Engagement history:</b> pre-sales solution architecture and technical writing for enterprise customers at Datacom; CTO-level advisory on ML and NLP strategy at Booktrack; search solution consulting for a Fortune 1000 US company, UK enterprise clients and NZ Government departments; NLP consulting at MBIE; architecture review, benchmarking, whitepaper delivery and certification leadership at Nylon. Methodologies: RM-ODP, micro-services, SaaS, Agile and Waterfall.</p>
+  </section>
+
+  <section>
+    <h2>Leadership &amp; Management</h2>
+    <div class="panel">
+      <b>Formal leadership roles:</b> Chief Scientific Officer at SimSage UK, Chief Scientist at SYL Search, and Senior Architect / Team Lead at Datacom. <b>Team size:</b> up to 10 engineers, junior through senior. <b>Ownership:</b> full-SDLC delivery accountability, technical roadmaps, stakeholder management and developer mentoring.
+    </div>
+    <p class="note"><b>Working style:</b> I resolve team conflicts through collaboration and delivery issues through hands-on investigation, and I take responsibility for my team's mistakes. I mentor junior staff closely, share knowledge freely, and assign engineers where their strengths let them shine.</p>
+  </section>
+
+  <section>
+    <h2>Technical Skills</h2>
+    <div class="cols2">
+      <div class="cat">
+        <h3>AI Governance &amp; Assurance</h3>
+        <p>ISO/IEC 42001 AI management systems, ISO/IEC 27001 information security management, AI policy and risk frameworks, AI impact assessment, model evaluation and benchmarking, audit readiness, data governance, security and privacy by design.</p>
+      </div>
+      <div class="cat">
+        <h3>AI, ML &amp; Search</h3>
+        <p>Generative AI (Gemini, OpenAI, Copilot), LLM evaluation harnesses, RAG and document ingestion pipelines, Qdrant vector search, NLP and neural networks, semantic / graph search, machine learning.</p>
+      </div>
+      <div class="cat">
+        <h3>Architecture &amp; Design</h3>
+        <p>Solution and software architecture, micro-service and SaaS design, event-driven architecture (Kafka), domain and data modelling, big-data retrieval design, API and integration architecture, RBAC and security design, technical roadmaps, technical writing.</p>
+      </div>
+      <div class="cat">
+        <h3>Languages</h3>
+        <p>SQL<sup>28</sup> JavaScript / TypeScript<sup>27</sup> C# .NET<sup>22</sup> C/C++<sup>20</sup> Java<sup>18</sup> CQL<sup>16</sup> Kotlin<sup>8</sup> Python<sup>8</sup></p>
+      </div>
+      <div class="cat">
+        <h3>Data &amp; Streaming</h3>
+        <p>Apache Cassandra<sup>16</sup> Microsoft SQL<sup>22</sup> Apache Spark<sup>10</sup> Qdrant, Kafka, Redis (Valkey), Apache Superset · big-data retrieval and code optimisation.</p>
+      </div>
+      <div class="cat">
+        <h3>Cloud &amp; Infrastructure</h3>
+        <p>AWS, Azure, Google Cloud · Docker<sup>22</sup> Kubernetes<sup>8</sup> Terraform<sup>6</sup> Ansible · KeyCloak · network administration<sup>20</sup> · CI/CD via GitLab and GitHub.</p>
+      </div>
+      <div class="cat">
+        <h3>Security &amp; Identity</h3>
+        <p>RBAC, Azure Entra, AD / LDAP, AES encryption, hashing (bcrypt, sha256), SSH, HTTPS certificate management, Microsoft Graph, DNS configuration.</p>
+      </div>
+      <div class="cat">
+        <h3>Platforms &amp; Frameworks</h3>
+        <p>Windows Server<sup>22</sup> Ubuntu Server<sup>18</sup> SharePoint<sup>16</sup> Nginx, IIS · Node.js, React, Angular, .NET Core and Framework, ASP.NET, Bash, PowerShell.</p>
+      </div>
+      <div class="cat">
+        <h3>Leadership &amp; Consulting</h3>
+        <p>Team leadership, mentoring, stakeholder management, customer and C-suite consultation, pre-sales, executive communication, collaborative conflict resolution, interdisciplinary collaboration.</p>
+      </div>
+    </div>
+    <p class="legend"><b>Years of experience:</b> superscript numbers show years of hands-on experience; SQL<sup>28</sup> means 28 years of SQL.</p>
+  </section>
+
+  <section>
+    <h2>Education &amp; Certifications</h2>
+    <div class="cols2">
+      <div class="edu">
+        <h3>Master of Science in Computer Science</h3>
+        <div class="where">University of Auckland</div>
+        <p>Focus: natural language processing, grammar, language semantics and knowledge representation.</p>
+      </div>
+      <div class="edu">
+        <h3>Bachelor of Science (Honours) in Computer Science</h3>
+        <div class="where">University of Auckland</div>
+      </div>
+      <div class="edu">
+        <h3>Machine Learning Certification</h3>
+        <div class="where">Stanford University (Coursera) · May 2013</div>
+        <p>Artificial intelligence and deep-learning neural networks.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Rock de Vocht · Curriculum Vitae</span>
+    <span>peter@peter.co.nz · 021 021 52225</span>
+  </footer>
+
+</div>
+</body>
+</html>
