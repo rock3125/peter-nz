@@ -1,9 +1,10 @@
 # Peter.nz
 
-> Personal site of Rock de Vocht — software architect, technical leader and senior developer, based in New Zealand.
+> Personal site of Rock de Vocht — software architect, technical AI consultant, technical leader and senior developer, based in New Zealand.
 
 ## Who
 - Claude code user, LLM accuracy measurement specialist, ISO 42001 lead.
+- Technical AI consultant: LLM reliability and evaluation, RAG and agent architecture, AI governance.
 - 30+ years engineering. Co-founded two companies; led teams of up to ten through the full SDLC.
 - MSc Computer Science, University of Auckland.
 - Currently a Senior Developer at Nylon, leading their ISO 42001 implementation.

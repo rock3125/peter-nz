@@ -2,7 +2,7 @@
 
 > I design systems that understand, prove them with running code, and lead the engineers who build them.
 
-Software architect · technical leader · hands-on developer · consultant.
+Software architect · technical leader · hands-on developer · technical AI consultant.
 Based in New Zealand. Website: https://peter.nz
 
 ## Biography
@@ -17,9 +17,10 @@ security boundary, deployment topology — and then writes production code along
 expertise spans full-stack engineering, infrastructure, networking, security and cloud, with deep
 specialisation in big-data retrieval, NLP and complex API integration.
 
-As a consultant he translates between executives and engineers: pre-sales and solution architecture
-at Datacom, CTO-level technical advisory at Booktrack, and architecture reviews and whitepapers for
-clients today.
+As a technical AI consultant he translates between executives and engineers: pre-sales and solution
+architecture at Datacom, CTO-level technical advisory at Booktrack, and architecture reviews and
+whitepapers for clients today. That advisory work now centres on AI: where language models are
+load-bearing, how their reliability is measured, and what governance the result has to stand up to.
 
 ## How he works
 - Designs in the open and validates by building. Decisions are written down, walked through with the
