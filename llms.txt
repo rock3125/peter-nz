@@ -18,6 +18,5 @@
 
 ## Links
 - Portfolio: https://peter.nz/
-- Home lab and project index: https://home.peter.nz/
 - GitHub: https://github.com/rock3125
 - LinkedIn: https://www.linkedin.com/in/pmgdv/
