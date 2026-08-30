@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Missile Command</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="flash"></div>
+
+  <div id="hud">
+    <div id="score-panel">
+      <span class="label">SCORE</span>
+      <span id="score">0</span>
+    </div>
+    <div id="wave-panel">
+      <span class="label">WAVE</span>
+      <span id="wave">1</span>
+    </div>
+    <div id="ammo-panel">
+      <span class="label">AMMO</span>
+      <div id="battery-ammo">
+        <div class="battery" id="batt-0"><span></span></div>
+        <div class="battery" id="batt-1"><span></span></div>
+        <div class="battery" id="batt-2"><span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay" class="visible">
+    <div id="overlay-box">
+      <h1 id="overlay-title">MISSILE COMMAND</h1>
+      <p id="overlay-text">Defend your six cities.<br>Click to launch interceptors from the nearest battery.</p>
+      <button id="overlay-btn">START</button>
+    </div>
+  </div>
+
+  <div id="wave-banner"></div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
