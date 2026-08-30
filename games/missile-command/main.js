@@ -367,10 +367,50 @@ function onMouseDown(e) {
   fire(mouseWorld.clone());
 }
 
-function makeMissileObj(from, target, speed, color, isEnemy) {
+const TRAIL_SEGMENTS = 28;
+const TRAIL_LENGTH = 46;
+
+function makeTrail(color) {
+  const n = TRAIL_SEGMENTS + 1;
   const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(6), 3));
-  const line = new THREE.Line(geo, new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.85 }));
+  geo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(n * 3), 3));
+
+  // Static gradient along the trail: hot near the warhead, fading to nothing
+  // behind it. Fading toward black works as a fade against the dark sky.
+  const colors = new Float32Array(n * 3);
+  const c = new THREE.Color(color);
+  for (let i = 0; i < n; i++) {
+    const t = i / (n - 1);
+    const f = t * t * t;
+    colors[i * 3] = c.r * f;
+    colors[i * 3 + 1] = c.g * f;
+    colors[i * 3 + 2] = c.b * f;
+  }
+  geo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+
+  const line = new THREE.Line(
+    geo,
+    new THREE.LineBasicMaterial({
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.95,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    })
+  );
+  line.frustumCulled = false;
+  return line;
+}
+
+function makeMissileObj(from, target, speed, color, isEnemy) {
+  let line;
+  if (isEnemy) {
+    line = makeTrail(color);
+  } else {
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(6), 3));
+    line = new THREE.Line(geo, new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.85 }));
+  }
   scene.add(line);
 
   const head = new THREE.Mesh(
@@ -578,6 +618,32 @@ function destroyCity(c) {
   sfx("cityBoom");
 }
 
+function updateTrail(m) {
+  const posAttr = m.line.geometry.attributes.position;
+  if (!m.isEnemy) {
+    posAttr.setXYZ(0, m.from.x, m.from.y, m.from.z);
+    posAttr.setXYZ(1, m.pos.x, m.pos.y, m.pos.z);
+    posAttr.needsUpdate = true;
+    return;
+  }
+  // Tail is clamped so the visible streak stays a trail rather than growing
+  // into a full-length line back to the spawn point.
+  const tail = m.pos.clone().sub(m.from);
+  const flown = tail.length();
+  if (flown > TRAIL_LENGTH) tail.multiplyScalar(TRAIL_LENGTH / flown);
+  const start = m.pos.clone().sub(tail);
+  for (let i = 0; i <= TRAIL_SEGMENTS; i++) {
+    const t = i / TRAIL_SEGMENTS;
+    posAttr.setXYZ(
+      i,
+      start.x + (m.pos.x - start.x) * t,
+      start.y + (m.pos.y - start.y) * t,
+      start.z + (m.pos.z - start.z) * t
+    );
+  }
+  posAttr.needsUpdate = true;
+}
+
 function updateMissile(m, dt) {
   const dir = m.target.clone().sub(m.pos);
   const dist = dir.length();
@@ -614,10 +680,7 @@ function updateMissile(m, dt) {
     mirvSplit(m);
   }
 
-  const posAttr = m.line.geometry.attributes.position;
-  posAttr.setXYZ(0, m.from.x, m.from.y, m.from.z);
-  posAttr.setXYZ(1, m.pos.x, m.pos.y, m.pos.z);
-  posAttr.needsUpdate = true;
+  updateTrail(m);
   m.head.position.copy(m.pos);
 }
 
