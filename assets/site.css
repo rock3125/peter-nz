@@ -862,7 +862,7 @@ span.brilliant:after {
    keyboard focus both open it; coarse pointers never do. */
 .builds .peek { position: relative; }
 .builds .peek:hover,
-.builds .peek:focus-within { z-index: 6; }
+.builds .peek:focus-within { z-index: 40; }   /* clears .rgbsplit .link (20) and its underline (30) */
 
 .builds .shot {
     --tail: 10px;
