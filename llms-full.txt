@@ -132,13 +132,6 @@ Built and run in a home lab — one server, no cloud account.
   other in real time. ~7,000 lines of C++, 0 dependencies.
   Source: https://github.com/rock3125/pi
 
-- **Seshat** — a chat application over a private folder of text files, and an MCP server. Answers come
-  back with the paragraph they were drawn from attached, so the citation opens the source text rather
-  than a summary. Hybrid retrieval: BM25 keyword matching and dense embeddings, fused server-side by
-  reciprocal rank fusion. One Kotlin jar is both the MCP server and the chat gateway, so a browser and
-  an agent reach the same tools from one definition. Kotlin, React.
-  Source: https://github.com/rock3125/seshat
-
 - **pdf-redaction** — a Java PDF redaction library that actually redacts. Common tools draw a black
   rectangle and ship a PDF whose content stream still contains every word underneath; this one
   intercepts the text operators, strips the characters while holding the visual layout together, and
