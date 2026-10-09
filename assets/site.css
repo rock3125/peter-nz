@@ -314,6 +314,13 @@ header {
     font-weight: 700;
     transition: transform .17s ease;
 }
+.me .mark {
+    display: inline-block;
+    height: 1.6em;
+    margin-inline-end: .4em;
+    vertical-align: -.45em;
+    width: auto;
+}
 .me:before {
     opacity: 0;
     transition: opacity var(--slideTime) var(--headerBounce), box-shadow .21s ease;
