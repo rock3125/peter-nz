@@ -79,9 +79,10 @@ if (more && cv) {
 
 /* --- back to the top ---------------------------------------------- */
 const me = document.querySelector('.me');
-if (me) {
-    me.setAttribute('aria-label', 'Back to top');
-    me.addEventListener('click', () => {
+if (me) me.setAttribute('aria-label', 'Back to top');
+for (const el of document.querySelectorAll('.me, .to-top')) {
+    el.addEventListener('click', (e) => {
+        e.preventDefault();
         const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
         window.scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' });
     });

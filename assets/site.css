@@ -556,8 +556,13 @@ footer .wrap:before {
     top: 0;
 }
 footer .logo {
-    height: 5.5rem;
     margin-inline-end: 2em;
+    transition: transform .17s ease;
+}
+footer .logo:hover { transform: scale(1.04); }
+footer .logo:active { transform: scale(.984); }
+footer .logo img {
+    height: 5.5rem;
     width: auto;
 }
 footer p { flex: 0; font-size: var(--size-s); white-space: nowrap; }
