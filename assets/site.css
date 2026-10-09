@@ -540,7 +540,7 @@ body:not(.loaded) .mast:after { opacity: 0; }
 /* --- footer ------------------------------------------------------- */
 footer { padding-block-end: var(--innerPad); }
 footer .wrap {
-    align-items: baseline;
+    align-items: center;
     display: flex;
     padding-block-start: 2em;
     position: relative;
@@ -554,6 +554,11 @@ footer .wrap:before {
     position: absolute;
     right: var(--outerPad);
     top: 0;
+}
+footer .logo {
+    height: 5.5rem;
+    margin-inline-end: 2em;
+    width: auto;
 }
 footer p { flex: 0; font-size: var(--size-s); white-space: nowrap; }
 footer ul {
@@ -701,7 +706,7 @@ footer:not(:hover) .hello { animation: waveHelloReverse .24s var(--linkBtnBounce
     .cv li:last-child .details:before { height: 1em; }
 
     footer { padding-block-end: calc(var(--innerPad) / 2); }
-    footer .wrap { flex-direction: column; gap: 1em; }
+    footer .wrap { align-items: flex-start; flex-direction: column; gap: 1em; }
     footer ul { justify-content: flex-start; }
 }
 
