@@ -53,6 +53,7 @@
 
   /* ---------- masthead ---------- */
   .masthead{
+    position:relative;
     background:var(--navy-deep);
     margin:-14mm -13mm 0;
     padding:11mm 13mm 8mm;
@@ -65,6 +66,13 @@
     font-weight:700;
     letter-spacing:-.2pt;
     color:#ffffff;
+  }
+  .masthead .logo{
+    position:absolute;
+    top:9mm;
+    right:13mm;
+    height:24mm;
+    width:auto;
   }
   .namerule{
     width:17mm;
@@ -275,6 +283,7 @@
     html{ background:#fff; }
     .sheet{ width:auto; min-height:0; margin:0; padding:0; box-shadow:none; }
     .masthead{ margin:0; padding:9mm 10mm 7mm; }
+    .masthead .logo{ top:6mm; right:10mm; height:17mm; }
     .panel, .cat, .edu{ break-inside:avoid; }
     h2{ break-after:avoid; page-break-after:avoid; }
   }
@@ -284,6 +293,7 @@
 <div class="sheet">
 
   <header class="masthead">
+    <img class="logo" src="assets/rockhub-light.svg" alt="RockHub" width="776" height="644">
     <h1>Rock de Vocht</h1>
     <div class="namerule"></div>
     <p class="tagline">AI &amp; Data Consultant <span class="sep">·</span> AI Governance, ISO/IEC 42001 <span class="sep">·</span> Solution Architect <span class="sep">·</span> Technical Leader</p>
